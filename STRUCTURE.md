@@ -1,0 +1,22 @@
+# ファイル構成
+
+- _install.bat
+- main.js
+- package.json
+- read_bookmark/
+  - index.js
+  - bookmarks.json
+  - bookmark_storage.js
+  - puppeteer_helper.js
+  - package.json
+- use_chatgpt/
+  - index.js
+  - assistant_session.js
+  - package.json
+- voicevox_talker/
+  - venv/
+  - models/
+  - _install.bat
+  - main.py
+  - voicevox_yomiage.py
+  - eng_to_kana.py

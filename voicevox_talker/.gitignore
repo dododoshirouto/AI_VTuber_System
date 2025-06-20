@@ -1,0 +1,30 @@
+/venv
+/build
+/dist
+/__pycache__
+# /_*
+*.lnk
+*.spec
+_Launch Cursor.bat
+/python-*
+
+# voicevox_core
+/onnxruntime*
+/README.txt
+/VERSION
+/voicevox_core.*
+/voicevox-download-windows-x64.exe
+/model
+/models
+/model_unuse
+/c_api
+/dict
+/open_jtalk_dic_utf_8*
+
+# cmudict-0.7b
+cmudict-0.7b
+make_baseform.pl
+cmudict-0.7b_baseform
+# strawberry-perl
+strawberry-perl-5.40.0.1-64bit-portable.zip
+/strawberry-perl
