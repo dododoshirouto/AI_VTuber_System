@@ -28,3 +28,5 @@ cmudict-0.7b_baseform
 # strawberry-perl
 strawberry-perl-5.40.0.1-64bit-portable.zip
 /strawberry-perl
+
+/out.wav
