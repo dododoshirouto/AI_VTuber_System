@@ -67,7 +67,7 @@ AI_VTuber_System/
 │   ├── main.py               # 立ち上げ＆合成トリガー
 │   ├── voicevox_yomiage.py   # 音声再生＆辞書処理
 │   ├── bep-eng.dic.txt       # 英語→カナ変換辞書
-│   ├── model/                # VOICEVOXモデルデータ
+│   ├── models/                # VOICEVOXモデルデータ
 │   └── venv/                 # Python仮想環境
 ├── public/                   # OBS表示素材（画像・wav・HTMLなど）
 └── _install.bat              # セットアップバッチ（Node+Python）
