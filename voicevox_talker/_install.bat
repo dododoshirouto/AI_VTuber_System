@@ -40,7 +40,7 @@ IF EXIST voicevox-download-windows-x64.exe GOTO :SKIP_DL_VOICEVOX_INSTALLER
 
 IF EXIST voicevox_core.dll GOTO :SKIP_INSTALL_VOICEVOX_DLL
     echo install voicevox...
-    voicevox-download-windows-x64.exe -o ./
+    voicevox-download-windows-x64.exe -o ./ --exclude c-api
     del voicevox-download-windows-x64.exe
 :SKIP_INSTALL_VOICEVOX_DLL
 
