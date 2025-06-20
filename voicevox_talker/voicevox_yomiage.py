@@ -72,6 +72,19 @@ class VoicevoxYomiage:
         wave_bytes = self.synthesizer.synthesis(query, self.speaker_id)
         self.stream.write(wave_bytes)
 
+    def synthesize(self, text: str) -> bytes:
+        text_kana = self.eng_to_kana(text)
+        query = self.synthesizer.create_audio_query(text_kana, self.speaker_id)
+        query.speed_scale = self.speed_scale
+        return self.synthesizer.synthesis(query, self.speaker_id)
+
+    def get_audio_query(self, text: str) -> dict:
+        text_kana = self.eng_to_kana(text)
+        query = self.synthesizer.create_audio_query(text_kana, self.speaker_id)
+        query.speed_scale = self.speed_scale
+        return query
+
+
     def set_speaker(self, speaker_id: int):
         self.speaker_id = speaker_id
         return self
@@ -123,6 +136,47 @@ class VoicevoxYomiage:
             if str.upper(text_split[i]) in self.kana_dict:
                 text_split[i] = self.kana_dict[str.upper(text_split[i])]
         return ("".join(text_split))
+    
+    import voicevox_core
+    staticmethod
+    def AudioQuery_to_dict(query: voicevox_core.AudioQuery) -> dict:
+        accentPhraseList = []
+        for accentPhrase in query.accent_phrases:
+            dict = {}
+            dict["accent"] = accentPhrase.accent
+            dict["is_interrogative"] = accentPhrase.is_interrogative
+            dict["moras"] = []
+            for mora in accentPhrase.moras:
+                dict["moras"].append({
+                    "text": mora.text,
+                    "vowel": mora.vowel,
+                    "vowel_length": mora.vowel_length,
+                    "pitch": mora.pitch,
+                    "consonant": mora.consonant,
+                    "consonant_length": mora.consonant_length,
+                })
+            dict["pause_mora"] = {
+                    "text": accentPhrase.pause_mora.text,
+                    "vowel": accentPhrase.pause_mora.vowel,
+                    "vowel_length": accentPhrase.pause_mora.vowel_length,
+                    "pitch": accentPhrase.pause_mora.pitch,
+                    "consonant": accentPhrase.pause_mora.consonant,
+                    "consonant_length": accentPhrase.pause_mora.consonant_length,
+                } if accentPhrase.pause_mora is not None else None
+            accentPhraseList.append(dict)
+        return {
+            "speed_scale": query.speed_scale,
+            "pitch_scale": query.pitch_scale,
+            "intonation_scale": query.intonation_scale,
+            "intonation_scale": query.intonation_scale,
+            "volume_scale": query.volume_scale,
+            "pre_phoneme_length": query.pre_phoneme_length,
+            "post_phoneme_length": query.post_phoneme_length,
+            "output_sampling_rate": query.output_sampling_rate,
+            "output_stereo": query.output_stereo,
+            "kana": query.kana,
+            "accent_phrases": accentPhraseList
+        }
 
 
 if __name__ == "__main__":
