@@ -78,7 +78,7 @@ AI_VTuber_System/
 - [ ] root/main.jsから統合処理
 - [x] Xからブクマを取得する
 - [x] ChatGPTでセリフを生成する
-- [ ] VOICEVOXで音声を生成する
+- [x] VOICEVOXで音声を生成する
 - [ ] 立ち絵をOBSに反映させる
 - [ ] 音声をOBSに反映させる
 - [ ] XのポストをOBSに反映させる
