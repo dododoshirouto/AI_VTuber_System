@@ -7,4 +7,7 @@ body {
 canvas {
     display: block;
     margin: 0 auto;
+    object-fit: contain;
+    width: 100vw;
+    height: 100vh;
 }

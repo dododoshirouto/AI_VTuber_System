@@ -10,6 +10,14 @@ const radioLayers = {
     "arm_right": [],
 }
 
+
+
+// TODO: wavを再生する
+// TODO: AudioQueryを使ってクチパクする
+// TODO: 口パクをwavの再生時間と同期する
+// TODO: 目パチする
+// TODO: 口パクに合わせてcss animationする
+
 window.addEventListener('DOMContentLoaded', () => {
     PSD.fromURL('psd/四国めたん立ち絵素材2.1/四国めたん立ち絵素材2.1.psd').then(psd => {
         window.psd = psd;
@@ -57,6 +65,7 @@ function createLayersImageCtx(psd) {
                 loading--;
                 if (loading == 0) {
                     updateImage(psd);
+                    test();
                 }
             }
             layer.ctx_image.src = toBase64;
