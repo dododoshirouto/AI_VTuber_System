@@ -2,6 +2,7 @@ var PSD = require('psd');
 var pngElem = null;
 var canvas = null;
 var ctx = null;
+var faceData = null;
 
 const radioLayers = {
     "mouth": [],
@@ -12,14 +13,22 @@ const radioLayers = {
 
 
 
+const chara_name = "四国めたん立ち絵素材2.1";
+const chara_psd = `${chara_name}.psd`;
+const chara_face_json = `${chara_name}.face.json`;
+
+
+
 // TODO: wavを再生する
 // TODO: AudioQueryを使ってクチパクする
 // TODO: 口パクをwavの再生時間と同期する
 // TODO: 目パチする
 // TODO: 口パクに合わせてcss animationする
 
-window.addEventListener('DOMContentLoaded', () => {
-    PSD.fromURL('psd/四国めたん立ち絵素材2.1/四国めたん立ち絵素材2.1.psd').then(psd => {
+async function init() {
+    faceData = await loadFaceJson()
+
+    PSD.fromURL(`psd/${chara_name}/${chara_psd}`).then(psd => {
         window.psd = psd;
 
         logLayers(psd);
@@ -27,7 +36,65 @@ window.addEventListener('DOMContentLoaded', () => {
         getRadioLayers(psd);
         createLayersImageCtx(psd);
     }).catch(e => console.error('PSD load error:', e));
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+    await init();
 });
+
+var time = 0;
+var lastTime = 0;
+var deltaTime = 0;
+async function update() {
+    while (true) {
+        await new Promise(r => requestAnimationFrame(r));
+        lastTime = time;
+        time = Date.now() / 1000;
+        deltaTime = time - lastTime;
+        if (!window.psd) continue;
+        if (!faceData) continue;
+
+        update_twinkle();
+    }
+}
+update();
+
+const twincles_data = {
+    isClose: false,
+    intervalTime: 0,
+    intervalTimeMax: 0
+}
+async function update_twinkle() {
+    // まばたき
+    twincles_data.intervalTime += deltaTime;
+    const settings = faceData.settings.twinkles;
+
+    if (twincles_data.intervalTime >= twincles_data.intervalTimeMax) {
+        // 閉じと開きの切り替え
+        twincles_data.isClose = !twincles_data.isClose;
+        let intervalRange = twincles_data.isClose ? settings.closeIntervalRange : settings.openIntervalRange;
+        twincles_data.intervalTimeMax = intervalRange.min + Math.random() * (intervalRange.max - intervalRange.min);
+        twincles_data.intervalTime = 0;
+    }
+
+    if (twincles_data.intervalTime <= settings.twinclingTime) {
+        // 切替時のアニメーション
+        let rate = twincles_data.intervalTime / settings.twinclingTime;
+        if (!twincles_data.isClose) {
+            rate = 1 - rate;
+        }
+        rate = Math.min(Math.max(rate, 0), 1);
+        updateEyes(window.psd, faceData.eye_close[Math.floor(rate * faceData.eye_close.length)]);
+    }
+}
+
+
+
+async function loadFaceJson() {
+    let res = await fetch(`psd/${chara_name}/${chara_face_json}`);
+    let json = await res.json();
+    return json;
+}
 
 
 
@@ -65,7 +132,7 @@ function createLayersImageCtx(psd) {
                 loading--;
                 if (loading == 0) {
                     updateImage(psd);
-                    test();
+                    // test();
                 }
             }
             layer.ctx_image.src = toBase64;
@@ -104,26 +171,28 @@ function updateImage(psd) {
 
 
 
-function updateMouth(psd, name) {
-    if (!radioLayers.mouth.map(v => v.name).includes(name)) return;
-    radioLayers.mouth.forEach(v => v.layer.visible = v.name == name);
+function updateLayers(psd, radioLayer, name) {
+    if (!radioLayer.map(v => v.name).includes(name)) return;
+    if (radioLayer.find(v => v.name == name).layer.visible) return;
+    radioLayer.forEach(v => v.layer.visible = v.name == name);
     updateImage(psd);
-    console.log(`update mouth: ${name}`);
+    console.log(`update layer: ${name}`);
+}
+
+function updateMouth(psd, name) {
+    updateLayers(psd, radioLayers.mouth, name);
 }
 
 function updateEyes(psd, name) {
-    console.log(`update eyes: ${name}`)
-    updateImage(psd);
+    updateLayers(psd, radioLayers.eyes, name);
 }
 
 function updateArmLeft(psd, name) {
-    console.log(`update arm_left: ${name}`)
-    updateImage(psd);
+    updateLayers(psd, radioLayers.arm_left, name);
 }
 
 function updateArmRight(psd, name) {
-    console.log(`update arm_right: ${name}`)
-    updateImage(psd);
+    updateLayers(psd, radioLayers.arm_right, name);
 }
 
 

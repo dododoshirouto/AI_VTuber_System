@@ -1,0 +1,39 @@
+{
+    "$schema": "../face.schema.json",
+    "name": "四国めたん立ち絵素材2.1",
+    "mouth_open": [
+        "*ほほえみ",
+        "*わあー"
+    ],
+    "mouse_viseme": {
+        "a": "*わあー",
+        "i": "*にやり",
+        "u": "*もむー",
+        "e": "*うえー",
+        "o": "*お",
+        "r": "*△",
+        "h": "*▽",
+        "p": "*ぺろり",
+        "s": "*ゆ",
+        "m": "*む",
+        "t": "*いー",
+        "n": "*んー"
+    },
+    "eye_close": [
+        "*目セット",
+        "*目閉じ2"
+    ],
+    "settings": {
+        "twinkles": {
+            "closeIntervalRange": {
+                "min": 0.2,
+                "max": 0.5
+            },
+            "openIntervalRange": {
+                "min": 3,
+                "max": 30
+            },
+            "twinclingTime": 0.1
+        }
+    }
+}
