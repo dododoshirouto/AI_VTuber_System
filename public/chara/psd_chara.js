@@ -1,4 +1,10 @@
 // psd_chara.js
+const radioLayers = {
+    "mouth": [],
+    "eyes": [],
+    "arm_left": [],
+    "arm_right": [],
+}
 
 const twincles_data = {
     isClose: false,

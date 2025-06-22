@@ -4,12 +4,7 @@ var canvas = null;
 var ctx = null;
 var faceData = null;
 
-const radioLayers = {
-    "mouth": [],
-    "eyes": [],
-    "arm_left": [],
-    "arm_right": [],
-}
+
 
 
 
