@@ -7,3 +7,7 @@ package-lock.json
 venv/
 
 .env
+
+.url
+.lnk
+WebSocket Server.exe
