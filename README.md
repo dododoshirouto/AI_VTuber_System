@@ -66,6 +66,7 @@ AI_VTuber_System/
 ├── public/                   # OBS表示素材（画像・wav・HTMLなど）
 │   ├── index.html            # OBSブラウザソース
 │   └── main.js
+│   └── psd_chara.js
 └── _install.bat              # セットアップバッチ（Node+Python）
 ```
 

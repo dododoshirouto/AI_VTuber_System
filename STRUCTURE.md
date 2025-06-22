@@ -24,6 +24,7 @@
   - chara/
     - index.html
     - main.js
+    - psd_chara.js
     - style.css
     - psd/
       - 四国めたん立ち絵素材2.1/四国めたん立ち絵素材2.1.psd
