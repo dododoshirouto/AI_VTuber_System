@@ -36,7 +36,13 @@ async def speak(text: str):
 
 @app.get("/query")
 async def query(text: str):
+    # return VoicevoxYomiage.AudioQuery_to_dict(yomiage.get_audio_query(text))
     return json.dumps(VoicevoxYomiage.AudioQuery_to_dict(yomiage.get_audio_query(text)))
+    
+
+@app.get("/")
+async def root():
+    return {"status": "ok"}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=50021)
