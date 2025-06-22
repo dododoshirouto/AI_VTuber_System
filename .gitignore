@@ -12,5 +12,5 @@ venv/
 *.lnk
 WebSocket Server.exe
 
-public\chara\voice.wav
-public\chara\current.json
+public/chara/voice.wav
+public/chara/current.json
