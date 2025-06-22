@@ -24,7 +24,7 @@ import uvicorn
 import json
 
 app = FastAPI()
-yomiage = VoicevoxYomiage(speaker_id=VV_Speaker.四国めたん.value)
+yomiage = VoicevoxYomiage(speaker_id=VV_Speaker.四国めたん.value, speed=1)
 
 @app.get("/speak")
 async def speak(text: str):

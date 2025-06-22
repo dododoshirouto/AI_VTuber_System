@@ -4,7 +4,13 @@ var canvas = null;
 var ctx = null;
 var faceData = null;
 
+const audio_file = "voice.wav";
+const audio_query_json = "current.json";
+var audio_query = null;
+const audio_elem = document.getElementById("speech_audio");
+audio_elem.onended = () => audio_is_playing = false;
 
+var audio_is_playing = false;
 
 
 
@@ -49,6 +55,18 @@ async function update() {
         if (!faceData) continue;
 
         update_twinkle();
+        update_visemes();
     }
 }
 update();
+
+
+
+
+async function play_audio() {
+    audio_elem.src = audio_file + '?' + Date.now();
+    audio_elem.currentTime = 0;
+    await load_audio_query_json();
+    audio_elem.play();
+    audio_is_playing = true;
+}

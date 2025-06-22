@@ -18,7 +18,7 @@
             },
             "minItems": 1
         },
-        "mouse_viseme": {
+        "mouth_viseme": {
             "type": "object",
             "description": "母音ごとの口レイヤー名",
             "properties": {
@@ -67,6 +67,9 @@
                 "g": {
                     "type": "string"
                 },
+                "j": {
+                    "type": "string"
+                },
                 "z": {
                     "type": "string"
                 },
@@ -77,6 +80,9 @@
                     "type": "string"
                 },
                 "p": {
+                    "type": "string"
+                },
+                "ch": {
                     "type": "string"
                 }
             },

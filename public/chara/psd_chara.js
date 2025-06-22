@@ -37,6 +37,121 @@ async function update_twinkle() {
 
 
 
+const visemes_alternatives = {
+    k: 'e',
+    s: 'u',
+    t: 'e',
+    n: 'e',
+    h: 'a',
+    m: '',
+    y: 'a',
+    r: 'a',
+    w: 'u',
+
+    g: 'k',
+    j: 's',
+    z: 'j',
+    d: 't',
+    b: 'm',
+    p: 'b',
+
+    ch: 'k',
+    ts: 's',
+    th: 't',
+    ph: 'p',
+}
+
+function update_visemes() {
+    if (!faceData) return;
+    if (!audio_is_playing) return;
+
+    let a_time = audio_elem.currentTime;
+
+    let moras_timmings = get_moras_timmings();
+
+    console.log(get_now_mora(moras_timmings, a_time), a_time);
+
+    updateMouth(window.psd, mora_to_layer_name(get_now_mora(moras_timmings, a_time)) || faceData.mouth_open[0]);
+}
+
+function mora_to_layer_name(mora) {
+    mouthes = faceData.mouth_viseme;
+    mora = (function get_mora(mora) {
+        if (mora in mouthes) return mora;
+        mora = visemes_alternatives[mora];
+        if (!mora) return null;
+        return get_mora(mora);
+    })(mora);
+
+    return mouthes[mora];
+}
+
+function get_now_mora(moras_timmings, time) {
+    let flat_moras = moras_timmings.flat();
+    for (let i = 0; i < flat_moras.length; i++) {
+        let mora = flat_moras[i];
+        if (mora.time > time) {
+            return mora.mora;
+        }
+    }
+    return null;
+}
+
+function get_moras_timmings() {
+    let accent_phrases = audio_query.query.accent_phrases;
+    let speed = audio_query.query.speed_scale;
+    let total_time = audio_query.query.pre_phoneme_length || 0;
+    let moras_timmings = [{ mora: null, time: total_time / speed }];
+    for (let i = 0; i < accent_phrases.length; i++) {
+        let accent_phrase = accent_phrases[i];
+        let moras = accent_phrase.moras;
+        let mora_timmings = [];
+        let total_time_phrases = 0;
+        for (let j = 0; j < moras.length; j++) {
+            let mora = moras[j];
+            if (mora.consonant && mora.consonant_length) {
+                total_time += mora.consonant_length || 0;
+                total_time_phrases += mora.consonant_length || 0;
+                mora_timmings.push({
+                    mora: mora.consonant.toLowerCase(),
+                    type: 'consonant',
+                    time: total_time / speed,
+                    time_phrases: total_time_phrases / speed
+                })
+            }
+            if (mora.vowel && mora.vowel_length) {
+                total_time += mora.vowel_length || 0;
+                total_time_phrases += mora.vowel_length || 0;
+                // if (mora.consonant && mora.consonant_length) {
+                //     total_time -= mora.consonant_length || 0;
+                //     total_time_phrases -= mora.consonant_length || 0;
+                // }
+                mora_timmings.push({
+                    mora: mora.vowel.toLowerCase(),
+                    type: 'vowel',
+                    time: total_time / speed,
+                    time_phrases: total_time_phrases / speed
+                })
+            }
+        }
+        if (accent_phrase.pause_mora) {
+            total_time += accent_phrase.pause_mora.vowel_length || 0;
+            mora_timmings.push({
+                mora: null,
+                time: total_time / speed
+            })
+        }
+        moras_timmings.push(mora_timmings);
+    }
+    return moras_timmings;
+}
+
+async function load_audio_query_json() {
+    await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => audio_query = json);
+}
+
+
+
 async function loadFaceJson() {
     let res = await fetch(`psd/${chara_name}/${chara_face_json}`);
     let json = await res.json();
