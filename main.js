@@ -3,7 +3,7 @@ const axios = require('axios');
 const path = require('path');
 const wav = require('node-wav');
 const { spawn } = require('child_process');
-const { replay, nextTopic } = require('./use_chatgpt');
+const { replay, nextTopic, exit } = require('./use_chatgpt');
 
 const VV_SERVER_HOST = "http://127.0.0.1:50021/";
 
@@ -67,11 +67,11 @@ const stream_topics_prompts = [
         name: "配信終了",
         useBookmark: false,
         prompts: [
-            "配信終了に行き着くような雑談をして配信を締めて",
-            "雑談ののち配信終了の挨拶をして配信を締めて",
-            "今日の内容を踏まえたまとめ雑談をして配信を締めて",
-            "日常の雑談を交えて配信終了の雑談をして配信を締めて",
-            "最近の出来事について雑談しながら配信を締めて",
+            "今日の内容を踏まえて、配信終了に行き着くような雑談をして配信を締めて",
+            "今日の内容を踏まえて、雑談ののち配信終了の挨拶をして配信を締めて",
+            "今日の内容を踏まえて、まとめ雑談をして配信を締めて",
+            "今日の内容を踏まえて、日常の雑談を交えて配信終了の雑談をして配信を締めて",
+            "今日の内容を踏まえて、最近の出来事について雑談しながら配信を締めて",
         ]
     }
 ];
@@ -111,7 +111,7 @@ async function main() {
 
     await create_topic_serif("配信終了");
 
-    await session.close();
+    await exit();
 }
 
 let last_wav_start_time = 0;
@@ -132,7 +132,7 @@ async function create_topic_serif(stream_topic_name) {
         if (bookmark) prompt += "\n---\n# ツイート主\n" + bookmark.author + "\n# ツイート内容\n" + bookmark.text;
         bookmarks = bookmarks.filter(b => b !== bookmark);
 
-        let text = `${bookmark.author}さんのツイート　\n${bookmark.text}`;
+        let text = `${bookmark.author}さんのツイートを紹介するわ。\n${bookmark.text}`;
         let { wav_buffer, text: _text, audioQuery } = await create_voicevox_wav_and_json(text);
         let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - topic_creating_start_time));
         console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);

@@ -32,13 +32,18 @@ async function nextTopic() {
     session.close();
 }
 
+async function exit() {
+    session.close();
+    console.lof(`🧾 合計使用: ${totalYen.toFixed(2)} 円`);
+}
+
 (async () => {
     await init();
     // await replay();
     // await nextTopic();
 })();
 
-module.exports = { replay, nextTopic };
+module.exports = { replay, nextTopic, exit };
 
 
 

@@ -114,6 +114,7 @@ class AssistantSession {
 
         this.totalToken += totalTokens;
         this.totalYen += costYen;
+        totalYen += costYen;
 
         console.log(`🧾 使用トークン: 入力 ${inputTokens}, 出力 ${outputTokens}`);
         console.log(`💸 コスト: ${costYen.toFixed(2)} 円`);
