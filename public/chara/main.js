@@ -8,7 +8,20 @@ const audio_file = "voice.wav";
 const audio_query_json = "current.json";
 var audio_query = null;
 const audio_elem = document.getElementById("speech_audio");
-audio_elem.onended = () => audio_is_playing = false;
+audio_elem.onended = async () => {
+    audio_is_playing = false;
+    document.body.classList.remove('audio_playing');
+    updateMouth(window.psd, faceData.mouth_open[0]);
+    await exit_streaming_if_final_wav_ended();
+}
+
+async function exit_streaming_if_final_wav_ended() {
+    if (!audio_is_playing && audio_query.isFinal && window.obsstudio) {
+        await new Promise(resolve => setTimeout(resolve, 5000));
+        window.obsstudio.stopRecording();
+        window.obsstudio.stopStreaming();
+    }
+}
 
 var can_audio_play = false;
 var audio_is_playing = false;
@@ -74,6 +87,7 @@ async function play_audio() {
     await load_audio_query_json();
     audio_elem.play();
     audio_is_playing = true;
+    document.body.classList.add('audio_playing');
 }
 
 
@@ -94,6 +108,7 @@ async function audio_update_check() {
 
 if (window.obsstudio) {
     can_audio_play = true;
+    window.addEventListener('click', () => audio_elem.currentTime = audio_elem.duration - 0.1);
 } else {
     window.addEventListener('click', () => can_audio_play = true);
 }
