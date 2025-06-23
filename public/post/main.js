@@ -28,15 +28,18 @@ async function json_update_check() {
             if (bookmark?.url != json.bookmark?.url) container_elem.classList.remove('display');
             last_text = json.text;
             await load_audio_query_json();
-            display_bookmark_embed();
         }
     }
 }
 (async () => await json_update_check())();
 
 async function load_audio_query_json() {
-    await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => audio_query = json);
-    bookmark = audio_query.bookmark;
+    let json = await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => json);
+    audio_query = json;
+    if (bookmark?.url != json.bookmark?.url) {
+        bookmark = audio_query.bookmark;
+        display_bookmark_embed();
+    }
 }
 
 function display_bookmark_embed() {

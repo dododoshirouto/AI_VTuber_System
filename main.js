@@ -3,7 +3,7 @@ const axios = require('axios');
 const path = require('path');
 const wav = require('node-wav');
 const { spawn } = require('child_process');
-const { replay, nextTopic, exit } = require('./use_chatgpt');
+const { replay, nextTopic, exit: exitChatGPT } = require('./use_chatgpt');
 
 const VV_SERVER_HOST = "http://127.0.0.1:50021/";
 
@@ -23,12 +23,12 @@ const stream_topics_prompts = [
         name: "配信開始",
         useBookmark: false,
         prompts: [
-            `配信開始の雑談をして: ${(new Date()).toLocaleDateString()}`,
-            `配信開始の挨拶をして: ${(new Date()).toLocaleDateString()}`,
-            `季節を踏まえた挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
-            `最近の日常を交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
-            `直近のニュースを交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
-            `最近の面白い話を交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
+            `今日はブクマしたツイートを紹介する配信です。配信開始の雑談をして: ${(new Date()).toLocaleDateString()}`,
+            `今日はブクマしたツイートを紹介する配信です。配信開始の挨拶をして: ${(new Date()).toLocaleDateString()}`,
+            `今日はブクマしたツイートを紹介する配信です。季節を踏まえた挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
+            `今日はブクマしたツイートを紹介する配信です。最近の日常を交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
+            `今日はブクマしたツイートを紹介する配信です。直近のニュースを交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
+            `今日はブクマしたツイートを紹介する配信です。最近の面白い話を交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
         ]
     },
     {
@@ -70,11 +70,11 @@ const stream_topics_prompts = [
         name: "配信終了",
         useBookmark: false,
         prompts: [
-            "今日の内容を踏まえて、配信終了に行き着くような雑談をして配信を締めて",
-            "今日の内容を踏まえて、雑談ののち配信終了の挨拶をして配信を締めて",
-            "今日の内容を踏まえて、まとめ雑談をして配信を締めて",
-            "今日の内容を踏まえて、日常の雑談を交えて配信終了の雑談をして配信を締めて",
-            "今日の内容を踏まえて、最近の出来事について雑談しながら配信を締めて",
+            "今日全体の内容を踏まえて、配信終了に行き着くような雑談をして配信を締めて",
+            "今日全体の内容を踏まえて、雑談ののち配信終了の挨拶をして配信を締めて",
+            "今日全体の内容を踏まえて、まとめ雑談をして配信を締めて",
+            "今日全体の内容を踏まえて、日常の雑談を交えて配信終了の雑談をして配信を締めて",
+            "今日全体の内容を踏まえて、最近の出来事について雑談しながら配信を締めて",
         ]
     }
 ];
@@ -89,8 +89,9 @@ async function main() {
     await create_topic_serif("配信開始");
 
     count = Math.floor(Math.random() * 3);
+    let topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
     for (let i = 0; i < count; i++) {
-        await create_topic_serif("雑談");
+        await create_topic_serif("雑談", topic_prompts[i]);
     }
     await nextTopic();
 
@@ -101,30 +102,32 @@ async function main() {
 
         await create_topic_serif("ツイート読み始め");
         count2 = Math.floor(Math.random() * 2 + 1);
+        topic_prompts = stream_topics_prompts.find(t => t.name === "ツイート読み続き").prompts.sort(() => Math.random() - 0.5);
         for (let j = 0; j < count2; j++) {
-            await create_topic_serif("ツイート読み続き");
+            await create_topic_serif("ツイート読み続き", topic_prompts[j]);
         }
 
         count2 = Math.floor(Math.random() * 3);
+        topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
         for (let j = 0; j < count2; j++) {
-            await create_topic_serif("雑談");
+            await create_topic_serif("雑談", topic_prompts[j]);
         }
         await nextTopic();
     }
 
     await create_topic_serif("配信終了");
 
-    await exit();
+    exitChatGPT();
 }
 
 let last_wav_start_time = 0;
 let last_wav_duration = 0;
 let bookmark = null;
 
-async function create_topic_serif(stream_topic_name) {
+async function create_topic_serif(stream_topic_name, topic_prompts = null) {
     console.log(`📣 ${stream_topic_name}`);
     let topic_creating_start_time = Date.now();
-    let topic_prompts = stream_topics_prompts.find(t => t.name === stream_topic_name);
+    if (!topic_prompts) topic_prompts = stream_topics_prompts.find(t => t.name === stream_topic_name);
     if (!topic_prompts) return null;
 
     let prompt = topic_prompts.prompts[Math.floor(Math.random() * topic_prompts.prompts.length)];
@@ -271,13 +274,13 @@ async function get_bookmarks() {
 // SIGINT（Ctrl+C）
 process.on('SIGINT', () => {
     console.log('🛑 SIGINT (Ctrl+C) を受信しました');
-    exit();
+    exitChatGPT();
     process.exit(0);
 });
 
 // 予期しないエラーでクラッシュしそうなとき
 process.on('uncaughtException', (err) => {
     console.error('💥 uncaughtException:', err);
-    exit();
+    exitChatGPT();
     process.exit(1);
 });
