@@ -35,6 +35,8 @@ async function init() {
 
         getRadioLayers(psd);
         createLayersImageCtx(psd);
+
+        audio_update_check();
     }).catch(e => console.error('PSD load error:', e));
 }
 
@@ -70,3 +72,21 @@ async function play_audio() {
     audio_elem.play();
     audio_is_playing = true;
 }
+
+
+
+var last_text = "";
+async function audio_update_check() {
+    while (true) {
+        await new Promise(r => setTimeout(r, 500));
+        let json = await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => json);
+        if (json.text != last_text) {
+            last_text = json.text;
+            play_audio();
+        }
+    }
+}
+
+
+
+window.addEventListener('click', () => play_audio());

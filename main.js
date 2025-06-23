@@ -9,7 +9,7 @@ new Promise(async _ => {
     // 1. ブクマ1件取得（仮）
     const post = {
         id: "abc123",
-        text: "こんにちは、これはテストです！"
+        text: "河川敷は今日も平和ですわよ。"
     };
 
     await launchPythonServer();
