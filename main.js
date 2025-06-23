@@ -2,10 +2,11 @@ const fs = require('fs');
 const axios = require('axios');
 const path = require('path');
 const { spawn } = require('child_process');
+const { replay, nextTopic } = require('./use_chatgpt');
 
 const VV_SERVER_HOST = "http://127.0.0.1:50021/";
 
-new Promise(async _ => {
+(async _ => {
     // 1. ブクマ1件取得（仮）
     const post = {
         id: "abc123",
@@ -14,9 +15,14 @@ new Promise(async _ => {
 
     await launchPythonServer();
 
-    await create_voicevox_wav_and_json(post.text);
-
-});
+    let count = 0;
+    while (true) {
+        post.text = await replay(post.text);
+        await create_voicevox_wav_and_json(post.text);
+        if (count++ > 5) await nextTopic();
+        await new Promise(r => setTimeout(r, 60 * 1000));
+    }
+})();
 
 async function create_voicevox_wav_and_json(text) {
     try {
