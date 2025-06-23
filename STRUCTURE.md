@@ -20,3 +20,11 @@
   - main.py
   - voicevox_yomiage.py
   - eng_to_kana.py
+- public/
+  - chara/
+    - index.html
+    - main.js
+    - psd_chara.js
+    - style.css
+    - psd/
+      - 四国めたん立ち絵素材2.1/四国めたん立ち絵素材2.1.psd

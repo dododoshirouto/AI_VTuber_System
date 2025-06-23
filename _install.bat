@@ -8,6 +8,7 @@ echo === Make Node.js for root ===
 
 IF NOT EXIST package.json (
     call npm init -y
+    call npm install axios node-wav
 )
 
 
@@ -20,7 +21,7 @@ IF NOT EXIST read_bookmark (
 cd read_bookmark
 IF NOT EXIST package.json (
     call npm init -y
-    call npm install puppeteer
+    call npm install puppeteer child_process
 )
 cd ..
 

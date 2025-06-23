@@ -1,20 +1,12 @@
 const { OpenAI } = require("openai");
+const path = require('path');
 const { AssistantSession } = require("./assistant_session");
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY, // ← セキュリティのため.env推奨
 });
-
-// const MODEL = "gpt-4o-mini"; // または "gpt-3.5-turbo"
-// const YEN_RATE = 145; // ドル円換算
-
-// const COST_PER_TOKEN = {
-//     "gpt-3.5-turbo": { input: 0.0015 / 1000, output: 0.002 / 1000 }, // ?
-//     "gpt-4o": { input: 2.50 / 1000000, output: 10.00 / 1000000 },
-//     "gpt-4o-mini": { input: 0.15 / 1000000, output: 0.60 / 1000000 },
-//     "o4-mini": { input: 1.10 / 1000000, output: 4.40 / 1000000 },
-// };
 
 let totalYen = 0;
 
@@ -27,20 +19,26 @@ async function init() {
     await session.init();
 }
 
-async function replay() {
-    let replay = await session.prompt("指示:配信開始→雑談");
+async function replay(prompt = "指示:配信開始→雑談") {
+    if (!prompt?.trim()) return;
+    if (!session.threadId?.trim()) await session.init();
+    let replay = await session.prompt(prompt);
     console.log(replay);
+    return replay;
 }
 
 async function nextTopic() {
+    AssistantSession.summaryText = await session.createSummary();
     session.close();
 }
 
 (async () => {
     await init();
-    await replay();
-    await nextTopic();
+    // await replay();
+    // await nextTopic();
 })();
+
+module.exports = { replay, nextTopic };
 
 
 

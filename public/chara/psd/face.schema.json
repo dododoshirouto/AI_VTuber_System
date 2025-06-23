@@ -1,0 +1,157 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "キャラ設定スキーマ",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string",
+            "description": "キャラクターの名前"
+        },
+        "mouth_open": {
+            "type": "array",
+            "description": "口の開閉レイヤー名（閉、中、開の順）",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "mouth_viseme": {
+            "type": "object",
+            "description": "母音ごとの口レイヤー名",
+            "properties": {
+                "a": {
+                    "type": "string"
+                },
+                "i": {
+                    "type": "string"
+                },
+                "u": {
+                    "type": "string"
+                },
+                "e": {
+                    "type": "string"
+                },
+                "o": {
+                    "type": "string"
+                },
+                "k": {
+                    "type": "string"
+                },
+                "s": {
+                    "type": "string"
+                },
+                "t": {
+                    "type": "string"
+                },
+                "n": {
+                    "type": "string"
+                },
+                "h": {
+                    "type": "string"
+                },
+                "m": {
+                    "type": "string"
+                },
+                "y": {
+                    "type": "string"
+                },
+                "r": {
+                    "type": "string"
+                },
+                "w": {
+                    "type": "string"
+                },
+                "g": {
+                    "type": "string"
+                },
+                "j": {
+                    "type": "string"
+                },
+                "z": {
+                    "type": "string"
+                },
+                "d": {
+                    "type": "string"
+                },
+                "b": {
+                    "type": "string"
+                },
+                "p": {
+                    "type": "string"
+                },
+                "ch": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "a",
+                "i",
+                "u",
+                "e",
+                "o"
+            ],
+            "additionalProperties": false
+        },
+        "eye_close": {
+            "type": "array",
+            "description": "目の開閉レイヤー名（開、中、閉の順）",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "settings": {
+            "type": "object",
+            "description": "動作の設定",
+            "properties": {
+                "twinkles": {
+                    "type": "object",
+                    "description": "眼球の閉じる間隔",
+                    "properties": {
+                        "closeIntervalRange": {
+                            "type": "object",
+                            "description": "閉じる間隔の範囲",
+                            "properties": {
+                                "min": {
+                                    "description": "(秒)",
+                                    "type": "number"
+                                },
+                                "max": {
+                                    "description": "(秒)",
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "openIntervalRange": {
+                            "type": "object",
+                            "description": "開く間隔の範囲",
+                            "properties": {
+                                "min": {
+                                    "description": "(秒)",
+                                    "type": "number"
+                                },
+                                "max": {
+                                    "description": "(秒)",
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "twinclingTime": {
+                            "description": "目の開閉にかける時間(秒)",
+                            "type": "number"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "required": [
+        "name",
+        "mouth_open",
+        "eye_close"
+    ],
+    "additionalProperties": false
+}

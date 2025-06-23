@@ -155,14 +155,15 @@ class VoicevoxYomiage:
                     "consonant": mora.consonant,
                     "consonant_length": mora.consonant_length,
                 })
+            pause_mora = accentPhrase.pause_mora
             dict["pause_mora"] = {
-                    "text": accentPhrase.pause_mora.text,
-                    "vowel": accentPhrase.pause_mora.vowel,
-                    "vowel_length": accentPhrase.pause_mora.vowel_length,
-                    "pitch": accentPhrase.pause_mora.pitch,
-                    "consonant": accentPhrase.pause_mora.consonant,
-                    "consonant_length": accentPhrase.pause_mora.consonant_length,
-                } if accentPhrase.pause_mora is not None else None
+                    "text": pause_mora.get("text", ""),
+                    "vowel": pause_mora.get("vowel", ""),
+                    "vowel_length": pause_mora.get("vowel_length", 0),
+                    "pitch": pause_mora.get("pitch", 0),
+                    "consonant": pause_mora.get("consonant", None),
+                    "consonant_length": pause_mora.get("consonant_length", None),
+                } if pause_mora is not None else None
             accentPhraseList.append(dict)
         return {
             "speed_scale": query.speed_scale,

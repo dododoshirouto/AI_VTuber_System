@@ -7,3 +7,10 @@ package-lock.json
 venv/
 
 .env
+
+*.url
+*.lnk
+WebSocket Server.exe
+
+public/chara/voice.wav
+public/chara/current.json
