@@ -1,6 +1,7 @@
 const fs = require('fs');
 const axios = require('axios');
 const path = require('path');
+const wav = require('node-wav');
 const { spawn } = require('child_process');
 const { replay, nextTopic } = require('./use_chatgpt');
 
@@ -13,14 +14,6 @@ var bookmarks = [];
     await launchPythonServer();
     await get_bookmarks();
 
-    // let count = 0;
-    // while (true) {
-    //     post.text = await replay(post.text);
-    //     await create_voicevox_wav_and_json(post.text);
-    //     if (count++ > 5) await nextTopic();
-    //     await new Promise(r => setTimeout(r, 60 * 1000));
-    // }
-
     await main();
 })();
 
@@ -30,45 +23,52 @@ const stream_topics_prompts = [
         name: "配信開始",
         useBookmark: false,
         prompts: [
-            "配信開始の雑談",
-            "配信開始の挨拶",
-            `季節の挨拶: ${(new Date()).toLocaleDateString()}`,
+            "配信開始の雑談をして",
+            "配信開始の挨拶をして",
+            `季節を踏まえた挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
         ]
     },
     {
         name: "雑談",
         useBookmark: false,
         prompts: [
-            "配信の途中の雑談",
-            `季節の雑談: ${(new Date()).toLocaleDateString()}`,
-            "日常の雑談",
-            "ニューストピックの雑談",
+            "つなぎの雑談をして",
+            `季節をふまえた雑談をして: ${(new Date()).toLocaleDateString()}`,
+            "日常のことについて雑談して",
+            "なんかおもしろい雑談して",
+            "最近の出来事について雑談して",
         ]
     },
     {
         name: "ツイート読み始め",
         useBookmark: true,
         prompts: [
-            "このツイート内容についてコメント",
-            "自分の考えや知識と絡めたこのツイート内容についてコメント",
+            "このツイート内容をまとめて、それについてコメントして",
+            "このツイート内容をまとめて、自分の考えや知識と絡めてコメントして",
+            "このツイート内容をまとめて、内容を分析して",
+            "このツイート内容をまとめて、リアクションして",
         ]
     },
     {
         name: "ツイート読み続き",
         useBookmark: false,
         prompts: [
-            "さっきのツイート内容についてコメント",
-            "さっきのツイート内容について自分の考えや知識と絡めたコメント",
+            "さっきのツイート内容についてのコメントを続けて",
+            "さっきのツイート内容について自分の考えや知識と絡めたコメントして",
+            "さっきのツイートについて内容を分析してみて",
+            "さっきのツイートについてリアクションのあるコメントをして",
+            "さっきのツイートについてからめて雑談して",
         ]
     },
     {
         name: "配信終了",
         useBookmark: false,
         prompts: [
-            "配信終了の雑談",
-            "配信終了の挨拶",
-            "今日の内容を踏まえた配信終了の雑談",
-            "日常の雑談を交えて配信終了の雑談",
+            "配信終了に行き着くような雑談をして",
+            "雑談ののち配信終了の挨拶をして",
+            "今日の内容を踏まえたまとめ雑談をして",
+            "日常の雑談を交えて配信終了の雑談をして",
+            "最近の出来事について雑談しながら配信を締めて",
         ]
     }
 ];
@@ -105,11 +105,7 @@ async function main() {
         await nextTopic();
     }
 
-    // 配信終了の挨拶
-    Array(Math.floor(Math.random() * 3 + 1)).fill(0).forEach(async _ => await create_topic_serif("配信終了"));
-
-    Array(Math.floor(Math.random() * 3)).fill(0).forEach(async _ => await create_topic_serif("雑談"));
-    await nextTopic();
+    await create_topic_serif("配信終了");
 }
 
 async function create_topic_serif(stream_topic_name) {
@@ -117,7 +113,7 @@ async function create_topic_serif(stream_topic_name) {
     let topic_prompts = stream_topics_prompts.find(t => t.name === stream_topic_name);
     if (!topic_prompts) return null;
 
-    const prompt = topic_prompts.prompts[Math.floor(Math.random() * topic_prompts.prompts.length)];
+    let prompt = topic_prompts.prompts[Math.floor(Math.random() * topic_prompts.prompts.length)];
     // return await replay(prompt);
 
     if (topic_prompts.useBookmark) {
@@ -127,7 +123,14 @@ async function create_topic_serif(stream_topic_name) {
     }
 
     let text = await replay(prompt);
-    await create_voicevox_wav_and_json(text);
+    let { wav_buffer } = await create_voicevox_wav_and_json(text);
+    let wav_duration_s = getWavDuration(wav_buffer);
+    await new Promise(resolve => setTimeout(resolve, wav_duration_s * 1000));
+}
+
+function getWavDuration(buffer) {
+    const result = wav.decode(buffer);
+    return result.sampleRate ? result.channelData[0].length / result.sampleRate : 10; // fallback: 10秒
 }
 
 async function create_voicevox_wav_and_json(text) {
@@ -162,6 +165,8 @@ async function create_voicevox_wav_and_json(text) {
         query: audioQuery
     };
     fs.writeFileSync("public/chara/current.json", JSON.stringify(current, null, 2));
+
+    return { wav_buffer: wavRes.data };
 }
 
 async function launchPythonServer() {
@@ -204,4 +209,5 @@ async function launchPythonServer() {
 async function get_bookmarks() {
     const jsonText = fs.readFileSync(bookmarks_json_path, 'utf-8');
     bookmarks = JSON.parse(jsonText);
+    bookmarks = bookmarks.filter(b => b.text);
 }

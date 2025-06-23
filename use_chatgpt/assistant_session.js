@@ -1,5 +1,6 @@
 // https://platform.openai.com/docs/api-reference/runs/createRun
 // https://platform.openai.com/docs/pricing
+// https://platform.openai.com/playground/assistants?assistant=asst_x3KTapnMhzn0sHsxaZ0H671T&mode=assistant
 
 class AssistantSession {
     static assistantId = "asst_xxxxxxxxx";
@@ -31,18 +32,23 @@ class AssistantSession {
 
         if (AssistantSession.summaryText?.trim()) {
             await this.openai.beta.threads.messages.create(this.threadId, {
-                role: "system",
+                role: "assistant",
                 content: `これまでの流れ: ${AssistantSession.summaryText}`
             });
         }
+        console.log(`これまでの流れ: ${AssistantSession.summaryText}`);
     }
 
     async prompt(userText) {
+        if (!this.threadId) await this.init();
+
         // ユーザー発言登録
         await this.openai.beta.threads.messages.create(this.threadId, {
             role: "user",
             content: userText
         });
+
+        console.log(`👤 ${userText}`);
 
         await this.cancelActiveRuns(this.threadId);
 

@@ -8,7 +8,7 @@ echo === Make Node.js for root ===
 
 IF NOT EXIST package.json (
     call npm init -y
-    call npm install axios
+    call npm install axios node-wav
 )
 
 
