@@ -2,6 +2,8 @@
 // https://platform.openai.com/docs/pricing
 // https://platform.openai.com/playground/assistants?assistant=asst_x3KTapnMhzn0sHsxaZ0H671T&mode=assistant
 
+var totalYen = 0;
+
 class AssistantSession {
     static assistantId = "asst_xxxxxxxxx";
     static setAssistantId(id) {
@@ -135,4 +137,8 @@ class AssistantSession {
     }
 }
 
-module.exports = { AssistantSession };
+function getTotalYen() {
+    return totalYen;
+}
+
+module.exports = { AssistantSession, getTotalYen };

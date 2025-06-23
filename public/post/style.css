@@ -1,0 +1,22 @@
+#container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    transition-property: opacity, transform;
+    /*Cubic ease out*/
+    transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-duration: 550ms;
+    opacity: 1;
+}
+
+#container:not(.display) {
+    opacity: 0;
+    transform: translateY(50%);
+    /*Cubic ease in*/
+    transition-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
+    transition-duration: 330ms;
+}

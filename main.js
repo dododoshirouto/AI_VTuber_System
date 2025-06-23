@@ -27,7 +27,7 @@ const stream_topics_prompts = [
             `配信開始の挨拶をして: ${(new Date()).toLocaleDateString()}`,
             `季節を踏まえた挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
             `最近の日常を交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
-            `最近のニュースを交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
+            `直近のニュースを交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
             `最近の面白い話を交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
         ]
     },
@@ -95,12 +95,12 @@ async function main() {
     await nextTopic();
 
     // ブクマの紹介
-    count = 2;//Math.floor(Math.random() * 3 + 2);
+    count = Math.floor(Math.random() * 3 + 2);
     for (let i = 0; i < count; i++) {
         let count2 = 0;
 
         await create_topic_serif("ツイート読み始め");
-        count2 = 2;//Math.floor(Math.random() * 2 + 1);
+        count2 = Math.floor(Math.random() * 2 + 1);
         for (let j = 0; j < count2; j++) {
             await create_topic_serif("ツイート読み続き");
         }
@@ -119,6 +119,7 @@ async function main() {
 
 let last_wav_start_time = 0;
 let last_wav_duration = 0;
+let bookmark = null;
 
 async function create_topic_serif(stream_topic_name) {
     console.log(`📣 ${stream_topic_name}`);
@@ -129,9 +130,13 @@ async function create_topic_serif(stream_topic_name) {
     let prompt = topic_prompts.prompts[Math.floor(Math.random() * topic_prompts.prompts.length)];
     // return await replay(prompt);
 
+    if (stream_topic_name.indexOf("ツイート") == -1) {
+        bookmark = null;
+    }
+
     if (topic_prompts.useBookmark) {
         // TODO: 過去に配信で使ってないブクマを順番に使用するようにする
-        const bookmark = bookmarks[Math.floor(Math.random() * bookmarks.length)];
+        bookmark = bookmarks[Math.floor(Math.random() * bookmarks.length)];
         if (bookmark) prompt += "\n---\n# ツイート主\n" + bookmark.author + "\n# ツイート内容\n" + bookmark.text;
         bookmarks = bookmarks.filter(b => b !== bookmark);
 
@@ -141,12 +146,26 @@ async function create_topic_serif(stream_topic_name) {
         console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
         await new Promise(resolve => setTimeout(resolve, wait_time));
         console.log(`🎙 save wav and json ${_text}`);
-        save_wav_and_json(wav_buffer, _text, audioQuery);
+        save_wav_and_json(wav_buffer, _text, audioQuery, bookmark);
         last_wav_start_time = Date.now();
         last_wav_duration = getWavDuration(wav_buffer) * 1000;
     }
 
-    let text = await replay(prompt);
+    var text = "";
+    var error = false;
+    do {
+        try {
+            text = await replay(prompt);
+        } catch (e) {
+            console.log(e);
+            console.log(e.error);
+            if (e.error?.type == 'server_error') {
+                error = true;
+                console.log("ChatGPTがサーバーエラーなのでリトライします…");
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+        }
+    } while (error);
     let { wav_buffer, text: _text, audioQuery } = await create_voicevox_wav_and_json(text);
 
     let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - topic_creating_start_time));
@@ -154,7 +173,7 @@ async function create_topic_serif(stream_topic_name) {
     await new Promise(resolve => setTimeout(resolve, wait_time));
 
     console.log(`🎙 save wav and json ${_text}`);
-    save_wav_and_json(wav_buffer, _text, audioQuery, stream_topic_name == "配信終了");
+    save_wav_and_json(wav_buffer, _text, audioQuery, bookmark || null, stream_topic_name == "配信終了");
     last_wav_start_time = Date.now();
     last_wav_duration = getWavDuration(wav_buffer) * 1000;
 }
@@ -190,7 +209,7 @@ async function create_voicevox_wav_and_json(text) {
     return { wav_buffer: wavRes.data, text, audioQuery };
 }
 
-function save_wav_and_json(wav_buffer, text, audioQuery, isFinal = false) {
+function save_wav_and_json(wav_buffer, text, audioQuery, bookmark = null, isFinal = false) {
     const wavPath = path.join(__dirname, "public", "chara", "voice.wav");
     fs.writeFileSync(wavPath, wav_buffer);
 
@@ -199,7 +218,8 @@ function save_wav_and_json(wav_buffer, text, audioQuery, isFinal = false) {
         text,
         audio: "voice.wav",
         query: audioQuery,
-        isFinal: isFinal
+        isFinal: isFinal,
+        bookmark
     };
     fs.writeFileSync("public/chara/current.json", JSON.stringify(current, null, 2));
 }
@@ -247,3 +267,17 @@ async function get_bookmarks() {
     bookmarks = JSON.parse(jsonText);
     bookmarks = bookmarks.filter(b => b.text).filter(b => b.text.length > 100);
 }
+
+// SIGINT（Ctrl+C）
+process.on('SIGINT', () => {
+    console.log('🛑 SIGINT (Ctrl+C) を受信しました');
+    exit();
+    process.exit(0);
+});
+
+// 予期しないエラーでクラッシュしそうなとき
+process.on('uncaughtException', (err) => {
+    console.error('💥 uncaughtException:', err);
+    exit();
+    process.exit(1);
+});

@@ -109,6 +109,7 @@ async function audio_update_check() {
 if (window.obsstudio) {
     can_audio_play = true;
     window.addEventListener('click', () => audio_elem.currentTime = audio_elem.duration - 0.1);
+    setTimeout(() => audio_elem.currentTime = audio_elem.duration - 0.1, 3000);
 } else {
     window.addEventListener('click', () => can_audio_play = true);
 }
