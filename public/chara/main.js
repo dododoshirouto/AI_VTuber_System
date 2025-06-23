@@ -10,6 +10,7 @@ var audio_query = null;
 const audio_elem = document.getElementById("speech_audio");
 audio_elem.onended = () => audio_is_playing = false;
 
+var can_audio_play = false;
 var audio_is_playing = false;
 
 
@@ -57,7 +58,9 @@ async function update() {
         if (!faceData) continue;
 
         update_twinkle();
-        update_visemes();
+        if (can_audio_play) {
+            update_visemes();
+        }
     }
 }
 update();
@@ -80,7 +83,7 @@ async function audio_update_check() {
     while (true) {
         await new Promise(r => setTimeout(r, 500));
         let json = await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => json);
-        if (json.text != last_text) {
+        if (json.text != last_text && can_audio_play) {
             last_text = json.text;
             play_audio();
         }
@@ -89,4 +92,8 @@ async function audio_update_check() {
 
 
 
-window.addEventListener('click', () => play_audio());
+if (window.obsstudio) {
+    can_audio_play = true;
+} else {
+    window.addEventListener('click', () => can_audio_play = true);
+}

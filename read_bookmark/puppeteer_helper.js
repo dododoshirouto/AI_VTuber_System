@@ -70,7 +70,7 @@ async function fetchTweetsByScroll(page, existingIds, scrollLimit = 30) {
                 const medias = [...[...node.querySelectorAll('img[alt="画像"]')].map(img => img.src), ...[...node.querySelectorAll('video[aria-label="埋め込み動画"]')].map(video => video.src)];
 
                 if (id) {
-                    const data = { id, text, author, medias, url, time, mediaLinks };
+                    const data = { id, text, author, medias, url, time, mediaLinks, used_in_stream: false };
                     console.log(data);
                     return data;
                 } else {

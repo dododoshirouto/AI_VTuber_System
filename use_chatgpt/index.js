@@ -21,13 +21,14 @@ async function init() {
 
 async function replay(prompt = "指示:配信開始→雑談") {
     if (!prompt?.trim()) return;
-    if (!session.threadId) await session.init();
+    if (!session.threadId?.trim()) await session.init();
     let replay = await session.prompt("指示:配信開始→雑談");
     console.log(replay);
     return replay;
 }
 
 async function nextTopic() {
+    AssistantSession.summaryText = await session.createSummary();
     session.close();
 }
 

@@ -15,8 +15,9 @@ class AssistantSession {
     };
     static yenRate = 145;
     static model = "gpt-4o-mini";
+    static summaryText = null;
 
-    constructor(openai, summary = null) {
+    constructor(openai) {
         this.openai = openai;
         this.threadId = null;
         this.totalToken = 0;
@@ -24,14 +25,14 @@ class AssistantSession {
         // this._init(summary);
     }
 
-    async init(summary = null) {
+    async init() {
         const thread = await this.openai.beta.threads.create();
         this.threadId = thread.id;
 
-        if (summary) {
+        if (AssistantSession.summaryText?.trim()) {
             await this.openai.beta.threads.messages.create(this.threadId, {
                 role: "system",
-                content: `前回のスレッドの要約: ${summary}`
+                content: `これまでの流れ: ${AssistantSession.summaryText}`
             });
         }
     }
@@ -42,6 +43,8 @@ class AssistantSession {
             role: "user",
             content: userText
         });
+
+        await this.cancelActiveRuns(this.threadId);
 
         // Run実行
         const run = await this.openai.beta.threads.runs.create(this.threadId, {
@@ -108,6 +111,20 @@ class AssistantSession {
 
         console.log(`🧾 使用トークン: 入力 ${inputTokens}, 出力 ${outputTokens}`);
         console.log(`💸 コスト: ${costYen.toFixed(2)} 円`);
+    }
+
+
+
+    async cancelActiveRuns(threadId) {
+        const runs = await this.openai.beta.threads.runs.list(threadId);
+        const activeRun = runs.data.find(r => !["completed", "failed", "cancelled", "expired"].includes(r.status));
+
+        if (activeRun) {
+            console.log(`⛔ アクティブなRunをキャンセル: ${activeRun.id}`);
+            await this.openai.beta.threads.runs.cancel(threadId, activeRun.id);
+        } else {
+            console.log("✅ アクティブなRunは存在しません");
+        }
     }
 }
 
