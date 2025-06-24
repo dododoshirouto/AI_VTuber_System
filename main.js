@@ -189,6 +189,7 @@ function getWavDuration(buffer) {
 
 async function create_voicevox_wav_and_json(text) {
     text = text.replace(/https?:\/\/[^\s]+/g, '').trim();
+    text = text.replace(/\s+/g, ' ').replace(/([。、．，\.,])\s/g, '$1').trim();
     try {
         // PingしてFastAPIが生きてるか確認
         await axios.get(VV_SERVER_HOST);
