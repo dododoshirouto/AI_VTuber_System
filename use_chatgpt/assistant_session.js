@@ -87,7 +87,14 @@ class AssistantSession {
             // const run = await this.openai.beta.threads.runs.retrieve(this.threadId, runId);
             run = await this.openai.beta.threads.runs.retrieve(runId, { thread_id: this.threadId });
             status = run.status;
-            if (status === "failed" || status === "cancelled") throw new Error(`Run failed: ${status}`);
+            if (status === "failed" || status === "cancelled") {
+                for (let i = 0; i < 10; i++) {
+                    await new Promise(r => setTimeout(r, 500));
+                    run = await this.openai.beta.threads.runs.retrieve(runId, { thread_id: this.threadId });
+                    if (run.status !== "failed" && run.status !== "cancelled") break;
+                }
+                if (status === "failed" || status === "cancelled") throw new Error(`Run failed: ${run}`);
+            }
             if (status !== "completed") await new Promise(r => setTimeout(r, 500));
         }
 
