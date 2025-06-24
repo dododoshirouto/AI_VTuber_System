@@ -73,7 +73,7 @@ function update_visemes() {
 
     document.body.classList.toggle('audio_playing', mora != null);
 
-    console.log(mora, a_time);
+    // console.log(mora, a_time);
 
     updateMouth(window.psd, mora_to_layer_name(mora) || faceData.mouth_open[0]);
 }

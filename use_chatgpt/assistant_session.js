@@ -89,6 +89,7 @@ class AssistantSession {
             status = run.status;
             if (status === "failed" || status === "cancelled") {
                 for (let i = 0; i < 10; i++) {
+                    console.log(`retray run chatgpt ${run}`);
                     await new Promise(r => setTimeout(r, 500));
                     run = await this.openai.beta.threads.runs.retrieve(runId, { thread_id: this.threadId });
                     if (run.status !== "failed" && run.status !== "cancelled") break;

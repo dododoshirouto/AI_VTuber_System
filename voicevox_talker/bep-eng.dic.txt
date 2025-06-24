@@ -39664,7 +39664,7 @@ CHROMOSOME クロウマソウム
 CHROMOSOMAL クロモゾーマル
 CHROMIUM クロウミウム
 CHROMIC クロミック
-CHROME クロウム
+CHROME クローム
 CHROMATOGRAPHY クロマトグラフィイ
 CHROMATICALLY クロマティカリー
 CHROMATIC クロマティック
@@ -47628,6 +47628,6 @@ techpowerup テックパワーアップ
 sicarriershows サイキャリアショウ
 metrology メトロロジー
 Tampermonkey タンパーモンキー
-Chrome クロム
 manifest マニフェスト
 API エーピーアイ
+AI エーアイ

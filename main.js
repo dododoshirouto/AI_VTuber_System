@@ -118,6 +118,7 @@ async function main() {
     await create_topic_serif("配信終了");
 
     exitChatGPT();
+    process.exit(1);
 }
 
 let last_wav_start_time = 0;
@@ -190,6 +191,8 @@ function getWavDuration(buffer) {
 async function create_voicevox_wav_and_json(text) {
     text = text.replace(/https?:\/\/[^\s]+/g, '').trim();
     text = text.replace(/\s+/g, ' ').replace(/([。、．，\.,])\s/g, '$1').trim();
+    text = text.replace(/\s*\n+\s*/g, '。');
+    text = text.replace(/\s*[）\)」\]｝}・]+\s*/g, '');
     try {
         // PingしてFastAPIが生きてるか確認
         await axios.get(VV_SERVER_HOST);
