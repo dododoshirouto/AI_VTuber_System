@@ -23,12 +23,12 @@ const stream_topics_prompts = [
         name: "配信開始",
         useBookmark: false,
         prompts: [
-            `今日はブクマしたツイートを紹介する配信です。配信開始の雑談をして: ${(new Date()).toLocaleDateString()}`,
-            `今日はブクマしたツイートを紹介する配信です。配信開始の挨拶をして: ${(new Date()).toLocaleDateString()}`,
-            `今日はブクマしたツイートを紹介する配信です。季節を踏まえた挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
-            `今日はブクマしたツイートを紹介する配信です。最近の日常を交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
-            `今日はブクマしたツイートを紹介する配信です。直近のニュースを交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
-            `今日はブクマしたツイートを紹介する配信です。最近の面白い話を交えて挨拶雑談をして: ${(new Date()).toLocaleDateString()}`,
+            `今日はブクマしたツイートを紹介する配信です。配信開始の雑談をして: ${(new Date()).toLocaleString()}`,
+            `今日はブクマしたツイートを紹介する配信です。配信開始の挨拶をして: ${(new Date()).toLocaleString()}`,
+            `今日はブクマしたツイートを紹介する配信です。季節を踏まえた挨拶雑談をして: ${(new Date()).toLocaleString()}`,
+            `今日はブクマしたツイートを紹介する配信です。最近の日常を交えて挨拶雑談をして: ${(new Date()).toLocaleString()}`,
+            `今日はブクマしたツイートを紹介する配信です。直近のニュースを交えて挨拶雑談をして: ${(new Date()).toLocaleString()}`,
+            `今日はブクマしたツイートを紹介する配信です。最近の面白い話を交えて挨拶雑談をして: ${(new Date()).toLocaleString()}`,
         ]
     },
     {
@@ -124,28 +124,29 @@ let last_wav_start_time = 0;
 let last_wav_duration = 0;
 let bookmark = null;
 
-async function create_topic_serif(stream_topic_name, topic_prompts = null) {
+async function create_topic_serif(stream_topic_name, topic_prompt = null) {
     console.log(`📣 ${stream_topic_name}`);
     let topic_creating_start_time = Date.now();
-    if (!topic_prompts) topic_prompts = stream_topics_prompts.find(t => t.name === stream_topic_name);
-    if (!topic_prompts) return null;
-
-    let prompt = topic_prompts.prompts[Math.floor(Math.random() * topic_prompts.prompts.length)];
-    // return await replay(prompt);
+    let topic_prompts = null;
+    topic_prompts = stream_topics_prompts.find(t => t.name === stream_topic_name);
+    if (!topic_prompt) {
+        if (!topic_prompts) return null;
+        topic_prompt = topic_prompts.prompts[Math.floor(Math.random() * topic_prompts.prompts.length)];
+    }
 
     if (stream_topic_name.indexOf("ツイート") == -1) {
         bookmark = null;
     }
 
-    if (topic_prompts.useBookmark) {
+    if (topic_prompts?.useBookmark) {
         // TODO: 過去に配信で使ってないブクマを順番に使用するようにする
         bookmark = bookmarks[Math.floor(Math.random() * bookmarks.length)];
-        if (bookmark) prompt += "\n---\n# ツイート主\n" + bookmark.author + "\n# ツイート内容\n" + bookmark.text;
+        if (bookmark) topic_prompt += "\n---\n# ツイート主\n" + bookmark.author + "\n# ツイート内容\n" + bookmark.text;
         bookmarks = bookmarks.filter(b => b !== bookmark);
 
         let text = `${bookmark.author}さんのツイートを紹介するわ。\n${bookmark.text}`;
         let { wav_buffer, text: _text, audioQuery } = await create_voicevox_wav_and_json(text);
-        let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - topic_creating_start_time));
+        let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
         console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
         await new Promise(resolve => setTimeout(resolve, wait_time));
         console.log(`🎙 save wav and json ${_text}`);
@@ -158,7 +159,7 @@ async function create_topic_serif(stream_topic_name, topic_prompts = null) {
     var error = false;
     do {
         try {
-            text = await replay(prompt);
+            text = await replay(topic_prompt);
         } catch (e) {
             console.log(e);
             console.log(e.error);
@@ -171,7 +172,7 @@ async function create_topic_serif(stream_topic_name, topic_prompts = null) {
     } while (error);
     let { wav_buffer, text: _text, audioQuery } = await create_voicevox_wav_and_json(text);
 
-    let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - topic_creating_start_time));
+    let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
     console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
     await new Promise(resolve => setTimeout(resolve, wait_time));
 
@@ -187,6 +188,7 @@ function getWavDuration(buffer) {
 }
 
 async function create_voicevox_wav_and_json(text) {
+    text = text.replace(/https?:\/\/[^\s]+/g, '').trim();
     try {
         // PingしてFastAPIが生きてるか確認
         await axios.get(VV_SERVER_HOST);
