@@ -2,6 +2,8 @@
 // https://platform.openai.com/docs/pricing
 // https://platform.openai.com/playground/assistants?assistant=asst_x3KTapnMhzn0sHsxaZ0H671T&mode=assistant
 
+var totalYen = 0;
+
 class AssistantSession {
     static assistantId = "asst_xxxxxxxxx";
     static setAssistantId(id) {
@@ -114,6 +116,7 @@ class AssistantSession {
 
         this.totalToken += totalTokens;
         this.totalYen += costYen;
+        totalYen += costYen;
 
         console.log(`🧾 使用トークン: 入力 ${inputTokens}, 出力 ${outputTokens}`);
         console.log(`💸 コスト: ${costYen.toFixed(2)} 円`);
@@ -134,4 +137,8 @@ class AssistantSession {
     }
 }
 
-module.exports = { AssistantSession };
+function getTotalYen() {
+    return totalYen;
+}
+
+module.exports = { AssistantSession, getTotalYen };

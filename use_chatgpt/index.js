@@ -1,6 +1,6 @@
 const { OpenAI } = require("openai");
 const path = require('path');
-const { AssistantSession } = require("./assistant_session");
+const { AssistantSession, getTotalYen } = require("./assistant_session");
 const dotenv = require('dotenv');
 dotenv.config({ path: path.join(__dirname, '.env') });
 
@@ -8,7 +8,7 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY, // ← セキュリティのため.env推奨
 });
 
-let totalYen = 0;
+// let totalYen = 0;
 
 
 
@@ -32,13 +32,18 @@ async function nextTopic() {
     session.close();
 }
 
+async function exit() {
+    session.close();
+    console.log(`🧾 合計使用: ${getTotalYen().toFixed(2)} 円`);
+}
+
 (async () => {
     await init();
     // await replay();
     // await nextTopic();
 })();
 
-module.exports = { replay, nextTopic };
+module.exports = { replay, nextTopic, exit };
 
 
 

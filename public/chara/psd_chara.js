@@ -69,9 +69,13 @@ function update_visemes() {
 
     let moras_timmings = get_moras_timmings();
 
-    console.log(get_now_mora(moras_timmings, a_time), a_time);
+    let mora = get_now_mora(moras_timmings, a_time);
 
-    updateMouth(window.psd, mora_to_layer_name(get_now_mora(moras_timmings, a_time)) || faceData.mouth_open[0]);
+    document.body.classList.toggle('audio_playing', mora != null);
+
+    console.log(mora, a_time);
+
+    updateMouth(window.psd, mora_to_layer_name(mora) || faceData.mouth_open[0]);
 }
 
 function mora_to_layer_name(mora) {

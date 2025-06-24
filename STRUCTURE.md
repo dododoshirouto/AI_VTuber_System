@@ -28,3 +28,5 @@
     - style.css
     - psd/
       - 四国めたん立ち絵素材2.1/四国めたん立ち絵素材2.1.psd
+    - voice.wav
+    - current.json
