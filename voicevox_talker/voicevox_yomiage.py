@@ -9,6 +9,8 @@ import pyaudio
 import asyncio
 import re
 
+from use_japanglish import convert_mixed_text
+
 # VOICEVOX Core v0.16.0 API
 from voicevox_core.blocking import Synthesizer, Onnxruntime, OpenJtalk, VoiceModelFile
 
@@ -135,7 +137,8 @@ class VoicevoxYomiage:
         for i in range(len(text_split)):
             if str.upper(text_split[i]) in self.kana_dict:
                 text_split[i] = self.kana_dict[str.upper(text_split[i])]
-        return ("".join(text_split))
+        
+        return convert_mixed_text("".join(text_split))
     
     import voicevox_core
     staticmethod
@@ -183,7 +186,7 @@ class VoicevoxYomiage:
 if __name__ == "__main__":
     async def main():
         vv = VoicevoxYomiage(speaker_id=VV_Speaker.四国めたん.value)
-        await vv("こんにちは、これはTestです。EDGE WISE")
+        await vv("Popular tracks tagged #zundamon Play popular tracks tagged zundamon on SoundCloud desktop and mobile.")
         print("終了")
 
     asyncio.run(main())
