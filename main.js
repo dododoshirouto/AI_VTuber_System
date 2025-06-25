@@ -19,6 +19,8 @@ let last_wav_start_time = 0;
 let last_wav_duration = 0;
 const voice_buffer_time_ms = 800;
 
+let end_flag = false;
+
 (async _ => {
     // 生成ループ
     await launchPythonServer();
@@ -35,8 +37,12 @@ const voice_buffer_time_ms = 800;
             last_wav_start_time = Date.now();
             let queue = voice_queue_list[0];
             last_wav_duration = getWavDuration(queue.wav) * 1000;
+            end_flag = queue.query_json.isFinal;
             console.log(`queue:${voice_queue_list.length} 🎙 speak`, queue.query_json.text);
             save_wav_and_json();
+        }
+        if (end_flag && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
+            process.exit();
         }
     }
 
@@ -147,7 +153,6 @@ async function main() {
     await speak_topic("配信終了");
 
     exitChatGPT();
-    process.exit(1);
 }
 
 let bookmark = null;
