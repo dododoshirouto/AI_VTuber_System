@@ -91,12 +91,12 @@ async function main() {
     let count = 0;
 
     // 配信開始の挨拶
-    await create_topic_serif("配信開始");
+    await speak_topic("配信開始");
 
     count = Math.floor(Math.random() * 3);
     let topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
     for (let i = 0; i < count; i++) {
-        await create_topic_serif("雑談", topic_prompts[i]);
+        await speak_topic("雑談", topic_prompts[i]);
     }
     await nextTopic();
 
@@ -105,22 +105,22 @@ async function main() {
     for (let i = 0; i < count; i++) {
         let count2 = 0;
 
-        await create_topic_serif("ツイート読み始め");
+        await speak_topic("ツイート読み始め");
         count2 = Math.floor(Math.random() * 2 + 1);
         topic_prompts = stream_topics_prompts.find(t => t.name === "ツイート読み続き").prompts.sort(() => Math.random() - 0.5);
         for (let j = 0; j < count2; j++) {
-            await create_topic_serif("ツイート読み続き", topic_prompts[j]);
+            await speak_topic("ツイート読み続き", topic_prompts[j]);
         }
 
         count2 = Math.floor(Math.random() * 3);
         topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
         for (let j = 0; j < count2; j++) {
-            await create_topic_serif("雑談", topic_prompts[j]);
+            await speak_topic("雑談", topic_prompts[j]);
         }
         await nextTopic();
     }
 
-    await create_topic_serif("配信終了");
+    await speak_topic("配信終了");
 
     exitChatGPT();
     process.exit(1);
@@ -130,7 +130,7 @@ let last_wav_start_time = 0;
 let last_wav_duration = 0;
 let bookmark = null;
 
-async function create_topic_serif(stream_topic_name, topic_prompt = null) {
+async function speak_topic(stream_topic_name, topic_prompt = null) {
     console.log(`📣 ${stream_topic_name}`);
     let topic_creating_start_time = Date.now();
 
@@ -258,9 +258,13 @@ async function create_voicevox_wav_and_json(text) {
     const audioQuery = JSON.parse(queryRes.data);
 
     // 音声ファイルを取得して保存
-    const wavRes = await axios.get(VV_SERVER_HOST + "speak", {
-        params: { text },
-        responseType: "arraybuffer"
+    let wavRes = await axios.post(VV_SERVER_HOST + "speak_from_query", audioQuery, {
+        headers: { 'Content-Type': 'application/json' },
+        responseType: "arraybuffer",
+        validateStatus: function (...status) {
+            console.log("status: ", status);
+            return true;
+        }
     });
 
     return { wav_buffer: wavRes.data, text, audioQuery };
@@ -269,7 +273,7 @@ async function create_voicevox_wav_and_json(text) {
 function save_wav_and_json(wav_buffer, text, audioQuery, bookmark = null, isFinal = false) {
     const wavPath = path.join(__dirname, "public", "chara", "voice.wav");
     fs.writeFileSync(wavPath, wav_buffer);
-    fs.unlinkSync("out.wav");
+    // fs.unlinkSync("out.wav");
 
     // current.json を書き出す
     const current = {

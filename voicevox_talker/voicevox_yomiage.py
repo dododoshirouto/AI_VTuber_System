@@ -13,6 +13,7 @@ from use_japanglish import convert_mixed_text
 
 # VOICEVOX Core v0.16.0 API
 from voicevox_core.blocking import Synthesizer, Onnxruntime, OpenJtalk, VoiceModelFile
+from voicevox_core import AudioQuery
 
 class VV_Speaker(Enum):
     四国めたん = 2
@@ -75,8 +76,15 @@ class VoicevoxYomiage:
         self.stream.write(wave_bytes)
 
     def synthesize(self, text: str) -> bytes:
-        text_kana = self.eng_to_kana(text)
-        query = self.synthesizer.create_audio_query(text_kana, self.speaker_id)
+        # text_kana = self.eng_to_kana(text)
+        # query = self.synthesizer.create_audio_query(text_kana, self.speaker_id)
+        # query.speed_scale = self.speed_scale
+        # return self.synthesizer.synthesis(query, self.speaker_id)
+        return self.synthesize_from_query(self.get_audio_query(text))
+
+    def synthesize_from_query(self, query: dict) -> bytes:
+        if not isinstance(query, AudioQuery):
+            query = AudioQuery(**query)
         query.speed_scale = self.speed_scale
         return self.synthesizer.synthesis(query, self.speaker_id)
 
