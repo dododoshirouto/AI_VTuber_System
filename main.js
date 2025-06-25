@@ -150,7 +150,7 @@ async function create_topic_serif(stream_topic_name, topic_prompt = null) {
         // 過去に配信で使ってないブクマを使用する
         bookmark = bookmarks[Math.floor(Math.random() * bookmarks.length)];
         if (bookmark) {
-            topic_prompt += `\n---\n${get_before_time_text(bookmark.time)}\n# ツイートURL\n${bookmark.url}\n# ツイート主\n${bookmark.author}\n# ツイート内容\n${bookmark.text}`;
+            topic_prompt += `\n---\n# ブックマークした日\n${get_before_time_text(bookmark.time)}\n# ツイート主\n${bookmark.author}\n# ツイート内容\n${bookmark.text}`;
             if (bookmark.medias && bookmark.medias.length) topic_prompt += `\n# 添付メディア\n${bookmark.medias.join('\n')}`;
             if (bookmark.mediaLinks && bookmark.mediaLinks.length) topic_prompt += `\n# 添付URL\n${bookmark.mediaLinks.join('\n')}`;
             bookmarks = bookmarks.filter(b => b !== bookmark);
