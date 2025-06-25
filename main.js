@@ -83,7 +83,6 @@ const stream_topics_prompts = [
 async function main() {
     // 配信の流れ
     // TODO: コメントが来たら反応する
-    // TODO: 直前のセリフの最後の部分を含める
     // TODO: その日紹介するブクマの情報を先に含めとく
     // TODO: 音声生成をキュー方式にして、セリフ生成を先にやっておく → コメントが来たらリアクションの生成を先にして、その後のセリフも再生成していく
     // TODO: サーバ接続確認の回数を減らす
@@ -150,6 +149,7 @@ async function create_topic_serif(stream_topic_name, topic_prompt = null) {
         // 過去に配信で使ってないブクマを使用する
         bookmark = bookmarks[Math.floor(Math.random() * bookmarks.length)];
         if (bookmark) {
+            bookmark.text = bookmark.text.replace(/https?:\/\/[^\s]+/g, '');
             topic_prompt += `\n---\n# ブックマークした日\n${get_before_time_text(bookmark.time)}\n# ツイート主\n${bookmark.author}\n# ツイート内容\n${bookmark.text}`;
             if (bookmark.medias && bookmark.medias.length) topic_prompt += `\n# 添付メディア\n${bookmark.medias.join('\n')}`;
             if (bookmark.mediaLinks && bookmark.mediaLinks.length) topic_prompt += `\n# 添付URL\n${bookmark.mediaLinks.join('\n')}`;
@@ -207,15 +207,15 @@ async function create_voicevox_wav_and_json(text) {
     text = text.replace(/\s+/g, ' ').replace(/([。、．，\.,])\s/g, '$1').trim();
     text = text.replace(/\s*\n+\s*/g, '。');
     text = text.replace(/\s*[）\)」\]｝}・]+\s*/g, '');
-    try {
-        // PingしてFastAPIが生きてるか確認
-        await axios.get(VV_SERVER_HOST);
-        console.log("✅ FastAPIはすでに起動済み");
-    } catch (e) {
-        console.log("⚠ FastAPIが未起動");
-        await new Promise(resolve => setTimeout(resolve, 500));
-        return await create_voicevox_wav_and_json();
-    }
+    // try {
+    //     // PingしてFastAPIが生きてるか確認
+    //     await axios.get(VV_SERVER_HOST);
+    //     console.log("✅ FastAPIはすでに起動済み");
+    // } catch (e) {
+    //     console.log("⚠ FastAPIが未起動");
+    //     await new Promise(resolve => setTimeout(resolve, 500));
+    //     return await create_voicevox_wav_and_json();
+    // }
 
     // AudioQuery を取得
     const queryRes = await axios.get(VV_SERVER_HOST + "query", {
@@ -235,6 +235,7 @@ async function create_voicevox_wav_and_json(text) {
 function save_wav_and_json(wav_buffer, text, audioQuery, bookmark = null, isFinal = false) {
     const wavPath = path.join(__dirname, "public", "chara", "voice.wav");
     fs.writeFileSync(wavPath, wav_buffer);
+    fs.unlinkSync("out.wav");
 
     // current.json を書き出す
     const current = {

@@ -32,6 +32,8 @@ class AssistantSession {
         const thread = await this.openai.beta.threads.create();
         this.threadId = thread.id;
 
+        await this.cancelActiveRuns(this.threadId);
+
         if (AssistantSession.summaryText?.trim()) {
             await this.openai.beta.threads.messages.create(this.threadId, {
                 role: "assistant",
@@ -51,8 +53,6 @@ class AssistantSession {
         });
 
         console.log(`👤 ${userText}`);
-
-        await this.cancelActiveRuns(this.threadId);
 
         // Run実行
         const run = await this.openai.beta.threads.runs.create(this.threadId, {

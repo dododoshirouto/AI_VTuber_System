@@ -1734,7 +1734,8 @@
     "mediaLinks": [
       "https://t.co/PFp8E2qPZ0",
       "https://x.com/hashtag/b3d?src=hashtag_click"
-    ]
+    ],
+    "used_in_stream": true
   },
   {
     "id": "1907151541230080047",
@@ -5684,7 +5685,8 @@
     "time": "2025-01-01T05:19:07.000Z",
     "mediaLinks": [
       "https://t.co/JuZkDPW8ua"
-    ]
+    ],
+    "used_in_stream": true
   },
   {
     "id": "1873944264088100898",
@@ -5781,7 +5783,8 @@
     "time": "2024-12-29T00:00:04.000Z",
     "mediaLinks": [
       "https://t.co/ZG4mTY8lCz"
-    ]
+    ],
+    "used_in_stream": true
   },
   {
     "id": "1872927117740212676",
@@ -8782,7 +8785,8 @@
     ],
     "url": "https://x.com/shifukunote_wd/status/1817328228681605253",
     "time": "2024-07-27T22:36:28.000Z",
-    "mediaLinks": []
+    "mediaLinks": [],
+    "used_in_stream": true
   },
   {
     "id": "1816639306724945939",
