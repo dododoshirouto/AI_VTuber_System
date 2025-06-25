@@ -80,6 +80,11 @@ const stream_topics_prompts = [
     }
 ];
 
+/**
+ * @type { { query_json: { text:string, query:AudioQuery, isFinal:boolean, bookmark:object}, wav: NodeJS.ArrayBufferView }[] }
+ */
+var voice_queue_list = [];
+
 async function main() {
     // 配信の流れ
     // TODO: コメントが来たら反応する
@@ -188,12 +193,13 @@ function updateBookmarks(bookmark) {
 
 async function speakBookmark(bookmark) {
     let text = `${bookmark.author}さんのツイートを紹介するわ。\n${bookmark.text}`;
-    let { wav_buffer, text: _text, audioQuery } = await create_voicevox_wav_and_json(text);
+    let audio_queue = await create_voicevox_wav_and_json(text, bookmark);
+    let [wav_buffer, _text] = [audio_queue.wav, audio_queue.query_json.text];
     let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
     console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
     await new Promise(resolve => setTimeout(resolve, wait_time));
     console.log(`🎙 save wav and json ${_text}`);
-    save_wav_and_json(wav_buffer, _text, audioQuery, bookmark);
+    save_wav_and_json(audio_queue);
     last_wav_start_time = Date.now();
     last_wav_duration = getWavDuration(wav_buffer) * 1000;
 }
@@ -221,12 +227,13 @@ async function getChatGPTResponseWithRetry(prompt) {
 }
 
 async function speakAndSave(text, bookmark = null, isFinal = false) {
-    let { wav_buffer, text: _text, audioQuery } = await create_voicevox_wav_and_json(text);
+    let audio_queue = await create_voicevox_wav_and_json(text, bookmark, isFinal);
+    let [wav_buffer, _text] = [audio_queue.wav, audio_queue.query_json.text];
     let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
     console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
     await new Promise(resolve => setTimeout(resolve, wait_time));
     console.log(`🎙 save wav and json ${_text}`);
-    save_wav_and_json(wav_buffer, _text, audioQuery, bookmark, isFinal);
+    save_wav_and_json(audio_queue);
     last_wav_start_time = Date.now();
     last_wav_duration = getWavDuration(wav_buffer) * 1000;
 }
@@ -236,7 +243,7 @@ function getWavDuration(buffer) {
     return result.sampleRate ? result.channelData[0].length / result.sampleRate : 10; // fallback: 10秒
 }
 
-async function create_voicevox_wav_and_json(text) {
+async function create_voicevox_wav_and_json(text, bookmark = null, isFinal = false) {
     text = text.replace(/https?:\/\/[^\s]+/g, '').trim();
     text = text.replace(/\s+/g, ' ').replace(/([。、．，\.,])\s/g, '$1').trim();
     text = text.replace(/\s*\n+\s*/g, '。');
@@ -267,23 +274,33 @@ async function create_voicevox_wav_and_json(text) {
         }
     });
 
-    return { wav_buffer: wavRes.data, text, audioQuery };
+    let queue_l = voice_queue_list.push({
+        query_json: {
+            text,
+            query: audioQuery,
+            isFinal: isFinal,
+            bookmark
+        },
+        wav: wavRes.data
+    });
+
+    console.log(`Push AudioQueue: ${voice_queue_list.length}`);
+
+    return voice_queue_list[queue_l - 1];
 }
 
-function save_wav_and_json(wav_buffer, text, audioQuery, bookmark = null, isFinal = false) {
+/**
+ * 
+ * @param {{ wav: NodeJS.ArrayBufferView, query_json: {text: string, query: AudioQuery, isFinal: boolean, bookmark: object} }} audio_queue 
+ */
+function save_wav_and_json(audio_queue = null) {
+    audio_queue = voice_queue_list.shift();
+    console.log(`Shift AudioQueue: ${voice_queue_list.length}`);
     const wavPath = path.join(__dirname, "public", "chara", "voice.wav");
-    fs.writeFileSync(wavPath, wav_buffer);
+    fs.writeFileSync(wavPath, audio_queue.wav);
     // fs.unlinkSync("out.wav");
 
-    // current.json を書き出す
-    const current = {
-        text,
-        audio: "voice.wav",
-        query: audioQuery,
-        isFinal: isFinal,
-        bookmark
-    };
-    fs.writeFileSync("public/chara/current.json", JSON.stringify(current, null, 2));
+    fs.writeFileSync("public/chara/current.json", JSON.stringify(audio_queue.query_json, null, 2));
 }
 
 async function launchPythonServer() {
