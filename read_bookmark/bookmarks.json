@@ -1107,7 +1107,7 @@
     "mediaLinks": [
       "https://t.co/s1YxeXSTEx"
     ],
-    "used_in_stream": true
+    "used_in_stream": false
   },
   {
     "id": "1914867703757857271",
@@ -1484,7 +1484,8 @@
     ],
     "url": "https://x.com/cline/status/1905030313337864247",
     "time": "2025-03-26T22:53:15.000Z",
-    "mediaLinks": []
+    "mediaLinks": [],
+    "used_in_stream": false
   },
   {
     "id": "1908350714268836071",
@@ -1891,7 +1892,8 @@
     ],
     "url": "https://x.com/metacul_project/status/1904186453778972815",
     "time": "2025-03-24T15:00:03.000Z",
-    "mediaLinks": []
+    "mediaLinks": [],
+    "used_in_stream": false
   },
   {
     "id": "1903804948040782135",
@@ -5888,7 +5890,8 @@
     ],
     "url": "https://x.com/himeka_mukiai/status/1871458399818526938",
     "time": "2024-12-24T07:30:27.000Z",
-    "mediaLinks": []
+    "mediaLinks": [],
+    "used_in_stream": false
   },
   {
     "id": "1871030216358769009",
@@ -6661,7 +6664,7 @@
   },
   {
     "id": "1857951792644100446",
-    "text": "海外の皆さんにとって日本は「アニメの中にしか存在していない世界」\n\n『VRChat』海外ユーザー向けに日本文化を紹介する日本発のグループ『VR Japan Tours』リーダーのLambSun（\n@LAMBsunsun\n）にインタビュー　VRで世界を繋ぐ素敵な活動です\n\nhttps://vr-lifemagazine.com/vrjapantours-interview/…\n\n#VRChat  #VRJapanTours",
+    "text": "海外の皆さんにとって日本は「アニメの中にしか存在していない世界」\n\n『VRChat』海外ユーザー向けに日本文化を紹介する日本発のグループ『VR Japan Tours』リーダーのLambSun（\n@LAMBsunsun\n）にインタビュー　VRで世界を繋ぐ素敵な活動です\n\n\n\n#VRChat  #VRJapanTours",
     "author": "バーチャルライフマガジン【公式アカウント】",
     "medias": [
       "https://pbs.twimg.com/media/GciGZzwbEAAru2-?format=jpg&name=small",
@@ -6675,7 +6678,8 @@
       "https://t.co/1aFLR6tehi",
       "https://x.com/hashtag/VRChat?src=hashtag_click",
       "https://x.com/hashtag/VRJapanTours?src=hashtag_click"
-    ]
+    ],
+    "used_in_stream": false
   },
   {
     "id": "1859438934729818283",

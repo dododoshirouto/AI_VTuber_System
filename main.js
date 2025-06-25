@@ -11,11 +11,35 @@ const bookmarks_json_path = path.join(__dirname, 'read_bookmark/bookmarks.json')
 var bookmarks = [];
 var bookmarks_raw = [];
 
+/**
+ * @type { { query_json: { text:string, query:AudioQuery, isFinal:boolean, bookmark:object}, wav: NodeJS.ArrayBufferView }[] }
+ */
+var voice_queue_list = [];
+let last_wav_start_time = 0;
+let last_wav_duration = 0;
+const voice_buffer_time_ms = 800;
+
 (async _ => {
+    // 生成ループ
     await launchPythonServer();
     get_bookmarks_json();
 
     await main();
+})();
+
+(async _ => {
+    // 再生ループ
+    while (true) {
+        await new Promise(r => setTimeout(r, 1000 / 60));
+        if (voice_queue_list.length > 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
+            last_wav_start_time = Date.now();
+            let queue = voice_queue_list[0];
+            last_wav_duration = getWavDuration(queue.wav) * 1000;
+            console.log(`queue:${voice_queue_list.length} 🎙 speak`, queue.query_json.text);
+            save_wav_and_json();
+        }
+    }
+
 })();
 
 /** @type { { name: string, useBookmark: boolean, prompts: string[] }[] } */
@@ -80,11 +104,6 @@ const stream_topics_prompts = [
     }
 ];
 
-/**
- * @type { { query_json: { text:string, query:AudioQuery, isFinal:boolean, bookmark:object}, wav: NodeJS.ArrayBufferView }[] }
- */
-var voice_queue_list = [];
-
 async function main() {
     // 配信の流れ
     // TODO: コメントが来たら反応する
@@ -131,8 +150,6 @@ async function main() {
     process.exit(1);
 }
 
-let last_wav_start_time = 0;
-let last_wav_duration = 0;
 let bookmark = null;
 
 async function speak_topic(stream_topic_name, topic_prompt = null) {
@@ -194,14 +211,14 @@ function updateBookmarks(bookmark) {
 async function speakBookmark(bookmark) {
     let text = `${bookmark.author}さんのツイートを紹介するわ。\n${bookmark.text}`;
     let audio_queue = await create_voicevox_wav_and_json(text, bookmark);
-    let [wav_buffer, _text] = [audio_queue.wav, audio_queue.query_json.text];
-    let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
-    console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
-    await new Promise(resolve => setTimeout(resolve, wait_time));
-    console.log(`🎙 save wav and json ${_text}`);
-    save_wav_and_json(audio_queue);
-    last_wav_start_time = Date.now();
-    last_wav_duration = getWavDuration(wav_buffer) * 1000;
+    // let [wav_buffer, _text] = [audio_queue.wav, audio_queue.query_json.text];
+    // let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
+    // console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
+    // await new Promise(resolve => setTimeout(resolve, wait_time));
+    // console.log(`🎙 save wav and json ${_text}`);
+    // save_wav_and_json(audio_queue);
+    // last_wav_start_time = Date.now();
+    // last_wav_duration = getWavDuration(wav_buffer) * 1000;
 }
 
 async function getChatGPTResponseWithRetry(prompt) {
@@ -228,14 +245,14 @@ async function getChatGPTResponseWithRetry(prompt) {
 
 async function speakAndSave(text, bookmark = null, isFinal = false) {
     let audio_queue = await create_voicevox_wav_and_json(text, bookmark, isFinal);
-    let [wav_buffer, _text] = [audio_queue.wav, audio_queue.query_json.text];
-    let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
-    console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
-    await new Promise(resolve => setTimeout(resolve, wait_time));
-    console.log(`🎙 save wav and json ${_text}`);
-    save_wav_and_json(audio_queue);
-    last_wav_start_time = Date.now();
-    last_wav_duration = getWavDuration(wav_buffer) * 1000;
+    // let [wav_buffer, _text] = [audio_queue.wav, audio_queue.query_json.text];
+    // let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
+    // console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
+    // await new Promise(resolve => setTimeout(resolve, wait_time));
+    // console.log(`🎙 save wav and json ${_text}`);
+    // save_wav_and_json(audio_queue);
+    // last_wav_start_time = Date.now();
+    // last_wav_duration = getWavDuration(wav_buffer) * 1000;
 }
 
 function getWavDuration(buffer) {
@@ -285,6 +302,9 @@ async function create_voicevox_wav_and_json(text, bookmark = null, isFinal = fal
     });
 
     console.log(`Push AudioQueue: ${voice_queue_list.length}`);
+    if (voice_queue_list.length == 1) {
+        last_wav_duration = getWavDuration(wavRes.data) * 1000;
+    }
 
     return voice_queue_list[queue_l - 1];
 }
