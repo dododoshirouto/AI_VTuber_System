@@ -287,7 +287,8 @@
     ],
     "url": "https://x.com/3DVR3/status/1931645375318004212",
     "time": "2025-06-08T09:32:00.000Z",
-    "mediaLinks": []
+    "mediaLinks": [],
+    "used_in_stream": true
   },
   {
     "id": "1931572353689104793",
@@ -2688,7 +2689,8 @@
     "time": "2025-03-06T08:35:45.000Z",
     "mediaLinks": [
       "https://t.co/EBnP8ylVmz"
-    ]
+    ],
+    "used_in_stream": true
   },
   {
     "id": "1897113958739542158",
@@ -2989,7 +2991,8 @@
       "https://x.com/hashtag/Vtuber%E7%B4%A0%E6%9D%90?src=hashtag_click",
       "https://x.com/hashtag/VTuberAssets?src=hashtag_click",
       "https://x.com/hashtag/Vtuber?src=hashtag_click"
-    ]
+    ],
+    "used_in_stream": true
   },
   {
     "id": "1895419080074723537",
@@ -3735,7 +3738,8 @@
     "time": "2025-02-18T00:37:32.000Z",
     "mediaLinks": [
       "https://t.co/inJQpz6mO6"
-    ]
+    ],
+    "used_in_stream": true
   },
   {
     "id": "1891626563365478806",
@@ -4879,7 +4883,8 @@
     "time": "2025-01-24T09:16:52.000Z",
     "mediaLinks": [
       "https://t.co/0IvfS8JVIW"
-    ]
+    ],
+    "used_in_stream": true
   },
   {
     "id": "1882323009140388143",
@@ -4901,7 +4906,8 @@
     ],
     "url": "https://x.com/ji10me/status/1882202470350463472",
     "time": "2025-01-22T23:03:33.000Z",
-    "mediaLinks": []
+    "mediaLinks": [],
+    "used_in_stream": true
   },
   {
     "id": "1882006830353899665",
@@ -6072,7 +6078,8 @@
     "time": "2024-12-17T09:15:14.000Z",
     "mediaLinks": [
       "https://x.com/hashtag/3DCG?src=hashtag_click"
-    ]
+    ],
+    "used_in_stream": true
   },
   {
     "id": "1868255418092540175",

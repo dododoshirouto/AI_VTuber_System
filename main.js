@@ -9,10 +9,11 @@ const VV_SERVER_HOST = "http://127.0.0.1:50021/";
 
 const bookmarks_json_path = path.join(__dirname, 'read_bookmark/bookmarks.json');
 var bookmarks = [];
+var bookmarks_raw = [];
 
 (async _ => {
     await launchPythonServer();
-    await get_bookmarks();
+    get_bookmarks_json();
 
     await main();
 })();
@@ -82,6 +83,12 @@ const stream_topics_prompts = [
 async function main() {
     // 配信の流れ
     // TODO: コメントが来たら反応する
+    // TODO: 直前のセリフの最後の部分を含める
+    // TODO: その日紹介するブクマの情報を先に含めとく
+    // TODO: 音声生成をキュー方式にして、セリフ生成を先にやっておく → コメントが来たらリアクションの生成を先にして、その後のセリフも再生成していく
+    // TODO: サーバ接続確認の回数を減らす
+    // TODO: メディアつきツイートのメディアも送信する → 生成後ストレージから削除もする
+    // TODO: 配信時間から繰り返し回数を計算する
 
     let count = 0;
 
@@ -140,11 +147,18 @@ async function create_topic_serif(stream_topic_name, topic_prompt = null) {
     }
 
     if (topic_prompts?.useBookmark) {
-        // TODO: 過去に配信で使ってないブクマを順番に使用するようにする
+        // 過去に配信で使ってないブクマを使用する
         bookmark = bookmarks[Math.floor(Math.random() * bookmarks.length)];
-        if (bookmark) topic_prompt += "\n---\n# ツイート主\n" + bookmark.author + "\n# ツイート内容\n" + bookmark.text;
-        bookmarks = bookmarks.filter(b => b !== bookmark);
+        if (bookmark) {
+            topic_prompt += `\n---\n${get_before_time_text(bookmark.time)}\n# ツイートURL\n${bookmark.url}\n# ツイート主\n${bookmark.author}\n# ツイート内容\n${bookmark.text}`;
+            if (bookmark.medias && bookmark.medias.length) topic_prompt += `\n# 添付メディア\n${bookmark.medias.join('\n')}`;
+            if (bookmark.mediaLinks && bookmark.mediaLinks.length) topic_prompt += `\n# 添付URL\n${bookmark.mediaLinks.join('\n')}`;
+            bookmarks = bookmarks.filter(b => b !== bookmark);
+            bookmarks_raw[bookmarks_raw.findIndex(b => b.id === bookmark.id)].used_in_stream = true;
+            update_bookmarks_json();
+        }
 
+        // ツイート本文の読み上げ
         let text = `${bookmark.author}さんのツイートを紹介するわ。\n${bookmark.text}`;
         let { wav_buffer, text: _text, audioQuery } = await create_voicevox_wav_and_json(text);
         let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
@@ -271,10 +285,61 @@ async function launchPythonServer() {
     });
 }
 
-async function get_bookmarks() {
+function get_bookmarks_json() {
     const jsonText = fs.readFileSync(bookmarks_json_path, 'utf-8');
-    bookmarks = JSON.parse(jsonText);
+    bookmarks_raw = JSON.parse(jsonText);
+    bookmarks = bookmarks_raw.filter(b => !('used_in_stream' in b) || b.used_in_stream === false);
     bookmarks = bookmarks.filter(b => b.text).filter(b => b.text.length > 100);
+}
+
+function update_bookmarks_json() {
+    fs.writeFileSync(bookmarks_json_path, JSON.stringify(bookmarks_raw, null, 2));
+}
+
+function get_before_time_text(time_iso_txt) {
+    const before_time_to_text = [
+        {
+            time: (24 * 60 * 60 * 1000),
+            text: "今日"
+        },
+        {
+            time: (24 * 60 * 60 * 1000 * 2),
+            text: "昨日"
+        },
+        {
+            time: (24 * 60 * 60 * 1000 * 7),
+            text: "今週"
+        },
+        {
+            time: (24 * 60 * 60 * 1000 * 14),
+            text: "先週"
+        },
+        {
+            time: (24 * 60 * 60 * 1000 * 30),
+            text: "今月"
+        },
+        {
+            time: (24 * 60 * 60 * 1000 * 60),
+            text: "先月"
+        },
+        {
+            time: (24 * 60 * 60 * 1000 * 365),
+            text: "今年"
+        },
+        {
+            time: (24 * 60 * 60 * 1000 * 365 * 2),
+            text: "去年"
+        }
+    ]
+    let post_time = new Date(time_iso_txt).getTime();
+    let now = new Date().getTime();
+    for (let i = 0; i < before_time_to_text.length; i++) {
+        let before_time = now - before_time_to_text[i].time;
+        if (post_time < before_time) {
+            return before_time_to_text[i].text;
+        }
+    }
+    return null;
 }
 
 // SIGINT（Ctrl+C）
