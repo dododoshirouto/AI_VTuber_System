@@ -111,10 +111,13 @@ const stream_topics_prompts = [
 ];
 
 async function main() {
+    // 今日紹介するブクマ
+    bookmarks = get_use_bookmarks(Math.floor(Math.random() * 3 + 2));
+
     // 配信の流れ
     // TODO: コメントが来たら反応する
     // TODO: その日紹介するブクマの情報を先に含めとく
-    // TODO: 音声生成をキュー方式にして、セリフ生成を先にやっておく → コメントが来たらリアクションの生成を先にして、その後のセリフも再生成していく
+    // TODO: コメントが来たらリアクションの生成を先にして、その後のセリフも再生成していく
     // TODO: メディアつきツイートのメディアも送信する → 生成後ストレージから削除もする
     // TODO: 配信時間から繰り返し回数を計算する
 
@@ -126,26 +129,25 @@ async function main() {
     count = Math.floor(Math.random() * 3);
     let topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
     for (let i = 0; i < count; i++) {
-        await speak_topic("雑談", topic_prompts[i]);
+        await speak_topic("雑談", { topic_prompt: topic_prompts[i] });
     }
     await nextTopic();
 
     // ブクマの紹介
-    count = Math.floor(Math.random() * 3 + 2);
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < bookmarks.length; i++) {
         let count2 = 0;
 
-        await speak_topic("ツイート読み始め");
+        await speak_topic("ツイート読み始め", { bookmark: bookmarks[i] });
         count2 = Math.floor(Math.random() * 2 + 1);
         topic_prompts = stream_topics_prompts.find(t => t.name === "ツイート読み続き").prompts.sort(() => Math.random() - 0.5);
         for (let j = 0; j < count2; j++) {
-            await speak_topic("ツイート読み続き", topic_prompts[j]);
+            await speak_topic("ツイート読み続き", { topic_prompt: topic_prompts[j] });
         }
 
         count2 = Math.floor(Math.random() * 3);
         topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
         for (let j = 0; j < count2; j++) {
-            await speak_topic("雑談", topic_prompts[j]);
+            await speak_topic("雑談", { topic_prompt: topic_prompts[j] });
         }
         await nextTopic();
     }
@@ -157,7 +159,7 @@ async function main() {
 
 let bookmark = null;
 
-async function speak_topic(stream_topic_name, topic_prompt = null) {
+async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = null } = {}) {
     console.log(`📣 ${stream_topic_name}`);
     let topic_creating_start_time = Date.now();
 
@@ -167,8 +169,8 @@ async function speak_topic(stream_topic_name, topic_prompt = null) {
         bookmark = null;
     }
 
-    if (shouldUseBookmark(stream_topic_name)) {
-        bookmark = pickBookmark();
+    if (bookmark || UNUSE_shouldUseBookmark(stream_topic_name)) {
+        bookmark = bookmark || UNUSE_pickBookmark();
         if (bookmark) {
             topic_prompt = addBookmarkInfoToPrompt(topic_prompt, bookmark);
             updateBookmarks(bookmark);
@@ -188,12 +190,12 @@ function getTopicPrompt(stream_topic_name, topic_prompt) {
     return topic_prompt;
 }
 
-function shouldUseBookmark(stream_topic_name) {
+function UNUSE_shouldUseBookmark(stream_topic_name) {
     let topic_prompts = stream_topics_prompts.find(t => t.name === stream_topic_name);
     return topic_prompts?.useBookmark;
 }
 
-function pickBookmark() {
+function UNUSE_pickBookmark() {
     if (bookmarks.length === 0) return null;
     return bookmarks[Math.floor(Math.random() * bookmarks.length)];
 }
@@ -375,6 +377,15 @@ function get_bookmarks_json() {
 
 function update_bookmarks_json() {
     fs.writeFileSync(bookmarks_json_path, JSON.stringify(bookmarks_raw, null, 2));
+}
+
+function get_use_bookmarks(count = 3, shuffle_count = 10) {
+    let bookmarks = bookmarks_raw.filter(b => !('used_in_stream' in b) || b.used_in_stream === false);
+    bookmarks = bookmarks.filter(b => b.text).filter(b => b.text.length > 100);
+    for (i = 0; i < shuffle_count; i++) {
+        bookmarks = bookmarks.sort(() => Math.random() - 0.5);
+    }
+    return bookmarks.slice(0, count);
 }
 
 function get_before_time_text(time_iso_txt) {
