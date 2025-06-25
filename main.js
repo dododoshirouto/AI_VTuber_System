@@ -134,47 +134,78 @@ let bookmark = null;
 async function create_topic_serif(stream_topic_name, topic_prompt = null) {
     console.log(`📣 ${stream_topic_name}`);
     let topic_creating_start_time = Date.now();
-    let topic_prompts = null;
-    topic_prompts = stream_topics_prompts.find(t => t.name === stream_topic_name);
-    if (!topic_prompt) {
-        if (!topic_prompts) return null;
-        topic_prompt = topic_prompts.prompts[Math.floor(Math.random() * topic_prompts.prompts.length)];
-    }
+
+    topic_prompt = getTopicPrompt(stream_topic_name, topic_prompt);
 
     if (stream_topic_name.indexOf("ツイート") == -1) {
         bookmark = null;
     }
 
-    if (topic_prompts?.useBookmark) {
-        // 過去に配信で使ってないブクマを使用する
-        bookmark = bookmarks[Math.floor(Math.random() * bookmarks.length)];
+    if (shouldUseBookmark(stream_topic_name)) {
+        bookmark = pickBookmark();
         if (bookmark) {
-            bookmark.text = bookmark.text.replace(/https?:\/\/[^\s]+/g, '');
-            topic_prompt += `\n---\n# ブックマークした日\n${get_before_time_text(bookmark.time)}\n# ツイート主\n${bookmark.author}\n# ツイート内容\n${bookmark.text}`;
-            if (bookmark.medias && bookmark.medias.length) topic_prompt += `\n# 添付メディア\n${bookmark.medias.join('\n')}`;
-            if (bookmark.mediaLinks && bookmark.mediaLinks.length) topic_prompt += `\n# 添付URL\n${bookmark.mediaLinks.join('\n')}`;
-            bookmarks = bookmarks.filter(b => b !== bookmark);
-            bookmarks_raw[bookmarks_raw.findIndex(b => b.id === bookmark.id)].used_in_stream = true;
-            update_bookmarks_json();
+            topic_prompt = addBookmarkInfoToPrompt(topic_prompt, bookmark);
+            updateBookmarks(bookmark);
+            await speakBookmark(bookmark);
         }
-
-        // ツイート本文の読み上げ
-        let text = `${bookmark.author}さんのツイートを紹介するわ。\n${bookmark.text}`;
-        let { wav_buffer, text: _text, audioQuery } = await create_voicevox_wav_and_json(text);
-        let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
-        console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
-        await new Promise(resolve => setTimeout(resolve, wait_time));
-        console.log(`🎙 save wav and json ${_text}`);
-        save_wav_and_json(wav_buffer, _text, audioQuery, bookmark);
-        last_wav_start_time = Date.now();
-        last_wav_duration = getWavDuration(wav_buffer) * 1000;
     }
 
-    var text = "";
-    var error = false;
+    const text = await getChatGPTResponseWithRetry(topic_prompt);
+    await speakAndSave(text, bookmark || null, stream_topic_name === "配信終了");
+}
+
+function getTopicPrompt(stream_topic_name, topic_prompt) {
+    let topic_prompts = stream_topics_prompts.find(t => t.name === stream_topic_name);
+    if (!topic_prompt && topic_prompts) {
+        topic_prompt = topic_prompts.prompts[Math.floor(Math.random() * topic_prompts.prompts.length)];
+    }
+    return topic_prompt;
+}
+
+function shouldUseBookmark(stream_topic_name) {
+    let topic_prompts = stream_topics_prompts.find(t => t.name === stream_topic_name);
+    return topic_prompts?.useBookmark;
+}
+
+function pickBookmark() {
+    if (bookmarks.length === 0) return null;
+    return bookmarks[Math.floor(Math.random() * bookmarks.length)];
+}
+
+function addBookmarkInfoToPrompt(prompt, bookmark) {
+    // URL除去など
+    bookmark.text = bookmark.text.replace(/https?:\/\/[^\s]+/g, '');
+    let result = `${prompt}\n---\n# ブックマークした日\n${get_before_time_text(bookmark.time)}\n# ツイート主\n${bookmark.author}\n# ツイート内容\n${bookmark.text}`;
+    if (bookmark.medias && bookmark.medias.length) result += `\n# 添付メディア\n${bookmark.medias.join('\n')}`;
+    if (bookmark.mediaLinks && bookmark.mediaLinks.length) result += `\n# 添付URL\n${bookmark.mediaLinks.join('\n')}`;
+    return result;
+}
+
+function updateBookmarks(bookmark) {
+    bookmarks = bookmarks.filter(b => b !== bookmark);
+    bookmarks_raw[bookmarks_raw.findIndex(b => b.id === bookmark.id)].used_in_stream = true;
+    update_bookmarks_json();
+}
+
+async function speakBookmark(bookmark) {
+    let text = `${bookmark.author}さんのツイートを紹介するわ。\n${bookmark.text}`;
+    let { wav_buffer, text: _text, audioQuery } = await create_voicevox_wav_and_json(text);
+    let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
+    console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
+    await new Promise(resolve => setTimeout(resolve, wait_time));
+    console.log(`🎙 save wav and json ${_text}`);
+    save_wav_and_json(wav_buffer, _text, audioQuery, bookmark);
+    last_wav_start_time = Date.now();
+    last_wav_duration = getWavDuration(wav_buffer) * 1000;
+}
+
+async function getChatGPTResponseWithRetry(prompt) {
+    let text = "";
+    let error = false;
     do {
         try {
-            text = await replay(topic_prompt);
+            text = await replay(prompt);
+            error = false;
         } catch (e) {
             console.log(e);
             console.log(e.error);
@@ -182,17 +213,21 @@ async function create_topic_serif(stream_topic_name, topic_prompt = null) {
                 error = true;
                 console.log("ChatGPTがサーバーエラーなのでリトライします…");
                 await new Promise(resolve => setTimeout(resolve, 1000));
+            } else {
+                throw e;
             }
         }
     } while (error);
-    let { wav_buffer, text: _text, audioQuery } = await create_voicevox_wav_and_json(text);
+    return text;
+}
 
+async function speakAndSave(text, bookmark = null, isFinal = false) {
+    let { wav_buffer, text: _text, audioQuery } = await create_voicevox_wav_and_json(text);
     let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
     console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
     await new Promise(resolve => setTimeout(resolve, wait_time));
-
     console.log(`🎙 save wav and json ${_text}`);
-    save_wav_and_json(wav_buffer, _text, audioQuery, bookmark || null, stream_topic_name == "配信終了");
+    save_wav_and_json(wav_buffer, _text, audioQuery, bookmark, isFinal);
     last_wav_start_time = Date.now();
     last_wav_duration = getWavDuration(wav_buffer) * 1000;
 }
