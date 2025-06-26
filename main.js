@@ -203,7 +203,7 @@ function getTopicPrompt(stream_topic_name, topic_prompt) {
 function addBookmarkInfoToPrompt(prompt, bookmark) {
     // URL除去など
     bookmark.text = bookmark.text.replace(/https?:\/\/[^\s]+/g, '');
-    let result = `${prompt}\n---\n# ブックマークした日\n${get_before_time_text(bookmark.time)}\n# ツイート主\n${bookmark.author}\n# ツイート内容\n${bookmark.text}`;
+    let result = `${prompt}\n---\n# 投稿日\n${get_before_time_text(bookmark.time)}のツイート\n# 投稿主\n${bookmark.author}\n# ツイート内容\n${bookmark.text}`;
     if (bookmark.medias && bookmark.medias.length) result += `\n# 添付メディア\n${bookmark.medias.join('\n')}`;
     if (bookmark.mediaLinks && bookmark.mediaLinks.length) result += `\n# 添付URL\n${bookmark.mediaLinks.join('\n')}`;
     return result;
