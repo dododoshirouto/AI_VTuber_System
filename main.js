@@ -379,6 +379,7 @@ function get_bookmarks_json() {
     bookmarks_raw = JSON.parse(jsonText);
     bookmarks = bookmarks_raw.filter(b => !('used_in_stream' in b) || b.used_in_stream === false);
     bookmarks = bookmarks.filter(b => b.text).filter(b => b.text.length > 100);
+    bookmarks = bookmarks.sort((a, b) => new Date(b.time) - new Date(a.time));
 }
 
 function update_bookmarks_json() {
