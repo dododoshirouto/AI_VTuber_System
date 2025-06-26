@@ -72,7 +72,11 @@ async function update() {
 
         update_twinkle();
         if (can_audio_play) {
-            update_visemes();
+            try {
+                update_visemes();
+            } catch (e) {
+                console.error(e);
+            }
         }
     }
 }
@@ -99,7 +103,11 @@ async function audio_update_check() {
         let json = await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => json);
         if (json.text != last_text && can_audio_play && !audio_is_playing) {
             last_text = json.text;
-            play_audio();
+            try {
+                play_audio();
+            } catch (e) {
+                console.error(e);
+            }
         }
     }
 }
