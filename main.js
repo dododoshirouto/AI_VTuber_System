@@ -146,7 +146,7 @@ async function main() {
         count2 = Math.floor(Math.random() * 2 + 1);
         topic_prompts = stream_topics_prompts.find(t => t.name === "ツイート読み続き").prompts.sort(() => Math.random() - 0.5);
         for (let j = 0; j < count2; j++) {
-            await speak_topic("ツイート読み続き", { topic_prompt: topic_prompts[j] });
+            await speak_topic("ツイート読み続き", { topic_prompt: topic_prompts[j], bookmark: bookmarks[i] });
         }
 
         count2 = Math.floor(Math.random() * 3);
@@ -175,14 +175,11 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
         bookmark = null;
     }
 
-    if (bookmark) {
-        bookmark = bookmark;
-        if (bookmark) {
-            // プロンプトにツイート情報を追加する
-            topic_prompt = addBookmarkInfoToPrompt(topic_prompt, bookmark);
-            updateBookmarks(bookmark);
-            await speakBookmark(bookmark);
-        }
+    if (bookmark && stream_topic_name == "ツイート読み始め") {
+        // プロンプトにツイート情報を追加する
+        topic_prompt = addBookmarkInfoToPrompt(topic_prompt, bookmark);
+        updateBookmarks(bookmark);
+        await speakBookmark(bookmark);
     }
 
     if (bookmarks.length > 0) {
