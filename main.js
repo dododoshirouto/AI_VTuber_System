@@ -21,32 +21,34 @@ const voice_buffer_time_ms = 800;
 
 let end_flag = false;
 
-(async _ => {
-    // 生成ループ
-    await launchPythonServer();
-    get_bookmarks_json();
+if (require.main === module) {
 
-    await main();
-})();
+    (async _ => {
+        // 生成ループ
+        await launchPythonServer();
+        get_bookmarks_json();
+        await main();
+    })();
 
-(async _ => {
-    // 再生ループ
-    while (true) {
-        await new Promise(r => setTimeout(r, 1000 / 60));
-        if (voice_queue_list.length > 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
-            last_wav_start_time = Date.now();
-            let queue = voice_queue_list[0];
-            last_wav_duration = getWavDuration(queue.wav) * 1000;
-            end_flag = queue.query_json.isFinal;
-            console.log(`queue:${voice_queue_list.length} 🎙 speak`, queue.query_json.text);
-            save_wav_and_json();
+    (async _ => {
+        // 再生ループ
+        while (true) {
+            await new Promise(r => setTimeout(r, 1000 / 60));
+            if (voice_queue_list.length > 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
+                last_wav_start_time = Date.now();
+                let queue = voice_queue_list[0];
+                last_wav_duration = getWavDuration(queue.wav) * 1000;
+                end_flag = queue.query_json.isFinal;
+                console.log(`queue:${voice_queue_list.length} 🎙 speak`, queue.query_json.text);
+                save_wav_and_json();
+            }
+            if (end_flag && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
+                process.exit();
+            }
         }
-        if (end_flag && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
-            process.exit();
-        }
-    }
+    })();
 
-})();
+}
 
 /** @type { { name: string, useBookmark: boolean, prompts: string[] }[] } */
 const stream_topics_prompts = [
@@ -157,7 +159,7 @@ async function main() {
 
     await speak_topic("配信終了");
 
-    exitChatGPT();
+    await exitChatGPT();
 }
 
 let bookmark = null;
@@ -173,8 +175,8 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
         bookmark = null;
     }
 
-    if (bookmark || UNUSE_shouldUseBookmark(stream_topic_name)) {
-        bookmark = bookmark || UNUSE_pickBookmark();
+    if (bookmark) {
+        bookmark = bookmark;
         if (bookmark) {
             // プロンプトにツイート情報を追加する
             topic_prompt = addBookmarkInfoToPrompt(topic_prompt, bookmark);
@@ -184,12 +186,12 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
     }
 
     if (bookmarks.length > 0) {
-        let bookmarks_text = "今日紹介するツイート一覧(直接言及はせず、繋がる雑談をして)\n";
-        bookmarks_text += [...bookmarks.map(b => `${get_before_time_text(b.time)}のツイート\n${b.author}\n${b.text}`), ""].join("\n\n---\n\n");
+        let bookmarks_text = "今日紹介するツイート(まだ直接言及せず、ちょっとだけ繋がる雑談をして)\n";
+        bookmarks_text += [...bookmarks.map(b => `${get_before_time_text(b.time)}のツイート\n${b.text.replace(/\n+/g, "\n")}`), ""].join("\n\n---\n\n");
         topic_prompt = bookmarks_text + topic_prompt;
     }
 
-    const text = await getChatGPTResponseWithRetry(topic_prompt);
+    const text = await getChatGPTResponseWithRetry(topic_prompt, { imageUrls: bookmark?.medias || [] });
     await speakAndSave(text, bookmark || null, stream_topic_name === "配信終了");
 }
 
@@ -199,16 +201,6 @@ function getTopicPrompt(stream_topic_name, topic_prompt) {
         topic_prompt = topic_prompts.prompts[Math.floor(Math.random() * topic_prompts.prompts.length)];
     }
     return topic_prompt;
-}
-
-function UNUSE_shouldUseBookmark(stream_topic_name) {
-    let topic_prompts = stream_topics_prompts.find(t => t.name === stream_topic_name);
-    return topic_prompts?.useBookmark;
-}
-
-function UNUSE_pickBookmark() {
-    if (bookmarks.length === 0) return null;
-    return bookmarks[Math.floor(Math.random() * bookmarks.length)];
 }
 
 function addBookmarkInfoToPrompt(prompt, bookmark) {
@@ -231,12 +223,12 @@ async function speakBookmark(bookmark) {
     let audio_queue = await create_voicevox_wav_and_json(text, bookmark);
 }
 
-async function getChatGPTResponseWithRetry(prompt) {
+async function getChatGPTResponseWithRetry(prompt, { imageUrls = [] } = {}) {
     let text = "";
     let error = false;
     do {
         try {
-            text = await replay(prompt);
+            text = await replay(prompt, { imageUrls });
             error = false;
         } catch (e) {
             console.log(e);
@@ -358,8 +350,11 @@ function get_bookmarks_json() {
     const jsonText = fs.readFileSync(bookmarks_json_path, 'utf-8');
     bookmarks_raw = JSON.parse(jsonText);
     bookmarks = bookmarks_raw.filter(b => !('used_in_stream' in b) || b.used_in_stream === false);
-    bookmarks = bookmarks.filter(b => b.text).filter(b => b.text.length > 100);
+    bookmarks = bookmarks.map(b => { b.text?.replace(/https?:\/\/[^\s]+/g, ''); return b; });
+    bookmarks = bookmarks.map(b => { b.mediaLinks = b.mediaLinks.filter(l => l.indexOf('https://x.com/hashtag/') === -1); return b; });
+    bookmarks = bookmarks.map(b => { b.medias = b.medias.filter(l => l.trim()); return b; });
     bookmarks = bookmarks.sort((a, b) => new Date(b.time) - new Date(a.time));
+    return bookmarks;
 }
 
 function update_bookmarks_json() {
@@ -422,15 +417,17 @@ function get_before_time_text(time_iso_txt) {
 }
 
 // SIGINT（Ctrl+C）
-process.on('SIGINT', () => {
+process.on('SIGINT', async () => {
     console.log('🛑 SIGINT (Ctrl+C) を受信しました');
-    exitChatGPT();
+    await exitChatGPT();
     process.exit(0);
 });
 
 // 予期しないエラーでクラッシュしそうなとき
-process.on('uncaughtException', (err) => {
+process.on('uncaughtException', async (err) => {
     console.error('💥 uncaughtException:', err);
-    exitChatGPT();
+    await exitChatGPT();
     process.exit(1);
 });
+
+module.exports = { bookmarks_json_path, get_bookmarks_json }
