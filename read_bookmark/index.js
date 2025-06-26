@@ -17,4 +17,6 @@ const { loadBookmarks, saveBookmarks } = require('./bookmark_storage');
     console.log(`📁 総計：${allTweets.length}件を保存しました`);
 
     await browser.close();
+
+    process.exit(0);
 })();
