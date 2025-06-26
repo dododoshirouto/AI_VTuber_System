@@ -115,9 +115,6 @@ async function main() {
     bookmarks = get_use_bookmarks(Math.floor(Math.random() * 3 + 2));
 
     // 配信の流れ
-    // TODO: その日紹介するブクマの情報を先に含めとく
-    //          懸念点：プロンプト量がめっちゃ多くなりそう→諦める
-    //          懸念点：最初の会話で具体的に喋られたら困る→プロンプト量あきらめて指示追加
     // TODO: コメントが来たらリアクションの生成を先にして、その後のセリフも再生成していく
     //          - YouTubeのコメント取得
     //          - リアクション用セリフ生成（非同期）
@@ -130,7 +127,7 @@ async function main() {
     let count = 0;
 
     // 配信開始の挨拶
-    await speak_topic("配信開始");
+    await speak_topic("配信開始", { bookmarks: bookmarks });
 
     count = Math.floor(Math.random() * 3);
     let topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
@@ -165,10 +162,11 @@ async function main() {
 
 let bookmark = null;
 
-async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = null } = {}) {
+async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = null, bookmarks = [] } = {}) {
     console.log(`📣 ${stream_topic_name}`);
     let topic_creating_start_time = Date.now();
 
+    // セリフを生成するためのプロンプトを取得
     topic_prompt = getTopicPrompt(stream_topic_name, topic_prompt);
 
     if (stream_topic_name.indexOf("ツイート") == -1) {
@@ -178,10 +176,17 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
     if (bookmark || UNUSE_shouldUseBookmark(stream_topic_name)) {
         bookmark = bookmark || UNUSE_pickBookmark();
         if (bookmark) {
+            // プロンプトにツイート情報を追加する
             topic_prompt = addBookmarkInfoToPrompt(topic_prompt, bookmark);
             updateBookmarks(bookmark);
             await speakBookmark(bookmark);
         }
+    }
+
+    if (bookmarks.length > 0) {
+        let bookmarks_text = "今日紹介するツイート一覧(直接言及はせず、繋がる雑談をして)\n";
+        bookmarks_text += [...bookmarks.map(b => `${get_before_time_text(b.time)}のツイート\n${b.author}\n${b.text}`), ""].join("\n\n---\n\n");
+        topic_prompt = bookmarks_text + topic_prompt;
     }
 
     const text = await getChatGPTResponseWithRetry(topic_prompt);
@@ -224,14 +229,6 @@ function updateBookmarks(bookmark) {
 async function speakBookmark(bookmark) {
     let text = `${bookmark.author}さんのツイートを紹介するわ。\n${bookmark.text}`;
     let audio_queue = await create_voicevox_wav_and_json(text, bookmark);
-    // let [wav_buffer, _text] = [audio_queue.wav, audio_queue.query_json.text];
-    // let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
-    // console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
-    // await new Promise(resolve => setTimeout(resolve, wait_time));
-    // console.log(`🎙 save wav and json ${_text}`);
-    // save_wav_and_json(audio_queue);
-    // last_wav_start_time = Date.now();
-    // last_wav_duration = getWavDuration(wav_buffer) * 1000;
 }
 
 async function getChatGPTResponseWithRetry(prompt) {
@@ -258,14 +255,6 @@ async function getChatGPTResponseWithRetry(prompt) {
 
 async function speakAndSave(text, bookmark = null, isFinal = false) {
     let audio_queue = await create_voicevox_wav_and_json(text, bookmark, isFinal);
-    // let [wav_buffer, _text] = [audio_queue.wav, audio_queue.query_json.text];
-    // let wait_time = Math.max(0, (last_wav_duration + 800) - (Date.now() - last_wav_start_time));
-    // console.log(`⏱ ${(wait_time / 1000).toFixed(2)}s 待機`);
-    // await new Promise(resolve => setTimeout(resolve, wait_time));
-    // console.log(`🎙 save wav and json ${_text}`);
-    // save_wav_and_json(audio_queue);
-    // last_wav_start_time = Date.now();
-    // last_wav_duration = getWavDuration(wav_buffer) * 1000;
 }
 
 function getWavDuration(buffer) {
@@ -278,15 +267,6 @@ async function create_voicevox_wav_and_json(text, bookmark = null, isFinal = fal
     text = text.replace(/\s+/g, ' ').replace(/([。、．，\.,])\s/g, '$1').trim();
     text = text.replace(/\s*\n+\s*/g, '。');
     text = text.replace(/\s*[）\)」\]｝}・]+\s*/g, '');
-    // try {
-    //     // PingしてFastAPIが生きてるか確認
-    //     await axios.get(VV_SERVER_HOST);
-    //     console.log("✅ FastAPIはすでに起動済み");
-    // } catch (e) {
-    //     console.log("⚠ FastAPIが未起動");
-    //     await new Promise(resolve => setTimeout(resolve, 500));
-    //     return await create_voicevox_wav_and_json();
-    // }
 
     // AudioQuery を取得
     const queryRes = await axios.get(VV_SERVER_HOST + "query", {
