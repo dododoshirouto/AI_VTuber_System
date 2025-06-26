@@ -41,7 +41,7 @@ from fastapi import Body
 from fastapi import Request, Depends
 @app.post("/speak_from_query")
 async def speak_from_query(request: Request):
-    print(request)
+    # print(request)
     query = await request.json()
     wav = yomiage.synthesize_from_query(query)
     wav_path = "out.wav"
