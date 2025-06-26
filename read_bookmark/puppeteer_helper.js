@@ -1,10 +1,11 @@
 const puppeteer = require('puppeteer');
+const path = require('path');
 
 async function launchBrowserAndLogin() {
     const browser = await puppeteer.launch({
         headless: false,
         defaultViewport: null,
-        userDataDir: './.puppeteer_profile',
+        userDataDir: path.resolve(__dirname, './.puppeteer_profile'),
     });
 
     const page = await browser.newPage();
@@ -15,22 +16,23 @@ async function launchBrowserAndLogin() {
     const autoResumeAfterMs = 5000;
 
     const shouldAutoResume = await new Promise(resolve => {
-        const timeout = setTimeout(async () => {
+        const timeout = setInterval(async () => {
             const currentUrl = page.url();
             if (
                 currentUrl.includes('twitter.com/i/bookmarks') ||
                 currentUrl.includes('x.com/i/bookmarks')
             ) {
                 console.log('✅ ブクマページにアクセス済み。自動再開します。');
+                clearInterval(timeout);
                 resolve(true);
             } else {
-                resolve(false);
+                // resolve(false);
             }
         }, autoResumeAfterMs);
 
         process.stdin.resume();
         process.stdin.once('data', () => {
-            clearTimeout(timeout);
+            clearInterval(timeout);
             resolve(true); // 手動Enterでも再開
         });
     });
@@ -50,6 +52,7 @@ async function fetchTweetsByScroll(page, existingIds, scrollLimit = 30) {
 
         // await page.mouse.wheel({ deltaY: 800 });
         await page.keyboard.press('PageDown');
+        await page.keyboard.press('PageDown');
         await new Promise(resolve => setTimeout(resolve, 1000));
 
         const newTweets = await page.evaluate(() => {
@@ -67,7 +70,11 @@ async function fetchTweetsByScroll(page, existingIds, scrollLimit = 30) {
                 const id = idMatch ? idMatch[1] : null;
                 const time = node.querySelector('time')?.dateTime;
                 const mediaLinks = [...node.querySelectorAll('[data-testid="tweetText"] a')].map(a => a.href);
-                const medias = [...[...node.querySelectorAll('img[alt="画像"]')].map(img => img.src), ...[...node.querySelectorAll('video[aria-label="埋め込み動画"]')].map(video => video.src)];
+                const medias = [
+                    ...[...node.querySelectorAll('img[alt="画像"]')].map(img => img.src).filter(src => src),
+                    ...[...node.querySelectorAll('video[aria-label="埋め込み動画"]')].map(video => video.src).filter(src => src),
+                    ...[...node.querySelectorAll('video[aria-label="埋め込み動画"]')].map(video => video.poster).filter(src => src),
+                ];
 
                 if (id) {
                     const data = { id, text, author, medias, url, time, mediaLinks, used_in_stream: false };
