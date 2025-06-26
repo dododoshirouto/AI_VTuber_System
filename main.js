@@ -123,7 +123,6 @@ async function main() {
     //          - 今のセリフの残り再生時間を見て、今か次かにセリフ生成→キュー追加
     //          懸念点：再生成するときにスレッドの会話履歴も前のところからでできひんかなって
     //              → サマリーを保存しといて、それを再利用する。プロンプト量は諦める。
-    // TODO: メディアつきツイートの画像/動画もChatGPTに送信する → 生成後ストレージから削除もする
     // TODO: 配信時間から繰り返し回数を計算する
 
     let count = 0;
@@ -368,48 +367,62 @@ function get_use_bookmarks(count = 3, shuffle_count = 10) {
 }
 
 function get_before_time_text(time_iso_txt) {
-    const before_time_to_text = [
-        {
-            time: (24 * 60 * 60 * 1000),
-            text: "今日"
-        },
-        {
-            time: (24 * 60 * 60 * 1000 * 2),
-            text: "昨日"
-        },
-        {
-            time: (24 * 60 * 60 * 1000 * 7),
-            text: "今週"
-        },
-        {
-            time: (24 * 60 * 60 * 1000 * 14),
-            text: "先週"
-        },
-        {
-            time: (24 * 60 * 60 * 1000 * 30),
-            text: "今月"
-        },
-        {
-            time: (24 * 60 * 60 * 1000 * 60),
-            text: "先月"
-        },
-        {
-            time: (24 * 60 * 60 * 1000 * 365),
-            text: "今年"
-        },
-        {
-            time: (24 * 60 * 60 * 1000 * 365 * 2),
-            text: "去年"
-        }
-    ]
-    let post_time = new Date(time_iso_txt).getTime();
-    let now = new Date().getTime();
-    for (let i = 0; i < before_time_to_text.length; i++) {
-        let before_time = now - before_time_to_text[i].time;
-        if (post_time < before_time) {
-            return before_time_to_text[i].text;
-        }
+    // const before_time_to_text = [
+    //     {
+    //         time: (24 * 60 * 60 * 1000),
+    //         text: "今日"
+    //     },
+    //     {
+    //         time: (24 * 60 * 60 * 1000 * 2),
+    //         text: "昨日"
+    //     },
+    //     {
+    //         time: (24 * 60 * 60 * 1000 * 7),
+    //         text: "今週"
+    //     },
+    //     {
+    //         time: (24 * 60 * 60 * 1000 * 14),
+    //         text: "先週"
+    //     },
+    //     {
+    //         time: (24 * 60 * 60 * 1000 * 30),
+    //         text: "今月"
+    //     },
+    //     {
+    //         time: (24 * 60 * 60 * 1000 * 60),
+    //         text: "先月"
+    //     },
+    //     {
+    //         time: (24 * 60 * 60 * 1000 * 365),
+    //         text: "今年"
+    //     },
+    //     {
+    //         time: (24 * 60 * 60 * 1000 * 365 * 2),
+    //         text: "去年"
+    //     }
+    // ];
+    const MS_DAY = 24 * 60 * 60 * 1000;
+
+    let d = new Date();
+    let now = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59);
+
+    const post = new Date(time_iso_txt);
+
+    const diff = now.getTime() - post.getTime();
+
+    if (diff < MS_DAY) return "今日";
+    if (diff < MS_DAY * 2) return "昨日";
+    if (diff < MS_DAY * 7) return "今週";
+    if (diff < MS_DAY * 14) return "先週";
+
+    if (now.getFullYear() === post.getFullYear()) {
+        if (now.getMonth() === post.getMonth()) return "今月";
+        if (now.getMonth() - 1 === post.getMonth()) return "先月";
+        return "今年";
     }
+
+    if (now.getFullYear() - 1 === post.getFullYear()) return "去年";
+
     return null;
 }
 
@@ -427,4 +440,4 @@ process.on('uncaughtException', async (err) => {
     process.exit(1);
 });
 
-module.exports = { bookmarks_json_path, get_bookmarks_json }
+module.exports = { bookmarks_json_path, get_bookmarks_json, get_before_time_text }
