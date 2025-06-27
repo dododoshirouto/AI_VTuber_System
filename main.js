@@ -144,6 +144,7 @@ async function main() {
         let count2 = 0;
 
         await speak_topic("ツイート読み始め", { bookmark: bookmarks[i] });
+
         count2 = Math.floor(Math.random() * 2 + 1);
         topic_prompts = stream_topics_prompts.find(t => t.name === "ツイート読み続き").prompts.sort(() => Math.random() - 0.5);
         for (let j = 0; j < count2; j++) {
@@ -225,7 +226,7 @@ function addBookmarkInfoToPrompt(prompt, bookmark) {
 }
 
 function updateBookmarks(bookmark) {
-    bookmarks = bookmarks.filter(b => b !== bookmark);
+    // bookmarks = bookmarks.filter(b => b !== bookmark);
     bookmarks_raw[bookmarks_raw.findIndex(b => b.id === bookmark.id)].used_in_stream = true;
     update_bookmarks_json();
 }
