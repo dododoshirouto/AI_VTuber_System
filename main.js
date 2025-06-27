@@ -192,7 +192,7 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
     }
 
     if (bookmarks.length > 0) {
-        let bookmarks_text = "今日紹介する予定のブックマーク(まだツイート内容にはまだ言及せず、繋がる他の話をして)\n";
+        let bookmarks_text = "今から紹介していく予定のブックマーク情報(まだツイート内容にはまだ言及せず、繋がる他の話をして)\n";
         bookmarks_text += [...bookmarks.map(b => `${get_before_time_text(b.time)}のツイート\n${b.text.replace(/\n+/g, "\n")}`), ""].join("\n\n---\n\n");
         topic_prompt = bookmarks_text + topic_prompt;
     }
