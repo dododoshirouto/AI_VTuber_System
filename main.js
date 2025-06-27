@@ -58,12 +58,12 @@ const stream_topics_prompts = [
         name: "配信開始",
         useBookmark: false,
         prompts: [
-            `今日はブクマしたツイートを紹介する配信です。配信開始の雑談をして: ${(new Date()).toLocaleString()}`,
-            `今日はブクマしたツイートを紹介する配信です。配信開始の挨拶をして: ${(new Date()).toLocaleString()}`,
-            `今日はブクマしたツイートを紹介する配信です。季節を踏まえた挨拶雑談をして: ${(new Date()).toLocaleString()}`,
-            `今日はブクマしたツイートを紹介する配信です。最近の日常を交えて挨拶雑談をして: ${(new Date()).toLocaleString()}`,
-            `今日はブクマしたツイートを紹介する配信です。直近のニュースを交えて挨拶雑談をして: ${(new Date()).toLocaleString()}`,
-            `今日はブクマしたツイートを紹介する配信です。最近の面白い話を交えて挨拶雑談をして: ${(new Date()).toLocaleString()}`,
+            `今日はブックマークしたツイートを紹介する配信です。配信開始の雑談をして: ${(new Date()).toLocaleString()}`,
+            `今日はブックマークしたツイートを紹介する配信です。配信開始の挨拶をして: ${(new Date()).toLocaleString()}`,
+            `今日はブックマークしたツイートを紹介する配信です。季節を踏まえた挨拶雑談をして: ${(new Date()).toLocaleString()}`,
+            `今日はブックマークしたツイートを紹介する配信です。最近の日常を交えて挨拶雑談をして: ${(new Date()).toLocaleString()}`,
+            `今日はブックマークしたツイートを紹介する配信です。直近のニュースを交えて挨拶雑談をして: ${(new Date()).toLocaleString()}`,
+            `今日はブックマークしたツイートを紹介する配信です。最近の面白い話を交えて挨拶雑談をして: ${(new Date()).toLocaleString()}`,
         ]
     },
     {
@@ -84,7 +84,7 @@ const stream_topics_prompts = [
             "このツイート内容をまとめて、それについてコメントして",
             "このツイート内容をまとめて、自分の考えや知識と絡めてコメントして",
             "このツイート内容をまとめて、リアクションして",
-            "このツイート内容をまとめて、なぜブクマしたのか説明して",
+            "このツイート内容をまとめて、なぜブックマークしたのか説明して",
         ]
     },
     {
@@ -98,7 +98,7 @@ const stream_topics_prompts = [
             "今のツイートについて構成を分析してみて",
             "今のツイートについてリアクションのあるコメントをして",
             "今のツイートについてからめて雑談して",
-            "今のツイートをなぜブクマしたのか説明して",
+            "今のツイートをなぜブックマークしたのか説明して",
         ]
     },
     {
@@ -115,8 +115,8 @@ const stream_topics_prompts = [
 ];
 
 async function main() {
-    // 今日紹介するブクマ
-    bookmarks = get_use_bookmarks(Math.floor(Math.random() * 3 + 2));
+    // 今日紹介するブックマーク
+    bookmarks = get_use_bookmarks(Math.ceil(Math.random() * 3 + 2));
 
     // 配信の流れ
     // TODO: コメントが来たらリアクションの生成を先にして、その後のセリフも再生成していく
@@ -139,7 +139,7 @@ async function main() {
     }
     await gotoNextTopic();
 
-    // ブクマの紹介
+    // ブックマークの紹介
     for (let i = 0; i < bookmarks.length; i++) {
         let count2 = 0;
 
@@ -191,7 +191,7 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
     }
 
     if (bookmarks.length > 0) {
-        let bookmarks_text = "今日紹介するツイート(ツイート内容にはまだ直接言及せず、ちょっとだけ繋がる雑談をして)\n";
+        let bookmarks_text = "今日紹介する予定のブックマーク(まだツイート内容にはまだ言及せず、繋がる他の話をして)\n";
         bookmarks_text += [...bookmarks.map(b => `${get_before_time_text(b.time)}のツイート\n${b.text.replace(/\n+/g, "\n")}`), ""].join("\n\n---\n\n");
         topic_prompt = bookmarks_text + topic_prompt;
     }
@@ -201,8 +201,10 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
     }
 
     const text = await getChatGPTResponseWithRetry(topic_prompt, { imageUrls: bookmark?.medias || [] });
-    await speakAndSave(text, bookmark || null, stream_topic_name === "配信終了");
-    save_history_jsons();
+    (async _ => {
+        await speakAndSave(text, bookmark || null, stream_topic_name === "配信終了");
+        save_history_jsons();
+    })()
 }
 
 function getTopicPrompt(stream_topic_name, topic_prompt) {
