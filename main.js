@@ -347,7 +347,7 @@ async function launchPythonServer() {
         console.log("FastAPIはすでに起動済み");
         return; // 起動済みなので終了
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         console.log("FastAPIが未起動、起動します…");
     }
 
