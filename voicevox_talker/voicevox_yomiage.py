@@ -138,8 +138,8 @@ class VoicevoxYomiage:
         text = text.replace("！"," ！ ")
         text_l=list(text)
         for i in range(len(text))[::-1][:-1]:
-            if re.compile("[a-zA-Z]").search(text_l[i]) and re.compile("[^a-zA-Z]").search(text_l[i-1]): text_l.insert(i," ")
-            elif re.compile("[^a-zA-Z]").search(text_l[i]) and re.compile("[a-zA-Z]").search(text_l[i+-1]): text_l.insert(i," ")
+            if re.compile("[a-zA-Z0-9]").search(text_l[i]) and re.compile("[^a-zA-Z0-9]").search(text_l[i-1]): text_l.insert(i," ")
+            elif re.compile("[^a-zA-Z0-9]").search(text_l[i]) and re.compile("[a-zA-Z0-9]").search(text_l[i+-1]): text_l.insert(i," ")
         text = "".join(text_l)
         text_split = re.split(r'[ \,\*\-\_\=\(\)\[\]\'\"\&\$　]',text)
         for i in range(len(text_split)):
