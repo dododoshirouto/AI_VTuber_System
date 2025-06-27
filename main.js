@@ -132,7 +132,7 @@ async function main() {
     // 配信開始の挨拶
     await speak_topic("配信開始", { bookmarks: bookmarks });
 
-    count = Math.floor(Math.random() * 3);
+    count = Math.floor(Math.random() * 2);
     let topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
     for (let i = 0; i < count; i++) {
         await speak_topic("雑談", { topic_prompt: topic_prompts[i] });
@@ -191,11 +191,11 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
         await speakBookmark(bookmark);
     }
 
-    if (bookmarks.length > 0) {
-        let bookmarks_text = "今から紹介していく予定のブックマーク情報(まだツイート内容にはまだ言及せず、繋がる他の話をして)\n";
-        bookmarks_text += [...bookmarks.map(b => `${get_before_time_text(b.time)}のツイート\n${b.text.replace(/\n+/g, "\n")}`), ""].join("\n\n---\n\n");
-        topic_prompt = bookmarks_text + topic_prompt;
-    }
+    // if (bookmarks.length > 0) {
+    //     let bookmarks_text = "今から紹介していく予定のブックマーク情報(まだツイート内容にはまだ言及せず、繋がる他の話をして)\n";
+    //     bookmarks_text += [...bookmarks.map(b => `${get_before_time_text(b.time)}のツイート\n${b.text.replace(/\n+/g, "\n")}`), ""].join("\n\n---\n\n");
+    //     topic_prompt = bookmarks_text + topic_prompt;
+    // }
 
     if (stream_topic_name == "配信終了") {
         topic_prompt += `\n# 今日の内容\n${summary_history.join("\n")}`;
