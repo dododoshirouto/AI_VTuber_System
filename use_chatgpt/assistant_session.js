@@ -153,7 +153,7 @@ class AssistantSession {
                     run = await this.openai.beta.threads.runs.retrieve(runId, { thread_id: this.threadId });
                     if (run.status !== "failed" && run.status !== "cancelled") break;
                 }
-                if (status === "failed" || status === "cancelled") throw new Error(`Run failed: ${run}`);
+                if (status === "failed" || status === "cancelled") throw new Error(`Run failed: ${status}`);
             }
             if (status !== "completed") await new Promise(r => setTimeout(r, 500));
         }

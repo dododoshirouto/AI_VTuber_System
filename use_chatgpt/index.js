@@ -30,6 +30,7 @@ async function replay(prompt = "指示:配信開始→雑談", { imageUrls = [] 
 async function nextTopic() {
     AssistantSession.summaryText = await session.createSummary();
     session.close();
+    return AssistantSession.summaryText;
 }
 
 async function exit() {

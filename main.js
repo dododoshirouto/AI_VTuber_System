@@ -19,6 +19,10 @@ let last_wav_start_time = 0;
 let last_wav_duration = 0;
 const voice_buffer_time_ms = 800;
 
+var prompt_history = [];
+var speak_history = [];
+var summary_history = [];
+
 let end_flag = false;
 
 if (require.main === module) {
@@ -33,14 +37,12 @@ if (require.main === module) {
     (async _ => {
         // 再生ループ
         while (true) {
-            await new Promise(r => setTimeout(r, 1000 / 60));
+            await new Promise(r => setTimeout(r, 1000 / 10));
             if (voice_queue_list.length > 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
-                last_wav_start_time = Date.now();
-                let queue = voice_queue_list[0];
-                last_wav_duration = getWavDuration(queue.wav) * 1000;
-                end_flag = queue.query_json.isFinal;
-                console.log(`queue:${voice_queue_list.length} 🎙 speak`, queue.query_json.text);
                 save_wav_and_json();
+            }
+            if (voice_queue_list.length == 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
+                last_wav_duration = 0;
             }
             if (end_flag && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
                 process.exit();
@@ -135,7 +137,7 @@ async function main() {
     for (let i = 0; i < count; i++) {
         await speak_topic("雑談", { topic_prompt: topic_prompts[i] });
     }
-    await nextTopic();
+    await gotoNextTopic();
 
     // ブクマの紹介
     for (let i = 0; i < bookmarks.length; i++) {
@@ -153,12 +155,19 @@ async function main() {
         for (let j = 0; j < count2; j++) {
             await speak_topic("雑談", { topic_prompt: topic_prompts[j] });
         }
-        await nextTopic();
+        await gotoNextTopic();
     }
 
     await speak_topic("配信終了");
 
     await exitChatGPT();
+    save_history_jsons();
+}
+
+async function gotoNextTopic() {
+    let summary = await nextTopic();
+    summary_history.push(summary);
+    save_history_jsons();
 }
 
 let bookmark = null;
@@ -182,13 +191,18 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
     }
 
     if (bookmarks.length > 0) {
-        let bookmarks_text = "今日紹介するツイート(まだ直接言及せず、ちょっとだけ繋がる雑談をして)\n";
+        let bookmarks_text = "今日紹介するツイート(ツイート内容にはまだ直接言及せず、ちょっとだけ繋がる雑談をして)\n";
         bookmarks_text += [...bookmarks.map(b => `${get_before_time_text(b.time)}のツイート\n${b.text.replace(/\n+/g, "\n")}`), ""].join("\n\n---\n\n");
         topic_prompt = bookmarks_text + topic_prompt;
     }
 
+    if (stream_topic_name == "配信終了") {
+        topic_prompt += `\n# 今日の内容\n${summary_history.join("\n")}`;
+    }
+
     const text = await getChatGPTResponseWithRetry(topic_prompt, { imageUrls: bookmark?.medias || [] });
     await speakAndSave(text, bookmark || null, stream_topic_name === "配信終了");
+    save_history_jsons();
 }
 
 function getTopicPrompt(stream_topic_name, topic_prompt) {
@@ -238,6 +252,13 @@ async function getChatGPTResponseWithRetry(prompt, { imageUrls = [] } = {}) {
             }
         }
     } while (error);
+    let pi = prompt_history.push({
+        time: new Date().toLocaleString(),
+        prompt, text
+    });
+    if (imageUrls?.length) {
+        prompt_history[pi - 1].imageUrls = imageUrls;
+    }
     return text;
 }
 
@@ -272,6 +293,10 @@ async function create_voicevox_wav_and_json(text, bookmark = null, isFinal = fal
         }
     });
 
+    // if (voice_queue_list.length == 1 && last_wav_duration == 0) {
+    //     last_wav_duration = getWavDuration(wavRes.data);
+    // }
+
     let queue_l = voice_queue_list.push({
         query_json: {
             text,
@@ -282,10 +307,16 @@ async function create_voicevox_wav_and_json(text, bookmark = null, isFinal = fal
         wav: wavRes.data
     });
 
-    console.log(`Push AudioQueue: ${voice_queue_list.length}`);
-    if (voice_queue_list.length == 1) {
-        last_wav_duration = getWavDuration(wavRes.data) * 1000;
+    let si = speak_history.push({
+        time: new Date().toLocaleString(),
+        text,
+        duration: new Date(getWavDuration(wavRes.data) - 9 * 60 * 60 * 1000).toLocaleTimeString()
+    });
+    if (bookmark) {
+        speak_history[si - 1].bookmark = bookmark;
     }
+
+    console.log(`Push AudioQueue: ${voice_queue_list.length}`);
 
     return voice_queue_list[queue_l - 1];
 }
@@ -300,8 +331,11 @@ function save_wav_and_json(audio_queue = null) {
     const wavPath = path.join(__dirname, "public", "chara", "voice.wav");
     fs.writeFileSync(wavPath, audio_queue.wav);
     // fs.unlinkSync("out.wav");
-
     fs.writeFileSync("public/chara/current.json", JSON.stringify(audio_queue.query_json, null, 2));
+    last_wav_start_time = Date.now();
+    last_wav_duration = getWavDuration(audio_queue.wav) * 1000;
+    end_flag = audio_queue.query_json.isFinal;
+    console.log(`queue:${voice_queue_list.length} 🎙 speak`, audio_queue.query_json.text);
 }
 
 async function launchPythonServer() {
@@ -355,6 +389,12 @@ function get_bookmarks_json() {
 
 function update_bookmarks_json() {
     fs.writeFileSync(bookmarks_json_path, JSON.stringify(bookmarks_raw, null, 2));
+}
+
+function save_history_jsons() {
+    fs.writeFileSync("history_speak.json", JSON.stringify(speak_history, null, 2));
+    fs.writeFileSync("history_prompt.json", JSON.stringify(prompt_history, null, 2));
+    fs.writeFileSync("history_summary.json", JSON.stringify(summary_history, null, 2));
 }
 
 function get_use_bookmarks(count = 3, shuffle_count = 10) {
@@ -430,6 +470,7 @@ function get_before_time_text(time_iso_txt) {
 process.on('SIGINT', async () => {
     console.log('🛑 SIGINT (Ctrl+C) を受信しました');
     await exitChatGPT();
+    save_history_jsons();
     process.exit(0);
 });
 
@@ -437,6 +478,7 @@ process.on('SIGINT', async () => {
 process.on('uncaughtException', async (err) => {
     console.error('💥 uncaughtException:', err);
     await exitChatGPT();
+    save_history_jsons();
     process.exit(1);
 });
 
