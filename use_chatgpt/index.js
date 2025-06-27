@@ -19,10 +19,10 @@ async function init() {
     await session.init();
 }
 
-async function replay(prompt = "指示:配信開始→雑談") {
+async function replay(prompt = "指示:配信開始→雑談", { imageUrls = [] } = {}) {
     if (!prompt?.trim()) return;
     if (!session.threadId?.trim()) await session.init();
-    let replay = await session.prompt(prompt);
+    let replay = await session.prompt(prompt, { imageUrls });
     console.log(replay);
     return replay;
 }
@@ -30,11 +30,12 @@ async function replay(prompt = "指示:配信開始→雑談") {
 async function nextTopic() {
     AssistantSession.summaryText = await session.createSummary();
     session.close();
+    return AssistantSession.summaryText;
 }
 
 async function exit() {
-    session.close();
     console.log(`🧾 合計使用: ${getTotalYen().toFixed(2)} 円`);
+    await session.close();
 }
 
 (async () => {

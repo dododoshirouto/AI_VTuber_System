@@ -4,7 +4,10 @@ node_modules/
 .puppeteer_profile/
 package-lock.json
 
+history_*.json
+
 venv/
+tmp/
 
 .env
 

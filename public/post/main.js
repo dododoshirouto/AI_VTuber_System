@@ -4,20 +4,18 @@ var audio_query = null;
 var bookmark = null;
 const container_elem = document.getElementById("container");
 
-var time = 0;
-var lastTime = 0;
-var deltaTime = 0;
-async function update() {
-    while (true) {
-        await new Promise(r => requestAnimationFrame(r));
-        lastTime = time;
-        time = Date.now() / 1000;
-        deltaTime = time - lastTime;
-
-
-    }
-}
-update();
+// var time = 0;
+// var lastTime = 0;
+// var deltaTime = 0;
+// async function update() {
+//     while (true) {
+//         await new Promise(r => requestAnimationFrame(r));
+//         lastTime = time;
+//         time = Date.now() / 1000;
+//         deltaTime = time - lastTime;
+//     }
+// }
+// update();
 
 var last_text = "";
 async function json_update_check() {
@@ -27,7 +25,11 @@ async function json_update_check() {
         if (json.text != last_text) {
             if (bookmark?.url != json.bookmark?.url) container_elem.classList.remove('display');
             last_text = json.text;
-            await load_audio_query_json();
+            try {
+                await load_audio_query_json();
+            } catch (e) {
+                console.error(e);
+            }
         }
     }
 }

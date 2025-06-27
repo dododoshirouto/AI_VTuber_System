@@ -4,6 +4,12 @@
 
 var totalYen = 0;
 
+globalThis.File = require('node:buffer').File;
+
+const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
+
 class AssistantSession {
     static assistantId = "asst_xxxxxxxxx";
     static setAssistantId(id) {
@@ -25,6 +31,7 @@ class AssistantSession {
         this.threadId = null;
         this.totalToken = 0;
         this.totalYen = 0;
+        this.usedFileIds = [];
         // this._init(summary);
     }
 
@@ -43,16 +50,57 @@ class AssistantSession {
         console.log(`これまでの流れ: ${AssistantSession.summaryText}`);
     }
 
-    async prompt(userText) {
+    async prompt(userText, { imageUrls = [] } = {}) {
         if (!this.threadId) await this.init();
 
-        // ユーザー発言登録
-        await this.openai.beta.threads.messages.create(this.threadId, {
-            role: "user",
-            content: userText
-        });
+        const content = [
+            { role: "user", content: [{ type: "text", text: userText }] }
+        ];
 
-        console.log(`👤 ${userText}`);
+        let doenloaded_images = [];
+        let uploaded_images_id = [];
+
+        if (imageUrls.length > 0) {
+            let upload_properties = [];
+            for (let imageUrl of imageUrls) {
+                imageUrl = imageUrl.replace(/(\?|&)name=[^&]+(&|$)/, "$1name=small$2");
+                let filepath = await downloadImage(imageUrl);
+                // console.log(filepath);
+                upload_properties.push({
+                    file: fs.createReadStream(filepath),
+                    purpose: "assistants"
+                });
+                doenloaded_images.push(filepath);
+            }
+            const responses = await Promise.all(upload_properties.map(async (upload_property) => {
+                let res = null;
+                try {
+                    res = await this.openai.files.create(upload_property);
+                } catch (e) {
+                    console.log(`image upload error: ${e}`);
+                }
+                return res;
+            }));
+            uploaded_images_id.push(...responses.map(res => res.id));
+            this.usedFileIds.push(...uploaded_images_id);
+
+            for (let filepath of doenloaded_images) {
+                try {
+                    fs.unlinkSync(filepath);
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+
+            content[0].content.unshift(...uploaded_images_id.map(id => {
+                return { 'type': 'image_file', 'image_file': { 'file_id': id } }
+            }))
+        }
+
+        // ユーザー発言登録
+        await this.openai.beta.threads.messages.create(this.threadId, content[0]);
+
+        console.log(`👤 ${userText} ${imageUrls}`);
 
         // Run実行
         const run = await this.openai.beta.threads.runs.create(this.threadId, {
@@ -74,9 +122,20 @@ class AssistantSession {
         return latest?.content?.[0]?.text?.value || "";
     }
 
-    close() {
+    async close() {
         this.threadId = null;
         console.log(`🧾 合計使用: ${this.totalToken} tokens ≒ ${this.totalYen.toFixed(2)} 円`);
+        if (this.usedFileIds.length > 0) {
+            await Promise.all(this.usedFileIds.map(id => {
+                try {
+                    this.openai.files.delete(id);
+                    console.log(`🗑️ OpenAIファイル削除: ${id}`);
+                } catch (e) {
+                    console.warn(`⚠️ OpenAIファイル削除失敗: ${id}`, e.message);
+                }
+            }));
+            this.usedFileIds = [];
+        }
     }
 
     async _waitForRun(runId) {
@@ -94,7 +153,7 @@ class AssistantSession {
                     run = await this.openai.beta.threads.runs.retrieve(runId, { thread_id: this.threadId });
                     if (run.status !== "failed" && run.status !== "cancelled") break;
                 }
-                if (status === "failed" || status === "cancelled") throw new Error(`Run failed: ${run}`);
+                if (status === "failed" || status === "cancelled") throw new Error(`Run failed: ${status}`);
             }
             if (status !== "completed") await new Promise(r => setTimeout(r, 500));
         }
@@ -143,6 +202,26 @@ class AssistantSession {
             console.log("✅ アクティブなRunは存在しません");
         }
     }
+}
+
+async function downloadImage(url, folder = 'tmp') {
+    let urlObj = new URL(url);
+    let saveFilename = path.basename(urlObj.pathname); // ex: 'ABC123.jpg'
+    if (!/\.(jpg|jpeg|png|gif|webp)$/i.test(saveFilename)) {
+        // fallback: 拡張子が無ければ `.jpg` を強制的に足す（最悪対応）
+        const ext = urlObj.searchParams.get('format') || 'jpg';
+        saveFilename += '.' + ext;
+    }
+
+    console.log(`Downloading image: ${url}`);
+    const response = await axios.get(url, { responseType: 'stream' });
+    const writer = fs.createWriteStream(path.join(__dirname, folder, saveFilename));
+    response.data.pipe(writer);
+    await new Promise((resolve, reject) => {
+        writer.on('finish', resolve);
+        writer.on('error', reject);
+    });
+    return path.join(__dirname, folder, saveFilename);
 }
 
 function getTotalYen() {

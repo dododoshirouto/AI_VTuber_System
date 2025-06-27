@@ -227,11 +227,11 @@ class EnglishToKana:
     # dododo-shirouto 英日混在に対応
     def convertsZakkuri(self, texts):
         """英日混在テキストをカタカナに変換"""
-        tokens = re.findall(r"[a-zA-Z']+|[^a-zA-Z']+", texts)
+        tokens = re.findall(r"[0-9a-zA-Z']+|[^a-zA-Z']+", texts)
 
         result = []
         for token in tokens:
-            if re.match(r"[a-zA-Z']+", token):  # 英語なら変換
+            if re.match(r"[0-9a-zA-Z']+", token):  # 英語なら変換
                 result.append(self.convert(token))
             else:  # 日本語なら OpenJTalk で変換
                 result.append(token)
