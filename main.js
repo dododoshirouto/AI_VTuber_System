@@ -202,10 +202,9 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
     }
 
     const text = await getChatGPTResponseWithRetry(topic_prompt, { imageUrls: bookmark?.medias || [] });
-    (async _ => {
-        await speakAndSave(text, bookmark || null, stream_topic_name === "配信終了");
-        save_history_jsons();
-    })()
+
+    await speakAndSave(text, bookmark || null, stream_topic_name === "配信終了");
+    save_history_jsons();
 }
 
 function getTopicPrompt(stream_topic_name, topic_prompt) {
