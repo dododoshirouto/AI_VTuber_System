@@ -92,29 +92,57 @@ async function getLivechatID() {
 }
 
 
-if (require.main === module) {
-    async function main(auth, liveChatId, { pageToken = '', callback = _ => { } } = {}) {
-        const { nextPageToken, delay } = await getLiveChatMessages(auth, liveChatId, { pageToken, callback });
 
-        if (nextPageToken) {
-            setTimeout(() => main(auth, liveChatId, { pageToken: nextPageToken, callback }), delay);
+class GetYouTubeLiveComments {
+    constructor({ autoStart = true } = {}) {
+        this.auth = null;
+        this.liveChatId = null;
+        this.nextPageToken = '';
+        this.callback = _ => { };
+        this.enabled = autoStart;
+    }
+
+    setCallback(callback = _ => { }) {
+        this.callback = callback;
+    }
+
+    async start() {
+        this.enabled = true;
+        if (!this.auth) this.auth = await authorize();
+        if (!this.liveChatId) {
+            let { liveChatId } = await getLivechatID();
+            this.liveChatId = liveChatId;
+        }
+
+        await this.run();
+    }
+
+    async run() {
+        let { nextPageToken, delay } = await getLiveChatMessages(this.auth, this.liveChatId, { pageToken: this.nextPageToken, callback: this.callback });
+        this.nextPageToken = nextPageToken;
+
+        if (this.enabled && this.nextPageToken) {
+            setTimeout(() => this.run(), delay);
         }
     }
 
-    (async () => {
-        const { auth, liveChatId } = await getLivechatID();
-        console.log('Live Chat ID:', liveChatId);
+    async stop() {
+        this.enabled = false;
+    }
+}
 
-        if (liveChatId) {
-            await main(auth, liveChatId, {
-                callback: messList => {
-                    for (const mess of messList) {
-                        console.log(`[${mess.time}] ${mess.author}: ${mess.text}`);
-                    }
-                }
-            });
-        }
+
+
+if (require.main === module) {
+    (async () => {
+        const gylc = new GetYouTubeLiveComments();
+        gylc.setCallback(messList => {
+            for (const mess of messList) {
+                console.log(`[${mess.time}] ${mess.author}: ${mess.text}`);
+            }
+        });
+        await gylc.start();
     })();
 }
 
-module.exports = { getLivechatID, getLiveChatMessages };
+module.exports = { GetYouTubeLiveComments };
