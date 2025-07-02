@@ -45,7 +45,7 @@ async function authorize() {
 
 
 
-async function getLiveChatMessages(auth, liveChatId, pageToken = '') {
+async function getLiveChatMessages(auth, liveChatId, { pageToken = '', callback = _ => { } } = {}) {
     const youtube = google.youtube({ version: 'v3', auth });
 
     const res = await youtube.liveChatMessages.list({
@@ -60,14 +60,13 @@ async function getLiveChatMessages(auth, liveChatId, pageToken = '') {
         const author = msg.authorDetails.displayName;
         const text = msg.snippet.displayMessage;
         const time = msg.snippet.publishedAt;
-        console.log(`[${time}] ${author}: ${text}`);
         messList.push({ author, text, time });
     }
 
     const nextPageToken = res.data.nextPageToken;
     const delay = res.data.pollingIntervalMillis || 2000;
 
-    // setTimeout(() => getLiveChatMessages(auth, liveChatId, nextPageToken), delay);
+    callback(messList);
     return { messList, nextPageToken, delay };
 }
 
@@ -93,14 +92,26 @@ async function getLivechatID() {
 }
 
 
+async function main(auth, liveChatId, { pageToken = '', callback = _ => { } } = {}) {
+    const { nextPageToken, delay } = await getLiveChatMessages(auth, liveChatId, { pageToken, callback });
+
+    if (nextPageToken) {
+        setTimeout(() => main(auth, liveChatId, { pageToken: nextPageToken, callback }), delay);
+    }
+}
 
 (async () => {
     const { auth, liveChatId } = await getLivechatID();
     console.log('Live Chat ID:', liveChatId);
 
     if (liveChatId) {
-        const { messList } = await getLiveChatMessages(auth, liveChatId);
-        console.log(messList);
+        await main(auth, liveChatId, {
+            callback: messList => {
+                for (const mess of messList) {
+                    console.log(`[${mess.time}] ${mess.author}: ${mess.text}`);
+                }
+            }
+        });
     }
 })();
 
