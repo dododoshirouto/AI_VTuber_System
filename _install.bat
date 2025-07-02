@@ -49,7 +49,7 @@ IF EXIST use_youtube GOTO :mkdir_use_youtube
 cd use_youtube
 IF EXIST package.json GOTO :youtube_package.json
     call npm init -y
-    @REM call npm install openai dotenv
+    call npm install googleapis open
 :youtube_package.json
 cd ..
 
