@@ -54,14 +54,40 @@ if (require.main === module) {
     (async () => {
         // コメント取得ループ
         const gylc = new GetYouTubeLiveComments();
-        gylc.setCallback(messList => {
-            for (const mess of messList) {
-                console.log(`[${mess.time}] ${mess.author}: ${mess.text}`);
-            }
-        });
+        gylc.setCallback(push_comments);
         await gylc.start();
     })();
 
+}
+
+var comment_list = [];
+var comment_read_timeout = false;
+async function push_comments(comments) {
+    comment_list.push(...comments);
+    for (const comment of comments) {
+        console.log(`[${comment.time}] ${comment.author}: ${comment.text}`);
+    }
+
+    if (comment_read_timeout) return;
+    comment_read_timeout = true;
+    await new Promise(r => setTimeout(r, 10 * 1000));
+    comment_read_timeout = false;
+    await read_comments();
+
+}
+
+async function read_comments() {
+    console.log('comment_list', comment_list);
+    if (!comment_list.length) return;
+
+    const comments_text = comment_list.map(c => `${c.author}: ${c.text}`).join('\n');
+    comment_list = [];
+
+    console.log(`コメントが来たので、これまでの流れを踏まえて、短く答えて\n${comments_text}`);
+    const text = await getChatGPTResponseWithRetry("コメントが来たので、これまでの流れを踏まえて答えて\n" + comments_text);
+    const audio_queue = await create_voicevox_wav_and_json(text);
+
+    voice_queue_list.unshift(audio_queue);
 }
 
 /** @type { { name: string, useBookmark: boolean, prompts: string[] }[] } */
@@ -125,6 +151,8 @@ const stream_topics_prompts = [
         ]
     }
 ];
+
+var prompt_queues = [];
 
 async function main() {
     // 今日紹介するブックマーク
@@ -247,9 +275,17 @@ async function speakBookmark(bookmark) {
     let audio_queue = await create_voicevox_wav_and_json(text, bookmark);
 }
 
+var chatGPTQueue = [];
 async function getChatGPTResponseWithRetry(prompt, { imageUrls = [] } = {}) {
     let text = "";
     let error = false;
+    chatGPTQueue.push(prompt);
+    if (chatGPTQueue.length > 1) {
+        while (chatGPTQueue[0] !== prompt) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+    }
+    console.log(`chatGPTQueue`, chatGPTQueue);
     do {
         try {
             text = await replay(prompt, { imageUrls });
@@ -266,6 +302,7 @@ async function getChatGPTResponseWithRetry(prompt, { imageUrls = [] } = {}) {
             }
         }
     } while (error);
+    chatGPTQueue = chatGPTQueue.filter(id => id !== prompt);
     let pi = prompt_history.push({
         time: new Date().toLocaleString(),
         prompt, text
@@ -285,12 +322,20 @@ function getWavDuration(buffer) {
     return result.sampleRate ? result.channelData[0].length / result.sampleRate : 10; // fallback: 10秒
 }
 
+var VOICEVOXQueue = [];
 async function create_voicevox_wav_and_json(text, bookmark = null, isFinal = false) {
-    console.log(text);
     text = text.replace(/https?:\/\/[^\s]+/g, '').trim();
     text = text.replace(/\s+/g, ' ').replace(/([。、．，\.,])\s/g, '$1').trim();
     text = text.replace(/\s*\n+\s*/g, '。');
     text = text.replace(/\s*[）\)」\]｝}・]+\s*/g, '');
+
+    VOICEVOXQueue.push(text);
+    if (VOICEVOXQueue.length > 1) {
+        while (VOICEVOXQueue[0] !== text) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+    }
+    console.log(`VOICEVOXQueue`, VOICEVOXQueue);
 
     // AudioQuery を取得
     const queryRes = await axios.get(VV_SERVER_HOST + "query", {
@@ -321,6 +366,8 @@ async function create_voicevox_wav_and_json(text, bookmark = null, isFinal = fal
         },
         wav: wavRes.data
     });
+
+    VOICEVOXQueue = VOICEVOXQueue.filter(t => t !== text);
 
     let si = speak_history.push({
         time: new Date().toLocaleString(),

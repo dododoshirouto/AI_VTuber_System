@@ -46,7 +46,7 @@ async function authorize() {
 
 
 
-async function getLiveChatMessages(auth, liveChatId, { pageToken = '', callback = _ => { } } = {}) {
+async function getLiveChatMessages(auth, liveChatId, { pageToken = '', callback = async _ => { } } = {}) {
     const youtube = google.youtube({ version: 'v3', auth });
 
     const res = await youtube.liveChatMessages.list({
@@ -67,7 +67,7 @@ async function getLiveChatMessages(auth, liveChatId, { pageToken = '', callback 
     const nextPageToken = res.data.nextPageToken;
     const delay = res.data.pollingIntervalMillis || 2000;
 
-    callback(messList);
+    await callback(messList);
     return { messList, nextPageToken, delay };
 }
 
@@ -99,11 +99,11 @@ class GetYouTubeLiveComments {
         this.auth = null;
         this.liveChatId = null;
         this.nextPageToken = '';
-        this.callback = _ => { };
+        this.callback = async _ => { };
         this.enabled = autoStart;
     }
 
-    setCallback(callback = _ => { }) {
+    setCallback(callback = async _ => { }) {
         this.callback = callback;
     }
 
