@@ -4,6 +4,7 @@ const path = require('path');
 const wav = require('node-wav');
 const { spawn } = require('child_process');
 const { replay, nextTopic, exit: exitChatGPT } = require('./use_chatgpt');
+const { GetYouTubeLiveComments } = require('./use_youtube');
 
 const VV_SERVER_HOST = "http://127.0.0.1:50021/";
 
@@ -48,6 +49,17 @@ if (require.main === module) {
                 process.exit();
             }
         }
+    })();
+
+    (async () => {
+        // コメント取得ループ
+        const gylc = new GetYouTubeLiveComments();
+        gylc.setCallback(messList => {
+            for (const mess of messList) {
+                console.log(`[${mess.time}] ${mess.author}: ${mess.text}`);
+            }
+        });
+        await gylc.start();
     })();
 
 }
@@ -250,7 +262,7 @@ async function getChatGPTResponseWithRetry(prompt, { imageUrls = [] } = {}) {
                 console.log("ChatGPTがサーバーエラーなのでリトライします…");
                 await new Promise(resolve => setTimeout(resolve, 1000));
             } else {
-                throw e;
+                return "";
             }
         }
     } while (error);
@@ -274,6 +286,7 @@ function getWavDuration(buffer) {
 }
 
 async function create_voicevox_wav_and_json(text, bookmark = null, isFinal = false) {
+    console.log(text);
     text = text.replace(/https?:\/\/[^\s]+/g, '').trim();
     text = text.replace(/\s+/g, ' ').replace(/([。、．，\.,])\s/g, '$1').trim();
     text = text.replace(/\s*\n+\s*/g, '。');

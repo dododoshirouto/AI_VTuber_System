@@ -8,10 +8,11 @@
 
 const fs = require('fs');
 const { google } = require('googleapis');
+const path = require('path');
 // const open = require('open');
 
-const CREDENTIALS_PATH = './credentials.json'; // Google Cloud Consoleでダウンロード
-const TOKEN_PATH = './token.json';
+const CREDENTIALS_PATH = path.join(__dirname, 'credentials.json');
+const TOKEN_PATH = path.join(__dirname, 'token.json');
 const SCOPES = ['https://www.googleapis.com/auth/youtube.readonly'];
 
 async function authorize() {
