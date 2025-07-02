@@ -92,27 +92,29 @@ async function getLivechatID() {
 }
 
 
-async function main(auth, liveChatId, { pageToken = '', callback = _ => { } } = {}) {
-    const { nextPageToken, delay } = await getLiveChatMessages(auth, liveChatId, { pageToken, callback });
+if (require.main === module) {
+    async function main(auth, liveChatId, { pageToken = '', callback = _ => { } } = {}) {
+        const { nextPageToken, delay } = await getLiveChatMessages(auth, liveChatId, { pageToken, callback });
 
-    if (nextPageToken) {
-        setTimeout(() => main(auth, liveChatId, { pageToken: nextPageToken, callback }), delay);
+        if (nextPageToken) {
+            setTimeout(() => main(auth, liveChatId, { pageToken: nextPageToken, callback }), delay);
+        }
     }
-}
 
-(async () => {
-    const { auth, liveChatId } = await getLivechatID();
-    console.log('Live Chat ID:', liveChatId);
+    (async () => {
+        const { auth, liveChatId } = await getLivechatID();
+        console.log('Live Chat ID:', liveChatId);
 
-    if (liveChatId) {
-        await main(auth, liveChatId, {
-            callback: messList => {
-                for (const mess of messList) {
-                    console.log(`[${mess.time}] ${mess.author}: ${mess.text}`);
+        if (liveChatId) {
+            await main(auth, liveChatId, {
+                callback: messList => {
+                    for (const mess of messList) {
+                        console.log(`[${mess.time}] ${mess.author}: ${mess.text}`);
+                    }
                 }
-            }
-        });
-    }
-})();
+            });
+        }
+    })();
+}
 
 module.exports = { getLivechatID, getLiveChatMessages };
