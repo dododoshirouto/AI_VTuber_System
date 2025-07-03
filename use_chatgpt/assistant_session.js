@@ -32,6 +32,7 @@ class AssistantSession {
         this.totalToken = 0;
         this.totalYen = 0;
         this.usedFileIds = [];
+        this.run = null;
         // this._init(summary);
     }
 
@@ -97,19 +98,34 @@ class AssistantSession {
             }))
         }
 
+        // 他のRun実行中待機
+        while (this.run) {
+            await new Promise(r => setTimeout(r, 500));
+        }
+
         // ユーザー発言登録
-        await this.openai.beta.threads.messages.create(this.threadId, content[0]);
+        let flag = false;
+        while (!flag) {
+            try {
+                await this.openai.beta.threads.messages.create(this.threadId, content[0]);
+                flag = true;
+            } catch (e) {
+                console.log(e);
+                await new Promise(r => setTimeout(r, 500));
+            }
+        }
 
         console.log(`👤 ${userText} ${imageUrls}`);
 
         // Run実行
-        const run = await this.openai.beta.threads.runs.create(this.threadId, {
+        this.run = await this.openai.beta.threads.runs.create(this.threadId, {
             assistant_id: AssistantSession.assistantId
         });
-        AssistantSession.model = run.model;
-        console.log(`Use Model: ${run.model}`);
+        AssistantSession.model = this.run.model;
+        console.log(`Use Model: ${this.run.model}`);
 
-        const [reply, replayed_run] = await this._waitForRun(run.id);
+        const [reply, replayed_run] = await this._waitForRun(this.run.id);
+        this.run = null;
         this._logUsage(replayed_run);
 
         return reply;
