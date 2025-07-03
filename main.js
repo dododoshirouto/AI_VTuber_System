@@ -199,40 +199,6 @@ async function main() {
     // TODO: コメントが来たら今生成中のChatGPTをキャンセルする
     // TODO: 配信時間から繰り返し回数を計算する
 
-    // let count = 0;
-
-    // 配信開始の挨拶
-    // await speak_topic("配信開始", { bookmarks: bookmarks });
-
-    // count = Math.floor(Math.random() * 2);
-    // let topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
-    // for (let i = 0; i < count; i++) {
-    //     await speak_topic("雑談", { topic_prompt: topic_prompts[i] });
-    // }
-    // await gotoNextTopic();
-
-    // // ブックマークの紹介
-    // for (let i = 0; i < bookmarks.length; i++) {
-    //     let count2 = 0;
-
-    //     await speak_topic("ツイート読み始め", { bookmark: bookmarks[i] });
-
-    //     count2 = Math.floor(Math.random() * 2 + 1);
-    //     topic_prompts = stream_topics_prompts.find(t => t.name === "ツイート読み続き").prompts.sort(() => Math.random() - 0.5);
-    //     for (let j = 0; j < count2; j++) {
-    //         await speak_topic("ツイート読み続き", { topic_prompt: topic_prompts[j], bookmark: bookmarks[i] });
-    //     }
-
-    //     count2 = Math.floor(Math.random() * 3);
-    //     topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
-    //     for (let j = 0; j < count2; j++) {
-    //         await speak_topic("雑談", { topic_prompt: topic_prompts[j] });
-    //     }
-    //     await gotoNextTopic();
-    // }
-
-    // await speak_topic("配信終了");
-
     for (配信の流れ_generat_i = 0; 配信の流れ_generat_i < 配信の流れ.length; 配信の流れ_generat_i++) {
         let topic = 配信の流れ[配信の流れ_generat_i];
 
