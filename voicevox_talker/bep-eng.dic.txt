@@ -41130,7 +41130,7 @@ CAGE ケイジ
 CAFFEINE カフェイン
 CAFFEINATED カフェネイティド
 CAFETERIA キャフェテリア
-CAFE キャフェイ
+CAFE カフェ
 CAESARIAN シゼリアン
 CAESAREAN シザーリアン
 CAESAR シーザー
@@ -47639,3 +47639,4 @@ VR ブイアール
 BBQ バーベキュー
 VRCHAT ブイアールチャット
 VRC ブイアールシー
+SF エスエフ
