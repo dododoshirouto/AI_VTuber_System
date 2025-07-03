@@ -8,7 +8,7 @@ const { loadBookmarks, saveBookmarks } = require('./bookmark_storage');
     const existing = loadBookmarks();
     const existingIds = new Set(existing.map(b => b.id));
 
-    const newTweets = await fetchTweetsByScroll(page, existingIds, 100); // ← scrollLimit
+    const newTweets = await fetchTweetsByScroll(page, existingIds, 10); // ← scrollLimit
     const allTweets = [...existing, ...newTweets];
 
     saveBookmarks(allTweets);
