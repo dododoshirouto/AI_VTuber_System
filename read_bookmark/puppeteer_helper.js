@@ -53,6 +53,7 @@ async function fetchTweetsByScroll(page, existingIds, scrollLimit = 30) {
         // await page.mouse.wheel({ deltaY: 800 });
         await page.keyboard.press('PageDown');
         await page.keyboard.press('PageDown');
+        await page.keyboard.press('PageDown');
         await new Promise(resolve => setTimeout(resolve, 1000));
 
         const newTweets = await page.evaluate(() => {

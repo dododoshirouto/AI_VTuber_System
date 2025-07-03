@@ -23,14 +23,14 @@ Xでブクマしたポストにコメントしていく配信をするVTuberを�
 
 ## 動作概要
 
-| ステップ | 処理内容                           | 関連ファイル                              | 備考                      |
-| ---- | ------------------------------ | ----------------------------------- | ----------------------- |
-| ①    | 未処理のポストを `bookmarks.json` から取得 | `read_bookmark/bookmark_storage.js` | 1件ずつ処理                  |
-| ②    | ChatGPTでセリフ生成                  | `use_chatgpt/index.js`              | モデルやキャラはID指定済           |
-| ③    | VOICEVOXで音声ファイル作成/発音情報取得              | `voicevox_talker/main.py`           | FastAPIで呼び出し  |
-| ④    | 音声と立ち絵、ポスト表示をOBSに反映            | `public/` or OBSブラウザソース             | 再生は `.wav` 再生 or HTML連携 |
-| ⑤    | URLがある場合はその先を取得して再度①～④         | `node-fetch` or `puppeteer`         | ページテキスト解析が必要            |
-| ⑥    | 終了後に「処理済みマーク」を付与               | `bookmarks.json` 更新                 | `isDone: true` など       |
+| ステップ | 処理内容 | 関連ファイル | 備考 |
+| --- | --- | --- | --- |
+| ① | 未処理のポストを `bookmarks.json` から取得 | `read_bookmark/bookmark_storage.js` | 1件ずつ処理 |
+| ② | ChatGPTでセリフ生成 | `use_chatgpt/index.js` | モデルやキャラはID指定済 |
+| ③ | VOICEVOXで音声ファイル作成/発音情報取得 | `voicevox_talker/main.py` | FastAPIで呼び出し |
+| ④ | 音声と立ち絵、ポスト表示をOBSに反映 | `public/` or OBSブラウザソース | 再生は `.wav` 再生 or HTML連携 |
+| ⑤ | URLがある場合はその先を取得して再度①～④ | `node-fetch` or `puppeteer` | ページテキスト解析が必要 |
+| ⑥ | 終了後に「処理済みマーク」を付与 | `bookmarks.json` 更新 | `isDone: true` など |
 
 ### OBSへの表示・音声反映はどうやる？(実装済み)
 
@@ -57,6 +57,8 @@ AI_VTuber_System/
 ├── use_chatgpt/              # ChatGPTセリフ生成
 │   ├── index.js              # prompt → response（Node.js）
 │   └── assistant_session.js  # 会話制御＆コスト管理
+├── use_youtube/              # YouTubeLiveコメント取得
+│   ├── index.js              # 
 ├── voicevox_talker/          # VOICEVOX音声生成（Python）
 │   ├── main.py               # FastAPIサーバ立ち上げ＆合成トリガー
 │   ├── voicevox_yomiage.py   # 音声再生＆辞書処理
@@ -79,8 +81,8 @@ AI_VTuber_System/
 - [x] 立ち絵をOBSに反映させる
 - [x] 音声をOBSに反映させる
 - [x] XのポストをOBSに反映させる
+- [x] コメントに反応する
 - [ ] OBSブラウザソースのサーバもnode.jsで立ち上げる
 - [ ] OBSブラウザとの連携方法をWebSocketにする
-- [ ] コメントに反応する
 - [ ] 枠たて、配信開始する
 - [ ] 配信告知をツイートする

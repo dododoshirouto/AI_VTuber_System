@@ -4,6 +4,7 @@ const path = require('path');
 const wav = require('node-wav');
 const { spawn } = require('child_process');
 const { replay, nextTopic, exit: exitChatGPT } = require('./use_chatgpt');
+const { GetYouTubeLiveComments } = require('./use_youtube');
 
 const VV_SERVER_HOST = "http://127.0.0.1:50021/";
 
@@ -50,6 +51,44 @@ if (require.main === module) {
         }
     })();
 
+    (async () => {
+        // コメント取得ループ
+        const gylc = new GetYouTubeLiveComments();
+        gylc.setCallback(push_comments);
+        await gylc.start();
+    })();
+
+}
+
+var comment_list = [];
+var comment_read_timeout = false;
+async function push_comments(comments) {
+    comment_list.push(...comments);
+    for (const comment of comments) {
+        console.log(`[${comment.time}] ${comment.author}: ${comment.text}`);
+    }
+
+    if (comment_read_timeout) return;
+    comment_read_timeout = true;
+    await new Promise(r => setTimeout(r, 10 * 1000));
+    comment_read_timeout = false;
+    await read_comments();
+    await new Promise(r => setTimeout(r, 15 * 1000));
+}
+
+async function read_comments() {
+    // console.log('comment_list', comment_list);
+    if (!comment_list.length) return;
+
+    const comments_text = comment_list.map(c => `${c.author}: ${c.text}`).join('\n');
+    comment_list = [];
+
+    console.log(`💬 コメントが来たので読み上げて、これまでの流れを踏まえて短く2文で答えて\n${comments_text}`);
+    const text = await getChatGPTResponseWithRetry("コメントが来たので読み上げて、これまでの流れを踏まえて短く2文で答えて\n" + comments_text, null, { isCommentReplay: true });
+    配信の流れ_割り込み生成();
+    const audio_queue = await create_voicevox_wav_and_json(text, null, { bookmark });
+
+    // voice_queue_list.unshift(audio_queue);
 }
 
 /** @type { { name: string, useBookmark: boolean, prompts: string[] }[] } */
@@ -114,55 +153,86 @@ const stream_topics_prompts = [
     }
 ];
 
+var 配信の流れ = [];
+var 配信の流れ_generat_i = 0;
+var 配信の流れ_speak_i = 0;
+
+function 配信の流れ_割り込み生成() {
+    last_queue = voice_queue_list.filter(v => v.index)[0];
+    if (!last_queue) return;
+
+    配信の流れ_generat_i = 配信の流れ_speak_i = (last_queue.index || 0) - 1;
+    bookmark = last_queue.bookmark || null;
+    // if (配信の流れ_generat_i >= 配信の流れ.length) return;
+    voice_queue_list = voice_queue_list.filter(v => !v.index);
+}
+
 async function main() {
     // 今日紹介するブックマーク
-    bookmarks = get_use_bookmarks(Math.ceil(Math.random() * 3 + 2));
+    if (bookmarks.length == 0) bookmarks = get_use_bookmarks(Math.ceil(Math.random() * 3 + 2));
+
+    if (配信の流れ.length == 0) 配信の流れ = [
+        { topic: "配信開始" },
+        ...Array(Math.floor(Math.random() * 2)).fill({ topic: "雑談" }),
+        { "gotoNextTopic": true },
+        ...bookmarks.map((b) => {
+            let topic_prompts = stream_topics_prompts.find(t => t.name === "ツイート読み続き").prompts.sort(() => Math.random() - 0.5);
+            return [
+                { topic: "ツイート読み始め", bookmark: b },
+                ...Array(Math.ceil(Math.random() * 2)).fill(0).map((_, ii) => { return { topic: "ツイート読み続き", bookmark: b, prompt: topic_prompts[ii] } }).flat(),
+                ...Array(Math.floor(Math.random() * 3)).fill({ topic: "雑談" }),
+                { "gotoNextTopic": true }
+            ]
+        }).flat(),
+        { topic: "配信終了" },
+    ];
+
+    console.log("配信の流れ", 配信の流れ);
 
     // 配信の流れ
-    // TODO: コメントが来たらリアクションの生成を先にして、その後のセリフも再生成していく
-    //          - YouTubeのコメント取得
-    //          - リアクション用セリフ生成（非同期）
-    //          - 今のセリフの残り再生時間を見て、今か次かにセリフ生成→キュー追加
-    //          懸念点：再生成するときにスレッドの会話履歴も前のところからでできひんかなって
-    //              → サマリーを保存しといて、それを再利用する。プロンプト量は諦める。
     // TODO: 配信時間から繰り返し回数を計算する
 
-    let count = 0;
+    for (配信の流れ_generat_i = 0; 配信の流れ_generat_i < 配信の流れ.length; 配信の流れ_generat_i++) {
+        let topic = 配信の流れ[配信の流れ_generat_i];
 
-    // 配信開始の挨拶
-    await speak_topic("配信開始", { bookmarks: bookmarks });
-
-    count = Math.floor(Math.random() * 2);
-    let topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
-    for (let i = 0; i < count; i++) {
-        await speak_topic("雑談", { topic_prompt: topic_prompts[i] });
-    }
-    await gotoNextTopic();
-
-    // ブックマークの紹介
-    for (let i = 0; i < bookmarks.length; i++) {
-        let count2 = 0;
-
-        await speak_topic("ツイート読み始め", { bookmark: bookmarks[i] });
-
-        count2 = Math.floor(Math.random() * 2 + 1);
-        topic_prompts = stream_topics_prompts.find(t => t.name === "ツイート読み続き").prompts.sort(() => Math.random() - 0.5);
-        for (let j = 0; j < count2; j++) {
-            await speak_topic("ツイート読み続き", { topic_prompt: topic_prompts[j], bookmark: bookmarks[i] });
+        if (topic.gotoNextTopic) {
+            await gotoNextTopic();
+            speak_history.push({ time: new Date().toLocaleString(), text: "gotoNextTopic", index: 配信の流れ_generat_i });
+            save_history_jsons();
+            continue;
         }
 
-        count2 = Math.floor(Math.random() * 3);
-        topic_prompts = stream_topics_prompts.find(t => t.name === "雑談").prompts.sort(() => Math.random() - 0.5);
-        for (let j = 0; j < count2; j++) {
-            await speak_topic("雑談", { topic_prompt: topic_prompts[j] });
-        }
-        await gotoNextTopic();
-    }
+        let topic_prompt = topic.prompt || null;
+        bookmark = topic.bookmark || null;
 
-    await speak_topic("配信終了");
+        if (topic.topic == "配信開始") {
+
+        } else if (topic.topic == "ツイート読み始め") {
+
+        } else if (topic.topic == "ツイート読み続き") {
+
+        } else if (topic.topic == "雑談") {
+
+        } else if (topic.topic == "配信終了") {
+
+        }
+
+        await speak_topic(topic.topic, 配信の流れ_generat_i, { topic_prompt, bookmark: topic.bookmark || null });
+
+        while (配信の流れ_generat_i < 配信の流れ_speak_i - 2) {
+            await new Promise(r => setTimeout(r, 1000));
+        }
+
+        if (配信の流れ_generat_i == 配信の流れ.length - 1) {
+            while (配信の流れ_generat_i == 配信の流れ.length - 1 && !voice_queue_list.length) {
+                await new Promise(r => setTimeout(r, 1000));
+            }
+        }
+    }
 
     await exitChatGPT();
     save_history_jsons();
+    console.log("🎉 配信終了 end of main");
 }
 
 async function gotoNextTopic() {
@@ -173,12 +243,13 @@ async function gotoNextTopic() {
 
 let bookmark = null;
 
-async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = null, bookmarks = [] } = {}) {
+async function speak_topic(stream_topic_name, index, { topic_prompt = null, bookmark = null, bookmarks = [] } = {}) {
     console.log(`📣 ${stream_topic_name}`);
     let topic_creating_start_time = Date.now();
 
     // セリフを生成するためのプロンプトを取得
     topic_prompt = getTopicPrompt(stream_topic_name, topic_prompt);
+    topic_prompt += "5文以内で。";
 
     if (stream_topic_name.indexOf("ツイート") == -1) {
         bookmark = null;
@@ -188,7 +259,7 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
         // プロンプトにツイート情報を追加する
         topic_prompt = addBookmarkInfoToPrompt(topic_prompt, bookmark);
         updateBookmarks(bookmark);
-        await speakBookmark(bookmark);
+        await speakBookmark(bookmark, index);
     }
 
     // if (bookmarks.length > 0) {
@@ -201,9 +272,15 @@ async function speak_topic(stream_topic_name, { topic_prompt = null, bookmark = 
         topic_prompt += `\n# 今日の内容\n${summary_history.join("\n")}`;
     }
 
-    const text = await getChatGPTResponseWithRetry(topic_prompt, { imageUrls: bookmark?.medias || [] });
+    if (["配信開始"].includes(stream_topic_name) && comment_list.length > 0) {
+        const comments_text = comment_list.map(c => `${c.author}: ${c.text}`).join('\n');
+        comment_list = [];
+        topic_prompt += `\n今来てるコメント\n${comments_text}`;
+    }
 
-    await speakAndSave(text, bookmark || null, stream_topic_name === "配信終了");
+    const text = await getChatGPTResponseWithRetry(topic_prompt, index, { imageUrls: bookmark?.medias || [] });
+
+    await speakAndSave(text, index, { bookmark: bookmark || null, isFinal: stream_topic_name === "配信終了" });
     save_history_jsons();
 }
 
@@ -217,7 +294,7 @@ function getTopicPrompt(stream_topic_name, topic_prompt) {
 
 function addBookmarkInfoToPrompt(prompt, bookmark) {
     // URL除去など
-    bookmark.text = bookmark.text.replace(/https?:\/\/[^\s]+/g, '');
+    bookmark.text = (bookmark.text || "").replace(/https?:\/\/[^\s]+/g, '');
     let result = `${prompt}\n---\n# 投稿日\n${get_before_time_text(bookmark.time)}のツイート\n# 投稿主\n${bookmark.author}\n# ツイート内容\n${bookmark.text}`;
     if (bookmark.medias && bookmark.medias.length) result += `\n# 添付メディア\n${bookmark.medias.join('\n')}`;
     if (bookmark.mediaLinks && bookmark.mediaLinks.length) result += `\n# 添付URL\n${bookmark.mediaLinks.join('\n')}`;
@@ -230,14 +307,27 @@ function updateBookmarks(bookmark) {
     update_bookmarks_json();
 }
 
-async function speakBookmark(bookmark) {
+async function speakBookmark(bookmark, index) {
     let text = `${bookmark.author}さんのツイートを紹介するわ。\n${bookmark.text}`;
-    let audio_queue = await create_voicevox_wav_and_json(text, bookmark);
+    let audio_queue = await create_voicevox_wav_and_json(text, index, { bookmark });
 }
 
-async function getChatGPTResponseWithRetry(prompt, { imageUrls = [] } = {}) {
+var chatGPTQueue = [];
+async function getChatGPTResponseWithRetry(prompt, index, { imageUrls = [], isCommentReplay = false } = {}) {
     let text = "";
     let error = false;
+    // if (isCommentReplay) chatGPTQueue.unshift(prompt);
+    // else chatGPTQueue.push(prompt);
+    if (isCommentReplay && chatGPTQueue.length >= 2) {
+        chatGPTQueue = [chatGPTQueue[0], prompt, ...chatGPTQueue.slice(1)];
+    } else
+        chatGPTQueue.push(prompt);
+    if (chatGPTQueue.length > 1) {
+        while (chatGPTQueue[0] !== prompt) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+    }
+    // console.log(`chatGPTQueue`, chatGPTQueue);
     do {
         try {
             text = await replay(prompt, { imageUrls });
@@ -250,10 +340,11 @@ async function getChatGPTResponseWithRetry(prompt, { imageUrls = [] } = {}) {
                 console.log("ChatGPTがサーバーエラーなのでリトライします…");
                 await new Promise(resolve => setTimeout(resolve, 1000));
             } else {
-                throw e;
+                return "";
             }
         }
     } while (error);
+    chatGPTQueue = chatGPTQueue.filter(id => id !== prompt);
     let pi = prompt_history.push({
         time: new Date().toLocaleString(),
         prompt, text
@@ -264,8 +355,8 @@ async function getChatGPTResponseWithRetry(prompt, { imageUrls = [] } = {}) {
     return text;
 }
 
-async function speakAndSave(text, bookmark = null, isFinal = false) {
-    let audio_queue = await create_voicevox_wav_and_json(text, bookmark, isFinal);
+async function speakAndSave(text, index, { bookmark = null, isFinal = false } = {}) {
+    let audio_queue = await create_voicevox_wav_and_json(text, index, { bookmark, isFinal });
 }
 
 function getWavDuration(buffer) {
@@ -273,11 +364,23 @@ function getWavDuration(buffer) {
     return result.sampleRate ? result.channelData[0].length / result.sampleRate : 10; // fallback: 10秒
 }
 
-async function create_voicevox_wav_and_json(text, bookmark = null, isFinal = false) {
+var VOICEVOXQueue = [];
+async function create_voicevox_wav_and_json(text, index, { bookmark = null, isFinal = false, isCommentReplay = false } = {}) {
     text = text.replace(/https?:\/\/[^\s]+/g, '').trim();
     text = text.replace(/\s+/g, ' ').replace(/([。、．，\.,])\s/g, '$1').trim();
     text = text.replace(/\s*\n+\s*/g, '。');
     text = text.replace(/\s*[）\)」\]｝}・]+\s*/g, '');
+
+    if (isCommentReplay && VOICEVOXQueue.length >= 2) {
+        VOICEVOXQueue = [VOICEVOXQueue[0], text, ...VOICEVOXQueue.slice(1)];
+    }
+    else VOICEVOXQueue.push(text);
+    if (VOICEVOXQueue.length > 1) {
+        while (VOICEVOXQueue[0] !== text) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+    }
+    // console.log(`VOICEVOXQueue`, VOICEVOXQueue);
 
     // AudioQuery を取得
     const queryRes = await axios.get(VV_SERVER_HOST + "query", {
@@ -299,7 +402,8 @@ async function create_voicevox_wav_and_json(text, bookmark = null, isFinal = fal
     //     last_wav_duration = getWavDuration(wavRes.data);
     // }
 
-    let queue_l = voice_queue_list.push({
+    let queue = {
+        index,
         query_json: {
             text,
             query: audioQuery,
@@ -307,20 +411,16 @@ async function create_voicevox_wav_and_json(text, bookmark = null, isFinal = fal
             bookmark
         },
         wav: wavRes.data
-    });
+    };
 
-    let si = speak_history.push({
-        time: new Date().toLocaleString(),
-        text,
-        duration: new Date(getWavDuration(wavRes.data) - 9 * 60 * 60 * 1000).toLocaleTimeString()
-    });
-    if (bookmark) {
-        speak_history[si - 1].bookmark = bookmark;
-    }
+    if (isCommentReplay) voice_queue_list.unshift(queue);
+    else voice_queue_list.push(queue);
+
+    VOICEVOXQueue = VOICEVOXQueue.filter(t => t !== text);
 
     console.log(`Push AudioQueue: ${voice_queue_list.length}`);
 
-    return voice_queue_list[queue_l - 1];
+    return queue;
 }
 
 /**
@@ -337,7 +437,20 @@ function save_wav_and_json(audio_queue = null) {
     last_wav_start_time = Date.now();
     last_wav_duration = getWavDuration(audio_queue.wav) * 1000;
     end_flag = audio_queue.query_json.isFinal;
+    配信の流れ_speak_i = audio_queue.index || 配信の流れ_speak_i;
     console.log(`queue:${voice_queue_list.length} 🎙 speak`, audio_queue.query_json.text);
+
+
+    let si = speak_history.push({
+        time: new Date().toLocaleString(),
+        text: audio_queue.query_json.text,
+        duration: new Date(getWavDuration(audio_queue.wav) - 9 * 60 * 60 * 1000).toLocaleTimeString(),
+        index: audio_queue.index
+    });
+    if (bookmark) {
+        speak_history[si - 1].bookmark = bookmark;
+    }
+    save_history_jsons();
 }
 
 async function launchPythonServer() {
@@ -381,7 +494,7 @@ async function launchPythonServer() {
 function get_bookmarks_json() {
     const jsonText = fs.readFileSync(bookmarks_json_path, 'utf-8');
     bookmarks_raw = JSON.parse(jsonText);
-    bookmarks = bookmarks_raw.filter(b => !('used_in_stream' in b) || b.used_in_stream === false);
+    let bookmarks = bookmarks_raw.filter(b => !('used_in_stream' in b) || b.used_in_stream === false);
     bookmarks = bookmarks.map(b => { b.text?.replace(/https?:\/\/[^\s]+/g, ''); return b; });
     bookmarks = bookmarks.map(b => { b.mediaLinks = b.mediaLinks.filter(l => l.indexOf('https://x.com/hashtag/') === -1); return b; });
     bookmarks = bookmarks.map(b => { b.medias = b.medias.filter(l => l.trim()); return b; });
@@ -401,7 +514,7 @@ function save_history_jsons() {
 
 function get_use_bookmarks(count = 3, shuffle_count = 10) {
     let bookmarks = bookmarks_raw.filter(b => !('used_in_stream' in b) || b.used_in_stream === false);
-    bookmarks = bookmarks.filter(b => b.text).filter(b => b.text.length > 100);
+    // bookmarks = bookmarks.filter(b => b.text).filter(b => b.text.length > 100);
     for (i = 0; i < shuffle_count; i++) {
         bookmarks = bookmarks.sort(() => Math.random() - 0.5);
     }
