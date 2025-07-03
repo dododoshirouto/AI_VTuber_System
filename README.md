@@ -57,6 +57,8 @@ AI_VTuber_System/
 ├── use_chatgpt/              # ChatGPTセリフ生成
 │   ├── index.js              # prompt → response（Node.js）
 │   └── assistant_session.js  # 会話制御＆コスト管理
+├── use_youtube/              # YouTubeLiveコメント取得
+│   ├── index.js              # 
 ├── voicevox_talker/          # VOICEVOX音声生成（Python）
 │   ├── main.py               # FastAPIサーバ立ち上げ＆合成トリガー
 │   ├── voicevox_yomiage.py   # 音声再生＆辞書処理
@@ -79,8 +81,8 @@ AI_VTuber_System/
 - [x] 立ち絵をOBSに反映させる
 - [x] 音声をOBSに反映させる
 - [x] XのポストをOBSに反映させる
+- [x] コメントに反応する
 - [ ] OBSブラウザソースのサーバもnode.jsで立ち上げる
 - [ ] OBSブラウザとの連携方法をWebSocketにする
-- [ ] コメントに反応する
 - [ ] 枠たて、配信開始する
 - [ ] 配信告知をツイートする
