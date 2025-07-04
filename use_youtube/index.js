@@ -119,7 +119,19 @@ class GetYouTubeLiveComments {
     }
 
     async run() {
-        let { nextPageToken, delay } = await getLiveChatMessages(this.auth, this.liveChatId, { pageToken: this.nextPageToken, callback: this.callback });
+        let [nextPageToken, delay] = [null, null];
+        try {
+            let { nextPageToken: _nextPageToken, delay: _delay } = await getLiveChatMessages(this.auth, this.liveChatId, { pageToken: this.nextPageToken, callback: this.callback });
+            nextPageToken = _nextPageToken;
+            delay = _delay;
+        } catch (e) {
+            console.log(`Error: ${e}`);
+        }
+        if (!nextPageToken) {
+            console.log("コメント読みが無効になりました");
+            return;
+        }
+
         this.nextPageToken = nextPageToken;
 
         if (this.enabled && this.nextPageToken) {
