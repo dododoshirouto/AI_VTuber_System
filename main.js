@@ -12,6 +12,13 @@ const bookmarks_json_path = path.join(__dirname, 'read_bookmark/bookmarks.json')
 var bookmarks = [];
 var bookmarks_raw = [];
 
+const TALKER = [
+    'voicevox_talker',
+    'aivis_talker',
+][1];
+
+
+
 /**
  * @type { { query_json: { text:string, query:AudioQuery, isFinal:boolean, bookmark:object}, wav: NodeJS.ArrayBufferView }[] }
  */
@@ -492,8 +499,8 @@ async function launchPythonServer() {
 
     return new Promise((resolve, reject) => {
 
-        const venvPython = path.join(__dirname, 'voicevox_talker', 'venv', 'Scripts', 'python.exe');
-        const py = spawn(venvPython, ['voicevox_talker/main.py']);
+        const venvPython = path.join(__dirname, TALKER, 'venv', 'Scripts', 'python.exe');
+        const py = spawn(venvPython, [TALKER + '/main.py']);
 
         py.stdout.on('data', (data) => {
             let text = data.toString();

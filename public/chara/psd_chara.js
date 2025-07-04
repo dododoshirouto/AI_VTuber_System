@@ -102,8 +102,11 @@ function get_now_mora(moras_timmings, time) {
 }
 
 function get_moras_timmings() {
+    if (audio_query.query.speed_scale === undefined && audio_query.query.speedScale !== undefined) {
+        return get_moras_timmings_aivis();
+    }
     let accent_phrases = audio_query.query.accent_phrases;
-    let speed = audio_query.query.speed_scale;
+    let speed = audio_query.query.speed_scale || 1;
     let total_time = audio_query.query.pre_phoneme_length || 0;
     let moras_timmings = [{ mora: null, time: total_time / speed }];
     for (let i = 0; i < accent_phrases.length; i++) {
@@ -130,6 +133,52 @@ function get_moras_timmings() {
                 //     total_time -= mora.consonant_length || 0;
                 //     total_time_phrases -= mora.consonant_length || 0;
                 // }
+                mora_timmings.push({
+                    mora: mora.vowel.toLowerCase(),
+                    type: 'vowel',
+                    time: total_time / speed,
+                    time_phrases: total_time_phrases / speed
+                })
+            }
+        }
+        if (accent_phrase.pause_mora) {
+            total_time += accent_phrase.pause_mora.vowel_length || 0;
+            mora_timmings.push({
+                mora: null,
+                time: total_time / speed
+            })
+        }
+        moras_timmings.push(mora_timmings);
+    }
+    return moras_timmings;
+}
+
+function get_moras_timmings_aivis() {
+    let accent_phrases = audio_query.query.accent_phrases;
+    let speed = audio_query.query.speedScale || 1;
+    let total_time = audio_query.query.prePhonemeLength || 0;
+    let moras_timmings = [{ mora: null, time: total_time / speed }];
+    let a_mora_time = (audio_elem.duration - (audio_query.query.prePhonemeLength || 0) - (audio_query.query.postPhonemeLength || 0)) / accent_phrases.map(v => v.moras).flat().map(v => (v.consonant ? 1 : 0) + (v.vowel ? 1 : 0)).flat().reduce((a, b) => a + b);
+    for (let i = 0; i < accent_phrases.length; i++) {
+        let accent_phrase = accent_phrases[i];
+        let moras = accent_phrase.moras;
+        let mora_timmings = [];
+        let total_time_phrases = 0;
+        for (let j = 0; j < moras.length; j++) {
+            let mora = moras[j];
+            if (mora.consonant) {
+                total_time += a_mora_time || 0;
+                total_time_phrases += a_mora_time || 0;
+                mora_timmings.push({
+                    mora: mora.consonant.toLowerCase(),
+                    type: 'consonant',
+                    time: total_time / speed,
+                    time_phrases: total_time_phrases / speed
+                })
+            }
+            if (mora.vowel) {
+                total_time += a_mora_time || 0;
+                total_time_phrases += a_mora_time || 0;
                 mora_timmings.push({
                     mora: mora.vowel.toLowerCase(),
                     type: 'vowel',
