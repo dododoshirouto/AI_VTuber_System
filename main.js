@@ -15,7 +15,7 @@ var bookmarks_raw = [];
 const TALKER = [
     'voicevox_talker',
     'aivis_talker',
-][1];
+][0];
 
 
 
