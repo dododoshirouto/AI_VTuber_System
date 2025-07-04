@@ -21,15 +21,19 @@ var last_text = "";
 async function json_update_check() {
     while (true) {
         await new Promise(r => setTimeout(r, 500));
-        let json = await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => json);
-        if (json.text != last_text) {
-            if (bookmark?.url != json.bookmark?.url) container_elem.classList.remove('display');
-            last_text = json.text;
-            try {
-                await load_audio_query_json();
-            } catch (e) {
-                console.error(e);
+        try {
+            let json = await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => json);
+            if (json.text != last_text) {
+                if (bookmark?.url != json.bookmark?.url) container_elem.classList.remove('display');
+                last_text = json.text;
+                try {
+                    await load_audio_query_json();
+                } catch (e) {
+                    console.error(e);
+                }
             }
+        } catch (e) {
+            console.error(e);
         }
     }
 }
