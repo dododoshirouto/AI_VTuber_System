@@ -1,0 +1,8 @@
+requests
+fastapi
+uvicorn
+
+pyjapanglish
+fugashi
+
+aiavatar
