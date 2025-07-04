@@ -648,7 +648,7 @@
     "url": "https://x.com/Yeq6X/status/1929253600427114893",
     "time": "2025-06-01T19:07:56.000Z",
     "mediaLinks": [],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1928255617463902643",
@@ -870,7 +870,7 @@
     "url": "https://x.com/DTP_Transit/status/1921749548315087140",
     "time": "2025-05-12T02:09:31.000Z",
     "mediaLinks": [],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1921196510965793124",
@@ -3028,7 +3028,7 @@
   },
   {
     "id": "1897566761253527766",
-    "text": "[任天堂HP]スプラトゥーンシリーズのポータルサイト「スプラトゥーンベース」を更新しました。\n『スプラトゥーン3』で新たに登場した「ストリンガー」などのブキや、個性が光る若者たちのファッションについて特集しています。\nhttps://nintendo.com/jp/character/splatoon/index.html?utm_source=twitter&utm_medium=social&utm_content=20250306&utm_campaign=splatoon…",
+    "text": "[任天堂HP]スプラトゥーンシリーズのポータルサイト「スプラトゥーンベース」を更新しました。\n『スプラトゥーン3』で新たに登場した「ストリンガー」などのブキや、個性が光る若者たちのファッションについて特集しています。\n",
     "author": "任天堂株式会社",
     "medias": [
       "https://pbs.twimg.com/ext_tw_video_thumb/1897564218226040833/pu/img/gHyDdJEYL2-qgb1e.jpg"
@@ -3038,7 +3038,7 @@
     "mediaLinks": [
       "https://t.co/EBnP8ylVmz"
     ],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1897113958739542158",
@@ -3803,11 +3803,7 @@
     ],
     "url": "https://x.com/KRRK_JP/status/1940334640604098749",
     "time": "2025-07-02T09:00:02.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/3DCG?src=hashtag_click",
-      "https://x.com/hashtag/anatomy?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -3818,8 +3814,7 @@
     "url": "https://x.com/realsoundjp/status/1939625023058424157",
     "time": "2025-06-30T10:00:16.000Z",
     "mediaLinks": [
-      "https://t.co/gehLC1WvA7",
-      "https://x.com/hashtag/%E3%81%9A%E3%82%93%E3%81%A0%E3%82%82%E3%82%93?src=hashtag_click"
+      "https://t.co/gehLC1WvA7"
     ],
     "used_in_stream": false
   },
@@ -3842,9 +3837,7 @@
     ],
     "url": "https://x.com/nupsume/status/1892898701833535888",
     "time": "2025-02-21T11:26:33.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -3881,11 +3874,7 @@
     ],
     "url": "https://x.com/hsgw/status/1892863369784545723",
     "time": "2025-02-21T09:06:09.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/cyberdeck?src=hashtag_click",
-      "https://x.com/hashtag/dj?src=hashtag_click",
-      "https://x.com/hashtag/3DPrinting?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -3910,7 +3899,6 @@
     "url": "https://x.com/DTP_Transit/status/1892437741713182827",
     "time": "2025-02-20T04:54:52.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/Illustrator?src=hashtag_click",
       "https://t.co/Ij8XhpaWKt"
     ],
     "used_in_stream": false
@@ -3982,11 +3970,7 @@
     "url": "https://x.com/RabbitRimp/status/1892103715600924923",
     "time": "2025-02-19T06:47:34.000Z",
     "mediaLinks": [
-      "https://t.co/w1STfcLk3X",
-      "https://x.com/hashtag/%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90?src=hashtag_click",
-      "https://x.com/hashtag/%EC%95%84%ED%8A%B8%EB%A8%B8%EA%B7%B8?src=hashtag_click",
-      "https://x.com/hashtag/%EC%BB%A4%EB%AF%B8%EC%85%98?src=hashtag_click",
-      "https://x.com/hashtag/%EB%B2%84%ED%8A%9C%EB%B2%84?src=hashtag_click"
+      "https://t.co/w1STfcLk3X"
     ],
     "used_in_stream": false
   },
@@ -4027,9 +4011,7 @@
     "url": "https://x.com/happy_modeling/status/1891869229726695860",
     "time": "2025-02-18T15:15:48.000Z",
     "mediaLinks": [
-      "https://t.co/KDOzqqiuFZ",
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/Blender3d?src=hashtag_click"
+      "https://t.co/KDOzqqiuFZ"
     ],
     "used_in_stream": false
   },
@@ -4043,13 +4025,7 @@
     ],
     "url": "https://x.com/rock_megane/status/1891465986131251521",
     "time": "2025-02-17T12:33:27.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/3dcg?src=hashtag_click",
-      "https://x.com/hashtag/3dart?src=hashtag_click",
-      "https://x.com/hashtag/blender%E5%88%9D%E5%BF%83%E8%80%85?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4147,11 +4123,7 @@
     ],
     "url": "https://x.com/KRRK_JP/status/1891406916179349926",
     "time": "2025-02-17T08:38:44.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E7%BE%8E%E8%A1%93%E8%A7%A3%E5%89%96%E5%AD%A6?src=hashtag_click",
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/3DCG?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4202,10 +4174,7 @@
     ],
     "url": "https://x.com/coro46/status/1891412270065795480",
     "time": "2025-02-17T09:00:00.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E6%9C%AC%E6%97%A5%E3%81%AE%E3%82%A4%E3%83%A9%E3%83%AC?src=hashtag_click",
-      "https://x.com/hashtag/Adobeillustrator?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4218,10 +4187,7 @@
     ],
     "url": "https://x.com/air_chan1201/status/1891095179630616641",
     "time": "2025-02-16T12:00:00.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/blender3d?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4430,11 +4396,7 @@
     ],
     "url": "https://x.com/clockmaker/status/1889858580062573031",
     "time": "2025-02-13T02:06:12.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/AdobeMAX?src=hashtag_click",
-      "https://x.com/hashtag/AdobeMAXJapan?src=hashtag_click",
-      "https://x.com/hashtag/AdobeMAXJP?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4460,10 +4422,7 @@
     ],
     "url": "https://x.com/aoumyon/status/1888947882591686995",
     "time": "2025-02-10T13:47:24.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/blender?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4590,10 +4549,7 @@
     "medias": [],
     "url": "https://x.com/unity_japan/status/1888784964071641305",
     "time": "2025-02-10T03:00:02.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/UnityJapan?src=hashtag_click",
-      "https://x.com/hashtag/UnityShortTips?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4614,13 +4570,7 @@
     "url": "https://x.com/tomo_/status/1888509831788802092",
     "time": "2025-02-09T08:46:45.000Z",
     "mediaLinks": [
-      "https://t.co/Zuvg7uyumx",
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/blender3d?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%B8%E3%82%AA%E3%83%A1%E3%83%88%E3%83%AA%E3%83%8E%E3%83%BC%E3%83%89?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%B7%E3%82%A7%E3%83%BC%E3%83%80%E3%83%BC%E3%83%8E%E3%83%BC%E3%83%89?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%B3%E3%83%B3%E3%83%9D%E3%82%B8%E3%82%BF%E3%83%BC?src=hashtag_click"
+      "https://t.co/Zuvg7uyumx"
     ],
     "used_in_stream": false
   },
@@ -4659,9 +4609,7 @@
     ],
     "url": "https://x.com/IchitaIllust/status/1888210169701781736",
     "time": "2025-02-08T12:56:00.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/256fes?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4674,11 +4622,7 @@
     ],
     "url": "https://x.com/akasaki1211/status/1888280096051769476",
     "time": "2025-02-08T17:33:52.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/shader?src=hashtag_click",
-      "https://x.com/hashtag/HLSL?src=hashtag_click",
-      "https://x.com/hashtag/maya3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4733,11 +4677,7 @@
     ],
     "url": "https://x.com/3dkawaiine/status/1887490209492656307",
     "time": "2025-02-06T13:15:08.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/blender%E5%88%9D%E5%BF%83%E8%80%85?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4784,10 +4724,7 @@
     ],
     "url": "https://x.com/bbn_0110/status/1886436224745009592",
     "time": "2025-02-03T15:26:58.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4838,12 +4775,7 @@
     ],
     "url": "https://x.com/DuodenumTwelBee/status/1886696464216416433",
     "time": "2025-02-04T08:41:04.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%82%B2%E3%83%BC%E3%83%A0%E5%88%B6%E4%BD%9C?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%89%E3%83%83%E3%83%88%E7%B5%B5?src=hashtag_click",
-      "https://x.com/hashtag/GameDev?src=hashtag_click",
-      "https://x.com/hashtag/indiedev?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4856,9 +4788,7 @@
     "url": "https://x.com/happy_modeling/status/1886708540406124548",
     "time": "2025-02-04T09:29:04.000Z",
     "mediaLinks": [
-      "https://t.co/hyK9Qsfpvs",
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/blender3d?src=hashtag_click"
+      "https://t.co/hyK9Qsfpvs"
     ],
     "used_in_stream": false
   },
@@ -4872,10 +4802,7 @@
     "url": "https://x.com/ymt3d/status/1886496023767605312",
     "time": "2025-02-03T19:24:36.000Z",
     "mediaLinks": [
-      "https://t.co/megjUwOweT",
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/Blender3d?src=hashtag_click",
-      "https://x.com/hashtag/Blender?src=hashtag_click"
+      "https://t.co/megjUwOweT"
     ],
     "used_in_stream": false
   },
@@ -4903,9 +4830,6 @@
     "url": "https://x.com/LHC13xE1XgMQq0r/status/1886385987271754226",
     "time": "2025-02-03T12:07:21.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/siv3d?src=hashtag_click",
-      "https://x.com/hashtag/indiegame?src=hashtag_click",
-      "https://x.com/hashtag/gamedev?src=hashtag_click",
       "https://t.co/2vcfBqzzCK"
     ],
     "used_in_stream": false
@@ -4944,9 +4868,7 @@
     ],
     "url": "https://x.com/ProjectPlateau/status/1886601334654464489",
     "time": "2025-02-04T02:23:04.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/PLATEAU?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4958,10 +4880,7 @@
     ],
     "url": "https://x.com/hidamabuCG/status/1886396013591826614",
     "time": "2025-02-03T12:47:11.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%AF%E3%83%AA%E3%82%A8%E3%82%A4%E3%82%BF%E3%83%BC%E3%82%BA%E6%A8%AA%E4%B8%81?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -4973,11 +4892,7 @@
     ],
     "url": "https://x.com/WataCG/status/1885992893816713378",
     "time": "2025-02-02T10:05:20.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/3dart?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5010,11 +4925,7 @@
     ],
     "url": "https://x.com/shibairo02/status/1885548664225226890",
     "time": "2025-02-01T04:40:08.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%83%89%E3%83%83%E3%83%88%E7%B5%B5?src=hashtag_click",
-      "https://x.com/hashtag/pixelart?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%89%E3%83%83%E3%82%BF%E3%83%BC%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF%E9%9B%86?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5042,8 +4953,7 @@
     "url": "https://x.com/dobohaze/status/1885266348718383133",
     "time": "2025-01-31T09:58:18.000Z",
     "mediaLinks": [
-      "https://x.com/sparseal",
-      "https://x.com/hashtag/cozyblanket?src=hashtag_click"
+      "https://x.com/sparseal"
     ],
     "used_in_stream": false
   },
@@ -5057,9 +4967,7 @@
     "url": "https://x.com/hidamabuCG/status/1884875738983375216",
     "time": "2025-01-30T08:06:10.000Z",
     "mediaLinks": [
-      "https://x.com/mHrg1RNdL5A0x1v",
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/3DCG?src=hashtag_click"
+      "https://x.com/mHrg1RNdL5A0x1v"
     ],
     "used_in_stream": false
   },
@@ -5097,9 +5005,7 @@
     ],
     "url": "https://x.com/SnKaKDot/status/1884885479268724846",
     "time": "2025-01-30T08:44:52.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%83%89%E3%83%83%E3%82%BF%E3%83%BC%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF%E9%9B%86?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5134,9 +5040,7 @@
     ],
     "url": "https://x.com/yuki77mi/status/1884474053504950778",
     "time": "2025-01-29T05:30:00.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%83%89%E3%83%83%E3%82%BF%E3%83%BC%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF%E9%9B%86?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5160,10 +5064,7 @@
     ],
     "url": "https://x.com/ui_nema/status/1884541190202327340",
     "time": "2025-01-29T09:56:47.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/QAB?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%82%AD%E3%83%A3%E3%83%83%E3%83%81%E3%83%BC?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5234,9 +5135,7 @@
     ],
     "url": "https://x.com/kajitaj63b3/status/1883524566250881059",
     "time": "2025-01-26T14:37:05.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/unity3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5248,9 +5147,7 @@
     ],
     "url": "https://x.com/kyo_fumituki/status/1883742780834685095",
     "time": "2025-01-27T05:04:11.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E9%81%8E%E5%8E%BB%E7%B5%B5%E3%82%92%E6%8A%95%E3%81%92%E3%81%A6%E7%B5%B5%E3%82%92%E6%8F%8F%E3%81%84%E3%81%9F%E6%B0%97%E3%81%AB%E3%81%AA%E3%82%8D%E3%81%86%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%9A%E3%83%BC%E3%83%B3?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5331,10 +5228,7 @@
     "url": "https://x.com/SHOWyanagisawa/status/1882680600848736520",
     "time": "2025-01-24T06:43:28.000Z",
     "mediaLinks": [
-      "https://t.co/DVkDBGkoD3",
-      "https://x.com/hashtag/Plazma?src=hashtag_click",
-      "https://x.com/hashtag/%E7%B1%B3%E6%B4%A5%E7%8E%84%E5%B8%AB?src=hashtag_click",
-      "https://x.com/hashtag/GQuuuuuuX?src=hashtag_click"
+      "https://t.co/DVkDBGkoD3"
     ],
     "used_in_stream": false
   },
@@ -5397,9 +5291,7 @@
     ],
     "url": "https://x.com/DesignSpot_Jap/status/1882006830353899665",
     "time": "2025-01-22T10:06:09.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Illustrator?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5486,11 +5378,7 @@
     "url": "https://x.com/HoraiChan/status/1881549137415696674",
     "time": "2025-01-21T03:47:26.000Z",
     "mediaLinks": [
-      "https://t.co/VCPdPM6B02",
-      "https://x.com/hashtag/OBS?src=hashtag_click",
-      "https://x.com/hashtag/Vtuber%E7%B4%A0%E6%9D%90?src=hashtag_click",
-      "https://x.com/hashtag/VTuberAssets?src=hashtag_click",
-      "https://x.com/hashtag/Vtuber?src=hashtag_click"
+      "https://t.co/VCPdPM6B02"
     ],
     "used_in_stream": false
   },
@@ -5553,9 +5441,7 @@
     ],
     "url": "https://x.com/Maron_Vtuber/status/1881172827761697262",
     "time": "2025-01-20T02:52:07.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/KujoRingo_UltraC?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5616,9 +5502,7 @@
     ],
     "url": "https://x.com/TomalunaWorks/status/1879860683850051798",
     "time": "2025-01-16T11:58:07.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%9A%E3%82%93%E3%81%A0%E3%82%82%E3%82%93?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5694,9 +5578,7 @@
     ],
     "url": "https://x.com/garsonsplus/status/1878913645834600745",
     "time": "2025-01-13T21:14:56.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/blender?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5724,11 +5606,7 @@
     ],
     "url": "https://x.com/alive_studio_x/status/1879063881206964372",
     "time": "2025-01-14T07:11:55.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E9%85%8D%E4%BF%A1%E8%80%85?src=hashtag_click",
-      "https://x.com/hashtag/OBS?src=hashtag_click",
-      "https://x.com/hashtag/%E9%9F%B3%E8%B3%AA%E6%94%B9%E5%96%84?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5774,10 +5652,7 @@
     ],
     "url": "https://x.com/namigroove/status/1878488236349366744",
     "time": "2025-01-12T17:04:30.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/GRAYSCALE_TOKYO?src=hashtag_click",
-      "https://x.com/hashtag/%E3%81%AA%E3%81%BF%E3%81%90%E3%82%8B%E3%82%BB%E3%83%88%E3%83%AA?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5787,9 +5662,7 @@
     "medias": [],
     "url": "https://x.com/zundamonsekaika/status/1878447141879968220",
     "time": "2025-01-12T14:21:13.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%9A%E3%82%93%E3%81%9B%E3%81%8B%E3%83%A9%E3%82%A4%E3%83%96?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5802,10 +5675,7 @@
     "url": "https://x.com/namakoshiro/status/1878244824710885549",
     "time": "2025-01-12T00:57:16.000Z",
     "mediaLinks": [
-      "https://t.co/riOmGC6hKL",
-      "https://x.com/hashtag/Mae3D?src=hashtag_click",
-      "https://x.com/hashtag/Blender?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
+      "https://t.co/riOmGC6hKL"
     ],
     "used_in_stream": false
   },
@@ -5867,11 +5737,7 @@
     ],
     "url": "https://x.com/KAMO_KAMONA/status/1877990323714130392",
     "time": "2025-01-11T08:05:59.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/QvPen?src=hashtag_click",
-      "https://x.com/hashtag/MAKUAKE_VRC?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -5899,10 +5765,7 @@
     "url": "https://x.com/LittleMtMachine/status/1875576061364466004",
     "time": "2025-01-04T16:12:34.000Z",
     "mediaLinks": [
-      "https://t.co/WPq9VQwCd4",
-      "https://x.com/hashtag/unity1week?src=hashtag_click",
-      "https://x.com/hashtag/gamedev?src=hashtag_click",
-      "https://x.com/hashtag/unity?src=hashtag_click"
+      "https://t.co/WPq9VQwCd4"
     ],
     "used_in_stream": false
   },
@@ -5915,11 +5778,7 @@
     ],
     "url": "https://x.com/moshumoshuVRC/status/1877699626515525668",
     "time": "2025-01-10T12:50:51.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/VIVECraft?src=hashtag_click",
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/%EF%BC%ADinecraft?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6022,8 +5881,7 @@
     "url": "https://x.com/UraIida/status/1877279152715235825",
     "time": "2025-01-09T09:00:02.000Z",
     "mediaLinks": [
-      "https://t.co/RXVzr9FubS",
-      "https://x.com/hashtag/PR?src=hashtag_click"
+      "https://t.co/RXVzr9FubS"
     ],
     "used_in_stream": false
   },
@@ -6034,9 +5892,7 @@
     "medias": [],
     "url": "https://x.com/gizmodojapan/status/1877298391396266404",
     "time": "2025-01-09T10:16:29.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/CES2025?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6060,8 +5916,7 @@
     "url": "https://x.com/suzuki_ith/status/1876951079671279680",
     "time": "2025-01-08T11:16:24.000Z",
     "mediaLinks": [
-      "https://t.co/Qz5f7u6hkU",
-      "https://x.com/hashtag/VRChat_world%E7%B4%B9%E4%BB%8B?src=hashtag_click"
+      "https://t.co/Qz5f7u6hkU"
     ],
     "used_in_stream": false
   },
@@ -6112,10 +5967,7 @@
     ],
     "url": "https://x.com/ntv_rd/status/1876278316057161971",
     "time": "2025-01-06T14:43:04.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/CES?src=hashtag_click",
-      "https://x.com/hashtag/CES2025?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6167,13 +6019,7 @@
     ],
     "url": "https://x.com/ZeF_games/status/1875106355075580326",
     "time": "2025-01-03T09:06:07.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/unity1week?src=hashtag_click",
-      "https://x.com/hashtag/IndieDev?src=hashtag_click",
-      "https://x.com/hashtag/GameDev?src=hashtag_click",
-      "https://x.com/hashtag/IndieGameDev?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%B2%E3%83%BC%E3%83%A0%E5%88%B6%E4%BD%9C?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6293,9 +6139,7 @@
     ],
     "url": "https://x.com/912_sigma/status/1873307982408073591",
     "time": "2024-12-29T10:00:02.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%82%A2%E3%83%B3%E3%83%93%E3%82%B0%E3%83%A9%E3%83%A0?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6485,9 +6329,7 @@
     ],
     "url": "https://x.com/nemchan_nel/status/1870092049980289408",
     "time": "2024-12-20T13:01:04.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/HaritoraX?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6511,13 +6353,7 @@
     ],
     "url": "https://x.com/ZeF_games/status/1869639376424329674",
     "time": "2024-12-19T07:02:18.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E4%BB%8A%E5%B9%B4%E3%82%82%E6%AE%8B%E3%82%8A%E3%82%8F%E3%81%9A%E3%81%8B%E3%81%AA%E3%81%AE%E3%81%A7%E4%BB%8A%E5%B9%B4%E4%B8%80%E7%95%AA%E4%BC%B8%E3%81%B3%E3%81%9F%E3%81%AE%E3%82%92%E8%B2%BC%E3%82%8B?src=hashtag_click",
-      "https://x.com/hashtag/IndieDev?src=hashtag_click",
-      "https://x.com/hashtag/GameDev?src=hashtag_click",
-      "https://x.com/hashtag/IndieGameDev?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%B2%E3%83%BC%E3%83%A0%E5%88%B6%E4%BD%9C?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6531,10 +6367,7 @@
     "url": "https://x.com/T_ChamDers/status/1869378074481201387",
     "time": "2024-12-18T13:43:58.000Z",
     "mediaLinks": [
-      "https://x.com/Dragonitium",
-      "https://x.com/hashtag/animation?src=hashtag_click",
-      "https://x.com/hashtag/cartoon?src=hashtag_click",
-      "https://x.com/hashtag/OC?src=hashtag_click"
+      "https://x.com/Dragonitium"
     ],
     "used_in_stream": false
   },
@@ -6548,8 +6381,7 @@
     "url": "https://x.com/neutralx_net/status/1869585334226620727",
     "time": "2024-12-19T03:27:33.000Z",
     "mediaLinks": [
-      "https://t.co/PXXuxtM4rx",
-      "https://x.com/hashtag/%E8%84%B1%E5%87%BA%E3%82%B2%E3%83%BC%E3%83%A0?src=hashtag_click"
+      "https://t.co/PXXuxtM4rx"
     ],
     "used_in_stream": false
   },
@@ -6598,9 +6430,7 @@
     "url": "https://x.com/su10_dev/status/1869276091891999191",
     "time": "2024-12-18T06:58:44.000Z",
     "mediaLinks": [
-      "https://t.co/ibywwzM0pE",
-      "https://x.com/hashtag/Qiita%E3%82%A2%E3%83%89%E3%82%AB%E3%83%AC?src=hashtag_click",
-      "https://x.com/hashtag/Qiita?src=hashtag_click"
+      "https://t.co/ibywwzM0pE"
     ],
     "used_in_stream": false
   },
@@ -6625,9 +6455,7 @@
     ],
     "url": "https://x.com/natsumori_katsu/status/1869216012828373346",
     "time": "2024-12-18T03:00:00.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E4%BB%8A%E5%B9%B4%E3%82%82%E6%AE%8B%E3%82%8A%E3%82%8F%E3%81%9A%E3%81%8B%E3%81%AA%E3%81%AE%E3%81%A7%E4%BB%8A%E5%B9%B4%E4%B8%80%E7%95%AA%E4%BC%B8%E3%81%B3%E3%81%9F%E5%8B%95%E7%94%BB%E3%82%92%E8%B2%BC%E3%82%8B?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6639,9 +6467,7 @@
     ],
     "url": "https://x.com/kensyouen_Y/status/1868948057288851905",
     "time": "2024-12-17T09:15:14.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/3DCG?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6814,11 +6640,7 @@
     "medias": [],
     "url": "https://x.com/Resin_pixel/status/1865049698522009671",
     "time": "2024-12-06T15:04:33.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%83%89%E3%83%83%E3%83%88%E7%B5%B5?src=hashtag_click",
-      "https://x.com/hashtag/pixelart?src=hashtag_click",
-      "https://x.com/hashtag/note?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6926,11 +6748,9 @@
     "url": "https://x.com/googlejapan/status/1862051304228434163",
     "time": "2024-11-28T08:30:00.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/Chrome?src=hashtag_click",
       "https://t.co/elA7SPbxH2",
       "https://x.com/uesaka_official",
-      "https://x.com/pinocchiop",
-      "https://x.com/hashtag/%E3%81%8C%E3%82%93%E3%81%B0%E3%82%8C%E3%81%8F%E3%82%8D%E3%83%BC%E3%82%80?src=hashtag_click"
+      "https://x.com/pinocchiop"
     ],
     "used_in_stream": false
   },
@@ -6943,10 +6763,7 @@
     ],
     "url": "https://x.com/hinyari9/status/1861976802140491837",
     "time": "2024-11-28T03:33:58.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E6%95%91%E5%9B%BD%E3%81%AE%E3%82%B9%E3%83%8D%E3%82%B8%E3%83%B3%E3%82%AB?src=hashtag_click",
-      "https://x.com/hashtag/Steam%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%A0%E3%82%BB%E3%83%BC%E3%83%AB?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6958,9 +6775,7 @@
     ],
     "url": "https://x.com/rods_skyfish/status/1861816067708035178",
     "time": "2024-11-27T16:55:16.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/MourningTide?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -6972,9 +6787,7 @@
     ],
     "url": "https://x.com/rods_skyfish/status/1862041623254933882",
     "time": "2024-11-28T07:51:32.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/TheChildrenofClay?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7022,10 +6835,7 @@
     ],
     "url": "https://x.com/rietzscha/status/1862058098703376657",
     "time": "2024-11-28T08:57:00.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/VRC%E6%BC%AB%E7%94%BB?src=hashtag_click",
-      "https://x.com/hashtag/CANDYTRIP?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7069,9 +6879,7 @@
     ],
     "url": "https://x.com/mojon1/status/1861793332898443538",
     "time": "2024-11-27T15:24:55.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/kiriengine?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7170,10 +6978,7 @@
     ],
     "url": "https://x.com/taziku_co/status/1860693586293182668",
     "time": "2024-11-24T14:34:55.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E7%94%9F%E6%88%90AI?src=hashtag_click",
-      "https://x.com/hashtag/3D?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7279,9 +7084,7 @@
     "time": "2024-11-17T01:00:01.000Z",
     "mediaLinks": [
       "https://x.com/LAMBsunsun",
-      "https://t.co/1aFLR6tehi",
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/VRJapanTours?src=hashtag_click"
+      "https://t.co/1aFLR6tehi"
     ],
     "used_in_stream": false
   },
@@ -7328,9 +7131,7 @@
     ],
     "url": "https://x.com/macogame/status/1858779460109041856",
     "time": "2024-11-19T07:48:52.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/TRPG?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7343,7 +7144,7 @@
     "url": "https://x.com/neybell_/status/1858493863515795515",
     "time": "2024-11-18T12:54:00.000Z",
     "mediaLinks": [],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1858101231937523916",
@@ -7354,10 +7155,7 @@
     ],
     "url": "https://x.com/taziku_co/status/1858101231937523916",
     "time": "2024-11-17T10:53:50.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/AI?src=hashtag_click",
-      "https://x.com/hashtag/3DCG?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7517,10 +7315,7 @@
     ],
     "url": "https://x.com/CAPCOM_UXD/status/1851492711213547669",
     "time": "2024-10-30T05:13:56.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%82%AB%E3%83%97%E3%82%B3%E3%83%B3UI?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%B2%E3%83%BC%E3%83%A0UI?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7556,9 +7351,7 @@
     ],
     "url": "https://x.com/fradol_vr/status/1850114518883676376",
     "time": "2024-10-26T09:57:29.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%83%AA%E3%82%A2%E3%83%AB%E9%9B%BB%E9%9F%B3%E7%A0%94?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7599,10 +7392,7 @@
     ],
     "url": "https://x.com/xing_00004/status/1850032303508221975",
     "time": "2024-10-26T04:30:47.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%83%87%E3%82%B6%E3%83%95%E3%82%A7%E3%82%B960?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%87%E3%82%B6%E3%83%95%E3%82%A7%E3%82%B9?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7705,9 +7495,7 @@
     "time": "2024-10-20T10:11:52.000Z",
     "mediaLinks": [
       "https://x.com/KnKDesign",
-      "https://x.com/GoEnhance",
-      "https://x.com/hashtag/AI%E3%82%A2%E3%83%8B%E3%83%A1?src=hashtag_click",
-      "https://x.com/hashtag/%E7%94%9F%E6%88%90AI?src=hashtag_click"
+      "https://x.com/GoEnhance"
     ],
     "used_in_stream": false
   },
@@ -7720,9 +7508,7 @@
     ],
     "url": "https://x.com/SeterMD/status/1847716174689190311",
     "time": "2024-10-19T19:07:19.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/AfterEffects?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7882,9 +7668,7 @@
     ],
     "url": "https://x.com/kobayas_s/status/1846210734545686616",
     "time": "2024-10-15T15:25:14.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/AdobeMAX?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7926,9 +7710,7 @@
     "medias": [],
     "url": "https://x.com/yaboshi_Lab/status/1846022336203706568",
     "time": "2024-10-15T02:56:37.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/UnityEbook?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -7949,7 +7731,7 @@
     "url": "https://x.com/nekobako/status/1845728052254552090",
     "time": "2024-10-14T07:27:14.000Z",
     "mediaLinks": [],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1845677276077441520",
@@ -8091,9 +7873,7 @@
     ],
     "url": "https://x.com/m_sigepon/status/1289270147350269952",
     "time": "2020-07-31T18:42:11.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/3Dmodeling?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8131,9 +7911,7 @@
     ],
     "url": "https://x.com/CHESED___/status/1844579694336962577",
     "time": "2024-10-11T03:24:04.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E5%88%B6%E4%BD%9C%E5%88%9D%E5%BF%83%E8%80%85%E4%BA%A4%E6%B5%81%E4%BC%9A?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8146,7 +7924,6 @@
     "url": "https://x.com/degarashi_01/status/1843577073170034992",
     "time": "2024-10-08T09:00:00.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/%E9%87%8D%E9%9F%B3%E3%83%86%E3%83%88?src=hashtag_click",
       "https://x.com/TETOTHING01/status/1835369420040118444"
     ],
     "used_in_stream": false
@@ -8182,10 +7959,7 @@
     ],
     "url": "https://x.com/endo_cg/status/1843430241882255679",
     "time": "2024-10-07T23:16:33.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Blender?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8224,8 +7998,7 @@
     "url": "https://x.com/o_ob/status/1843323801398075601",
     "time": "2024-10-07T15:37:38.000Z",
     "mediaLinks": [
-      "https://x.com/o_ob",
-      "https://x.com/hashtag/note?src=hashtag_click"
+      "https://x.com/o_ob"
     ],
     "used_in_stream": false
   },
@@ -8260,9 +8033,7 @@
     ],
     "url": "https://x.com/yuki77mi/status/1842481403516334531",
     "time": "2024-10-05T08:26:12.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E5%A4%A7%E4%BD%8E%E8%A7%A3%E5%83%8F%E5%BA%A6%E5%B1%95?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8337,9 +8108,7 @@
     ],
     "url": "https://x.com/KawaiiSensei_jp/status/1841599053874003994",
     "time": "2024-10-02T22:00:04.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88%E3%82%A2%E3%82%AB%E3%83%87%E3%83%9F%E3%82%A2?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8402,9 +8171,7 @@
     ],
     "url": "https://x.com/shiasa__/status/1840613547459616965",
     "time": "2024-09-30T04:44:01.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/aftereffects?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8429,9 +8196,7 @@
     "url": "https://x.com/narutoo/status/1840010331806130588",
     "time": "2024-09-28T12:47:03.000Z",
     "mediaLinks": [
-      "https://t.co/wSwjkSpjl7",
-      "https://x.com/hashtag/zenn?src=hashtag_click",
-      "https://x.com/hashtag/VRChat?src=hashtag_click"
+      "https://t.co/wSwjkSpjl7"
     ],
     "used_in_stream": false
   },
@@ -8456,9 +8221,7 @@
     ],
     "url": "https://x.com/nelnalium/status/1839680795172348200",
     "time": "2024-09-27T14:57:35.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%82%E3%81%8B%E3%81%B9%E5%AD%90?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8601,9 +8364,7 @@
     ],
     "url": "https://x.com/bluewalker_vrc/status/1838724423769297059",
     "time": "2024-09-24T23:37:19.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/VRChat?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8626,8 +8387,7 @@
     "url": "https://x.com/livedoornews/status/1838548103194198071",
     "time": "2024-09-24T11:56:41.000Z",
     "mediaLinks": [
-      "https://t.co/ZXvMsQW1vb",
-      "https://x.com/hashtag/livedoorECHOES?src=hashtag_click"
+      "https://t.co/ZXvMsQW1vb"
     ],
     "used_in_stream": false
   },
@@ -8725,12 +8485,7 @@
     ],
     "url": "https://x.com/artofsully/status/1835798338463261019",
     "time": "2024-09-16T21:50:06.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/lowpoly?src=hashtag_click",
-      "https://x.com/hashtag/gamedev?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%89%E3%83%83%E3%83%88%E7%B5%B5?src=hashtag_click",
-      "https://x.com/hashtag/%ED%94%BD%EC%85%80%EC%95%84%ED%8A%B8?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8744,9 +8499,7 @@
     "url": "https://x.com/natalie_mu/status/1835936268733304981",
     "time": "2024-09-17T06:58:11.000Z",
     "mediaLinks": [
-      "https://t.co/H0KX4Ahl16",
-      "https://x.com/hashtag/%E3%81%84%E3%82%88%E3%82%8F?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%A6%E3%83%AA%E3%82%A4%E3%82%AB?src=hashtag_click"
+      "https://t.co/H0KX4Ahl16"
     ],
     "used_in_stream": false
   },
@@ -8789,11 +8542,7 @@
     ],
     "url": "https://x.com/064mn/status/1834180445887721901",
     "time": "2024-09-12T10:41:10.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E9%87%8D%E9%9F%B3%E3%83%86%E3%83%88?src=hashtag_click",
-      "https://x.com/hashtag/%E5%88%9D%E9%9F%B3%E3%83%9F%E3%82%AF?src=hashtag_click",
-      "https://x.com/hashtag/%E4%BA%9E%E5%8C%97%E3%83%8D%E3%83%AB?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8805,9 +8554,7 @@
     ],
     "url": "https://x.com/x4rr24/status/1833547391234150421",
     "time": "2024-09-10T16:45:38.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Maya3D?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8818,8 +8565,7 @@
     "url": "https://x.com/takemiko_vt/status/1833545869112586446",
     "time": "2024-09-10T16:39:35.000Z",
     "mediaLinks": [
-      "https://x.com/_yoshioka___",
-      "https://x.com/hashtag/N%E3%82%B3%E3%83%AC?src=hashtag_click"
+      "https://x.com/_yoshioka___"
     ],
     "used_in_stream": false
   },
@@ -8844,9 +8590,7 @@
     ],
     "url": "https://x.com/x4rr24/status/1833436119402484045",
     "time": "2024-09-10T09:23:29.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/3dmodeling?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8870,10 +8614,7 @@
     ],
     "url": "https://x.com/yakage_yu/status/1833287231676813339",
     "time": "2024-09-09T23:31:51.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/coloso?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8895,10 +8636,7 @@
     ],
     "url": "https://x.com/hy_drillon_4/status/1832437450184257548",
     "time": "2024-09-07T15:15:07.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8922,10 +8660,7 @@
     ],
     "url": "https://x.com/endo_cg/status/1832913898221277361",
     "time": "2024-09-08T22:48:21.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Blender?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -8983,10 +8718,7 @@
     ],
     "url": "https://x.com/bonxyanim/status/1832544838702489800",
     "time": "2024-09-07T22:21:51.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/MinecraftMovie?src=hashtag_click",
-      "https://x.com/hashtag/blender?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9051,9 +8783,7 @@
     ],
     "url": "https://x.com/cano1215_/status/1827684085281771672",
     "time": "2024-08-25T12:26:57.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/aftereffects?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9065,9 +8795,7 @@
     ],
     "url": "https://x.com/3329h0rned0w1/status/1827010991764500481",
     "time": "2024-08-23T15:52:19.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/aftereffects?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9215,10 +8943,7 @@
     "medias": [],
     "url": "https://x.com/endo_cg/status/1822818907377537484",
     "time": "2024-08-12T02:14:28.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Blender?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9242,10 +8967,7 @@
     ],
     "url": "https://x.com/taziku_co/status/1822573142260519181",
     "time": "2024-08-11T09:57:53.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E5%8B%95%E7%94%BB%E7%B7%A8%E9%9B%86?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%A2%E3%83%8B%E3%83%A1?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9269,12 +8991,7 @@
     ],
     "url": "https://x.com/yanagi_tooru/status/1509002476875182083",
     "time": "2022-03-30T03:00:01.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/VRChat%E9%96%A2%E8%A5%BF%E9%83%A8?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%90%E3%83%BC%E3%83%81%E3%83%A3%E3%83%AB%E9%81%93%E9%A0%93%E5%A0%80?src=hashtag_click",
-      "https://x.com/hashtag/VRChat_world%E7%B4%B9%E4%BB%8B?src=hashtag_click",
-      "https://x.com/hashtag/VRChat%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E7%B4%B9%E4%BB%8B?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9380,7 +9097,6 @@
     "url": "https://x.com/namigroove/status/1821026088526737906",
     "time": "2024-08-07T03:30:27.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/YouTubeMusicWeekend?src=hashtag_click",
       "https://t.co/MYZXM4jimY"
     ],
     "used_in_stream": false
@@ -9416,9 +9132,7 @@
     "medias": [],
     "url": "https://x.com/kensyouen_Y/status/1820748563338637581",
     "time": "2024-08-06T09:07:40.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/3DCG?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9428,10 +9142,7 @@
     "medias": [],
     "url": "https://x.com/hiranoji/status/1819686178154762472",
     "time": "2024-08-03T10:46:07.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/geometrynodes?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9505,9 +9216,7 @@
     "medias": [],
     "url": "https://x.com/ash_creator/status/1817901365307564110",
     "time": "2024-07-29T12:33:55.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/HTML%E3%81%A8CSS%E3%81%AE%E3%81%BF?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9577,9 +9286,6 @@
     "url": "https://x.com/glasses09454853/status/1815896101641466135",
     "time": "2024-07-23T23:45:43.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%9E%E3%83%86%E3%83%AA%E3%82%A2%E3%83%AB?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%A2%E3%83%89%E3%82%AA%E3%83%B3?src=hashtag_click",
       "https://t.co/hqDK3gykdg"
     ],
     "used_in_stream": false
@@ -9606,11 +9312,7 @@
     "url": "https://x.com/izumo_3d/status/1816035599339446302",
     "time": "2024-07-24T09:00:01.000Z",
     "mediaLinks": [
-      "https://t.co/vCH837HsxG",
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/blender%E5%88%9D%E5%BF%83%E8%80%85?src=hashtag_click",
-      "https://x.com/hashtag/3DCG?src=hashtag_click",
-      "https://x.com/hashtag/Tips?src=hashtag_click"
+      "https://t.co/vCH837HsxG"
     ],
     "used_in_stream": false
   },
@@ -9623,10 +9325,7 @@
     ],
     "url": "https://x.com/skipmore/status/1815585955765739899",
     "time": "2024-07-23T03:13:18.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B7%E3%83%AB%E3%83%93%E3%82%A3?src=hashtag_click",
-      "https://x.com/hashtag/Transiruby?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9650,9 +9349,7 @@
     ],
     "url": "https://x.com/J_Taka2/status/1815057015548633589",
     "time": "2024-07-21T16:11:29.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/aftereffects?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9766,9 +9463,7 @@
     ],
     "url": "https://x.com/shiasa__/status/1813101425536475224",
     "time": "2024-07-16T06:40:40.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/aftereffects?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9806,10 +9501,7 @@
     ],
     "url": "https://x.com/endo_cg/status/1813775256575992010",
     "time": "2024-07-18T03:18:14.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Blender?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9837,9 +9529,7 @@
     "url": "https://x.com/suzuki_ith/status/1813773184069767387",
     "time": "2024-07-18T03:10:00.000Z",
     "mediaLinks": [
-      "https://t.co/FdBVuuhOfZ",
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/VRChat%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E7%B4%B9%E4%BB%8B?src=hashtag_click"
+      "https://t.co/FdBVuuhOfZ"
     ],
     "used_in_stream": false
   },
@@ -9864,10 +9554,7 @@
     ],
     "url": "https://x.com/VPlaybone/status/1811686952540020882",
     "time": "2024-07-12T09:00:03.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/VRC_kowakunai?src=hashtag_click",
-      "https://x.com/hashtag/VRChat_world%E7%B4%B9%E4%BB%8B?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9913,12 +9600,7 @@
     ],
     "url": "https://x.com/YanSculpts/status/1810669583142883748",
     "time": "2024-07-09T13:37:23.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/blender3d?src=hashtag_click",
-      "https://x.com/hashtag/art?src=hashtag_click",
-      "https://x.com/hashtag/3dart?src=hashtag_click",
-      "https://x.com/hashtag/sculpture?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9931,12 +9613,7 @@
     "url": "https://x.com/hari_shiba_/status/1810677593949327779",
     "time": "2024-07-09T14:09:13.000Z",
     "mediaLinks": [
-      "https://t.co/NgRtMFFjcI",
-      "https://x.com/hashtag/VRC?src=hashtag_click",
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/VRChat_world?src=hashtag_click",
-      "https://x.com/hashtag/VRChat_world%E7%B4%B9%E4%BB%8B?src=hashtag_click",
-      "https://x.com/hashtag/VRChat%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E7%B4%B9%E4%BB%8B?src=hashtag_click"
+      "https://t.co/NgRtMFFjcI"
     ],
     "used_in_stream": false
   },
@@ -9974,9 +9651,7 @@
     ],
     "url": "https://x.com/inu__siba/status/1810512873178996760",
     "time": "2024-07-09T03:14:41.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%BE%E3%81%84%E3%81%94%E3%81%88%E3%82%93%E5%9B%B3%E5%B7%A5%E9%83%A8?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -9988,9 +9663,7 @@
     ],
     "url": "https://x.com/animememekyoto/status/1810266003521310880",
     "time": "2024-07-08T10:53:43.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%A1%E3%83%A1?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10040,10 +9713,7 @@
     ],
     "url": "https://x.com/LYNX_e_sports/status/1808784969734762555",
     "time": "2024-07-04T08:48:37.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/PRIDE4?src=hashtag_click",
-      "https://x.com/hashtag/%E7%A5%9E%E6%88%B8%E4%B8%89%E5%AE%AE?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10059,11 +9729,7 @@
     "url": "https://x.com/roxasAC/status/1808166136061780005",
     "time": "2024-07-02T15:49:35.000Z",
     "mediaLinks": [
-      "https://t.co/oNWEjlAOzk",
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/VRChat_world%E7%B4%B9%E4%BB%8B?src=hashtag_click",
-      "https://x.com/hashtag/VRChat%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E7%B4%B9%E4%BB%8B?src=hashtag_click",
-      "https://x.com/hashtag/MadeWithVRChat?src=hashtag_click"
+      "https://t.co/oNWEjlAOzk"
     ],
     "used_in_stream": false
   },
@@ -10112,9 +9778,7 @@
     ],
     "url": "https://x.com/mokkei_VE/status/1807049935466242267",
     "time": "2024-06-29T13:54:12.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/VRChat_world%E7%B4%B9%E4%BB%8B?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10126,10 +9790,7 @@
     ],
     "url": "https://x.com/_purewhitechan/status/1806657090297217135",
     "time": "2024-06-28T11:53:11.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%93%E3%82%8C%E3%81%A7%E3%83%95%E3%82%A9%E3%83%AD%E3%83%AF%E3%83%BC%E5%A2%97%E3%81%88%E3%81%BE%E3%81%97%E3%81%9F?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%81%E3%82%A7%E3%82%AD%E3%82%89%E3%81%8F%E3%81%8C%E3%81%8D%E6%96%B9%E6%B3%95?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10166,8 +9827,6 @@
     "url": "https://x.com/Solphy_A/status/1806638707732279392",
     "time": "2024-06-28T10:40:08.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/VRC_LIE?src=hashtag_click",
       "https://t.co/Jcii0rNsMJ"
     ],
     "used_in_stream": false
@@ -10194,10 +9853,7 @@
     "url": "https://x.com/hari_shiba_/status/1805508472882315440",
     "time": "2024-06-25T07:48:59.000Z",
     "mediaLinks": [
-      "https://t.co/fw4IGnGXDb",
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/VRChat%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E7%B4%B9%E4%BB%8B?src=hashtag_click",
-      "https://x.com/hashtag/VRChat_world%E7%B4%B9%E4%BB%8B?src=hashtag_click"
+      "https://t.co/fw4IGnGXDb"
     ],
     "used_in_stream": false
   },
@@ -10258,10 +9914,7 @@
     ],
     "url": "https://x.com/rietzscha/status/1805158782085038578",
     "time": "2024-06-24T08:39:26.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/VRC%E6%BC%AB%E7%94%BB?src=hashtag_click",
-      "https://x.com/hashtag/VRC_%E3%83%8A%E3%82%AE%E3%82%B5?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10287,9 +9940,7 @@
     ],
     "url": "https://x.com/NegiTurkey/status/1804752010270384246",
     "time": "2024-06-23T05:43:04.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/ComfyUI?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10301,10 +9952,7 @@
     ],
     "url": "https://x.com/YOUTUBE_CAFE_LG/status/1804639681273045411",
     "time": "2024-06-22T22:16:43.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Cascadeur?src=hashtag_click",
-      "https://x.com/hashtag/MMD?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10316,9 +9964,7 @@
     ],
     "url": "https://x.com/sweetnermaid/status/1804846141747687477",
     "time": "2024-06-23T11:57:07.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%93%E3%82%8C%E3%81%A7%E3%83%95%E3%82%A9%E3%83%AD%E3%83%AF%E3%83%BC%E3%81%95%E3%82%93%E5%A2%97%E3%81%88%E3%81%BE%E3%81%97%E3%81%9F?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10365,7 +10011,7 @@
     "url": "https://x.com/nonono_rain/status/1804446731716767904",
     "time": "2024-06-22T09:30:00.000Z",
     "mediaLinks": [],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1804620478797230327",
@@ -10390,9 +10036,7 @@
     ],
     "url": "https://x.com/hourai_24/status/1804116350807478512",
     "time": "2024-06-21T11:37:11.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%93%E3%82%8C%E3%81%A7%E3%83%95%E3%82%A9%E3%83%AD%E3%83%AF%E3%83%BC%E3%81%95%E3%82%93%E5%A2%97%E3%81%88%E3%81%BE%E3%81%97%E3%81%9F?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10432,9 +10076,7 @@
     "url": "https://x.com/happy_modeling/status/1803718389405544757",
     "time": "2024-06-20T09:15:50.000Z",
     "mediaLinks": [
-      "https://t.co/AqGxA4WdvJ",
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/blender3d?src=hashtag_click"
+      "https://t.co/AqGxA4WdvJ"
     ],
     "used_in_stream": false
   },
@@ -10525,9 +10167,7 @@
     ],
     "url": "https://x.com/Yonemaru_NH/status/1798186335733485897",
     "time": "2024-06-05T02:53:25.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10571,9 +10211,7 @@
     ],
     "url": "https://x.com/SeterMD/status/1801713388860407998",
     "time": "2024-06-14T20:28:40.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/aftereffects?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10677,8 +10315,7 @@
     "url": "https://x.com/unity_japan/status/1800048243717628179",
     "time": "2024-06-10T06:11:59.000Z",
     "mediaLinks": [
-      "https://t.co/zXKckugstq",
-      "https://x.com/hashtag/UnityJapan?src=hashtag_click"
+      "https://t.co/zXKckugstq"
     ],
     "used_in_stream": false
   },
@@ -10705,10 +10342,7 @@
     ],
     "url": "https://x.com/divideby_zero/status/1799436269728182721",
     "time": "2024-06-08T13:40:13.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/HighKing?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%82%B2%E5%88%B6%E3%83%87%E3%83%BC?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10757,8 +10391,7 @@
     "url": "https://x.com/AUTOMATONJapan/status/1799020151616266490",
     "time": "2024-06-07T10:06:42.000Z",
     "mediaLinks": [
-      "https://t.co/f1081WySvN",
-      "https://x.com/hashtag/AD?src=hashtag_click"
+      "https://t.co/f1081WySvN"
     ],
     "used_in_stream": false
   },
@@ -10782,8 +10415,7 @@
     "url": "https://x.com/zunda_vrc/status/1798949295519072566",
     "time": "2024-06-07T05:25:09.000Z",
     "mediaLinks": [
-      "https://t.co/PPZ03SHtbu",
-      "https://x.com/hashtag/%E3%81%9A%E3%82%93%E3%81%A0%E3%82%82%E3%82%93%E3%82%AB%E3%83%95%E3%82%A7?src=hashtag_click"
+      "https://t.co/PPZ03SHtbu"
     ],
     "used_in_stream": false
   },
@@ -10797,8 +10429,7 @@
     "url": "https://x.com/wappaboy/status/1798874161705791723",
     "time": "2024-06-07T00:26:36.000Z",
     "mediaLinks": [
-      "https://t.co/aJvTMLyyN9",
-      "https://x.com/hashtag/Roblox?src=hashtag_click"
+      "https://t.co/aJvTMLyyN9"
     ],
     "used_in_stream": false
   },
@@ -10812,9 +10443,7 @@
     "url": "https://x.com/DX_Nacca/status/1798404836150464535",
     "time": "2024-06-05T17:21:40.000Z",
     "mediaLinks": [
-      "https://t.co/Ij4hiSXBn2",
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/CameraPath?src=hashtag_click"
+      "https://t.co/Ij4hiSXBn2"
     ],
     "used_in_stream": false
   },
@@ -10828,7 +10457,6 @@
     "url": "https://x.com/artwork_wing/status/1798559519431365042",
     "time": "2024-06-06T03:36:19.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/AdobeCommunityExpert?src=hashtag_click",
       "https://t.co/HowTHBUInx"
     ],
     "used_in_stream": false
@@ -10954,9 +10582,7 @@
     ],
     "url": "https://x.com/ryu_iwata/status/1796830232676319470",
     "time": "2024-06-01T09:04:45.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -10969,9 +10595,7 @@
     "url": "https://x.com/happy_modeling/status/1796891714546024914",
     "time": "2024-06-01T13:09:04.000Z",
     "mediaLinks": [
-      "https://t.co/SWOb3qjvMf",
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/blender3d?src=hashtag_click"
+      "https://t.co/SWOb3qjvMf"
     ],
     "used_in_stream": false
   },
@@ -11108,9 +10732,7 @@
     ],
     "url": "https://x.com/mikonsukey/status/1794293830893940951",
     "time": "2024-05-25T09:06:00.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/aftereffects?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -11175,9 +10797,7 @@
     ],
     "url": "https://x.com/natsumesuzu_/status/1792519760720388108",
     "time": "2024-05-20T11:36:29.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%93%E3%82%8C%E3%81%A7%E3%83%95%E3%82%A9%E3%83%AD%E3%83%AF%E3%83%BC%E3%81%95%E3%82%93%E5%A2%97%E3%81%88%E3%81%BE%E3%81%97%E3%81%9F?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -11225,10 +10845,7 @@
     ],
     "url": "https://x.com/ymrun_jp/status/1790573418892673528",
     "time": "2024-05-15T02:42:24.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Ae%E5%A1%BE?src=hashtag_click",
-      "https://x.com/hashtag/aftereffects?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -11243,9 +10860,7 @@
     ],
     "url": "https://x.com/ymrun_jp/status/1790394117157216545",
     "time": "2024-05-14T14:49:56.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/aftereffects?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -11307,10 +10922,7 @@
     ],
     "url": "https://x.com/webdirection/status/1789086555627454798",
     "time": "2024-05-11T00:14:09.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3?src=hashtag_click",
-      "https://x.com/hashtag/%E5%BD%B9%E5%9B%9E%E3%82%8A%E3%83%88%E3%83%BC%E3%82%AF%E3%83%90%E3%83%88%E3%83%AB?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -11417,10 +11029,7 @@
     "url": "https://x.com/unabara40/status/1786386341405786601",
     "time": "2024-05-03T13:24:27.000Z",
     "mediaLinks": [
-      "https://t.co/4S66bukhsZ",
-      "https://x.com/hashtag/booth_pm?src=hashtag_click",
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/VARAYA?src=hashtag_click"
+      "https://t.co/4S66bukhsZ"
     ],
     "used_in_stream": false
   },
@@ -11435,7 +11044,6 @@
     "url": "https://x.com/takachenco/status/1786366131563123152",
     "time": "2024-05-03T12:04:09.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%88%E3%81%84%E3%81%B7%E3%82%89%E3%81%99?src=hashtag_click",
       "https://t.co/33szKghfdN"
     ],
     "used_in_stream": false
@@ -11461,10 +11069,7 @@
     ],
     "url": "https://x.com/endo_cg/status/1786228813560795369",
     "time": "2024-05-03T02:58:30.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -11488,10 +11093,7 @@
     ],
     "url": "https://x.com/sawa_zen/status/1785341584827138352",
     "time": "2024-04-30T16:12:58.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/threejs?src=hashtag_click",
-      "https://x.com/hashtag/MetaQuest3?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -11503,9 +11105,7 @@
     ],
     "url": "https://x.com/KodaKpv1234/status/1783429369765249397",
     "time": "2024-04-25T09:34:30.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E5%86%8D%E6%8E%B2?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -11574,8 +11174,7 @@
     "url": "https://x.com/figsoku/status/1782607673181262050",
     "time": "2024-04-23T03:09:23.000Z",
     "mediaLinks": [
-      "https://t.co/scttuKBbKK",
-      "https://x.com/hashtag/%E3%81%9A%E3%82%93%E3%81%A0%E3%82%82%E3%82%93?src=hashtag_click"
+      "https://t.co/scttuKBbKK"
     ],
     "used_in_stream": false
   },
@@ -11844,7 +11443,7 @@
     "url": "https://x.com/Thebestfigen/status/1769687696396693631",
     "time": "2024-03-18T11:30:00.000Z",
     "mediaLinks": [],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1769897434250203438",
@@ -11879,9 +11478,7 @@
     ],
     "url": "https://x.com/P1PEGraphics/status/1767500504979083388",
     "time": "2024-03-12T10:38:53.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/indie_anime?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -11941,9 +11538,7 @@
     ],
     "url": "https://x.com/oyatsu009/status/1761506567323869612",
     "time": "2024-02-24T21:41:07.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Blender?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -11955,9 +11550,7 @@
     ],
     "url": "https://x.com/marumochivrc/status/1760945934173933613",
     "time": "2024-02-23T08:33:22.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/VRChat_world%E7%B4%B9%E4%BB%8B?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12028,10 +11621,7 @@
     "medias": [],
     "url": "https://x.com/akariRobot/status/1752996193033126099",
     "time": "2024-02-01T10:03:56.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/akarirobot?src=hashtag_click",
-      "https://x.com/hashtag/chatGPT?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12043,10 +11633,7 @@
     "time": "2024-02-02T08:53:32.000Z",
     "mediaLinks": [
       "https://t.co/9qSWIQmtU1",
-      "https://t.co/Mx54kX3q5e",
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/Unity?src=hashtag_click",
-      "https://x.com/hashtag/Booth?src=hashtag_click"
+      "https://t.co/Mx54kX3q5e"
     ],
     "used_in_stream": false
   },
@@ -12149,9 +11736,7 @@
     ],
     "url": "https://x.com/fun_bo/status/1751892439781236922",
     "time": "2024-01-29T08:58:00.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%83%8A%E3%83%81%E3%83%A5%E3%81%98%E3%82%87?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12226,12 +11811,7 @@
     ],
     "url": "https://x.com/FontesRanter/status/1749397271324524569",
     "time": "2024-01-22T11:43:06.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/gamedev?src=hashtag_click",
-      "https://x.com/hashtag/indiedev?src=hashtag_click",
-      "https://x.com/hashtag/indiegame?src=hashtag_click",
-      "https://x.com/hashtag/GodotEngine?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12255,8 +11835,7 @@
     "url": "https://x.com/ymt3d/status/1747316342154486030",
     "time": "2024-01-16T17:54:14.000Z",
     "mediaLinks": [
-      "https://t.co/Ukou7xS0Ps",
-      "https://x.com/hashtag/InstaMAT?src=hashtag_click"
+      "https://t.co/Ukou7xS0Ps"
     ],
     "used_in_stream": false
   },
@@ -12295,10 +11874,7 @@
     ],
     "url": "https://x.com/merao/status/1746878684739629351",
     "time": "2024-01-15T12:55:08.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/blender?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12415,9 +11991,7 @@
     "url": "https://x.com/happy_modeling/status/1739814639222022309",
     "time": "2023-12-27T01:05:08.000Z",
     "mediaLinks": [
-      "https://t.co/1LmntNFHwN",
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/blender3d?src=hashtag_click"
+      "https://t.co/1LmntNFHwN"
     ],
     "used_in_stream": false
   },
@@ -12431,9 +12005,7 @@
     "url": "https://x.com/taziku_co/status/1739427930294628608",
     "time": "2023-12-25T23:28:30.000Z",
     "mediaLinks": [
-      "https://x.com/CSM_ai",
-      "https://x.com/hashtag/3D?src=hashtag_click",
-      "https://x.com/hashtag/%E7%94%9F%E6%88%90AI?src=hashtag_click"
+      "https://x.com/CSM_ai"
     ],
     "used_in_stream": false
   },
@@ -12476,7 +12048,6 @@
     "url": "https://x.com/cumulo_autumn/status/1737835563464687830",
     "time": "2023-12-21T14:01:00.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/StreamDiffusion?src=hashtag_click",
       "https://t.co/4zQKFyPKgj",
       "https://t.co/U1ufvRR9cq"
     ],
@@ -12504,9 +12075,7 @@
     ],
     "url": "https://x.com/Gokuaku__Hidou/status/1737964388236333468",
     "time": "2023-12-21T22:32:54.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Steam%E3%82%A6%E3%82%A3%E3%83%B3%E3%82%BF%E3%83%BC%E3%82%BB%E3%83%BC%E3%83%AB?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12519,7 +12088,6 @@
     "url": "https://x.com/keisawada/status/1738028017350537589",
     "time": "2023-12-22T02:45:44.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/b3d?src=hashtag_click",
       "https://t.co/rqxuI4IxAk"
     ],
     "used_in_stream": false
@@ -12534,11 +12102,7 @@
     ],
     "url": "https://x.com/taziku_co/status/1737960608136630332",
     "time": "2023-12-21T22:17:53.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/StreamDiffusion?src=hashtag_click",
-      "https://x.com/hashtag/%E7%94%9F%E6%88%90AI?src=hashtag_click",
-      "https://x.com/hashtag/%E7%94%BB%E5%83%8F%E7%94%9F%E6%88%90AI?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12660,10 +12224,7 @@
     ],
     "url": "https://x.com/kiyoshi_shin/status/1733310925904736636",
     "time": "2023-12-09T02:21:42.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/LookingGlassPortrait?src=hashtag_click",
-      "https://x.com/hashtag/LookingGlassGo?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12698,9 +12259,7 @@
     "url": "https://x.com/OBt4cPqhYoEGOrc/status/1731137138224427045",
     "time": "2023-12-03T02:23:51.000Z",
     "mediaLinks": [
-      "https://t.co/1OmSO9yoD6",
-      "https://x.com/hashtag/sm43094925?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E5%8B%95%E7%94%BB?src=hashtag_click"
+      "https://t.co/1OmSO9yoD6"
     ],
     "used_in_stream": false
   },
@@ -12742,10 +12301,7 @@
     "time": "2023-12-01T08:03:18.000Z",
     "mediaLinks": [
       "https://t.co/HIhKTawK97",
-      "https://x.com/par1y",
-      "https://x.com/hashtag/IKUSIA?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%90%E3%83%81%E3%83%A3%E3%83%9E%E3%82%AC?src=hashtag_click",
-      "https://x.com/hashtag/VRChat?src=hashtag_click"
+      "https://x.com/par1y"
     ],
     "used_in_stream": false
   },
@@ -12758,11 +12314,7 @@
     ],
     "url": "https://x.com/taziku_co/status/1729494089312415823",
     "time": "2023-11-28T13:34:57.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E7%94%9F%E6%88%90AI?src=hashtag_click",
-      "https://x.com/hashtag/GPT?src=hashtag_click",
-      "https://x.com/hashtag/3DCG?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12788,10 +12340,7 @@
     ],
     "url": "https://x.com/Wanijima_Fuka/status/1729360147242467808",
     "time": "2023-11-28T04:42:43.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Blender?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12821,11 +12370,7 @@
     "medias": [],
     "url": "https://x.com/taziku_co/status/1728611749719654790",
     "time": "2023-11-26T03:08:51.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E7%94%9F%E6%88%90AI?src=hashtag_click",
-      "https://x.com/hashtag/AI%E5%8B%95%E7%94%BB?src=hashtag_click",
-      "https://x.com/hashtag/%E5%8B%95%E7%94%BB?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12835,12 +12380,7 @@
     "medias": [],
     "url": "https://x.com/SharuuDev/status/1728088589622243797",
     "time": "2023-11-24T16:30:00.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/indiedev?src=hashtag_click",
-      "https://x.com/hashtag/gamedev?src=hashtag_click",
-      "https://x.com/hashtag/indiegame?src=hashtag_click",
-      "https://x.com/hashtag/madewithunity?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -12936,9 +12476,7 @@
     "url": "https://x.com/sakamotokai2020/status/1726246837139775502",
     "time": "2023-11-19T14:31:32.000Z",
     "mediaLinks": [
-      "https://t.co/RzdoM2EZUZ",
-      "https://x.com/hashtag/VRChat_world%E7%B4%B9%E4%BB%8B?src=hashtag_click",
-      "https://x.com/hashtag/VRChat?src=hashtag_click"
+      "https://t.co/RzdoM2EZUZ"
     ],
     "used_in_stream": false
   },
@@ -13001,11 +12539,7 @@
     ],
     "url": "https://x.com/fox_yata9/status/1725076248505024868",
     "time": "2023-11-16T09:00:02.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/STEAM?src=hashtag_click",
-      "https://x.com/hashtag/MetaQuest?src=hashtag_click",
-      "https://x.com/hashtag/PSVR2?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -13029,9 +12563,7 @@
     "time": "2023-11-16T08:07:36.000Z",
     "mediaLinks": [
       "https://t.co/D7rDWJi1Jz",
-      "https://t.co/Sq5rAfcJNO",
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/cluster?src=hashtag_click"
+      "https://t.co/Sq5rAfcJNO"
     ],
     "used_in_stream": false
   },
@@ -13143,10 +12675,7 @@
     ],
     "url": "https://x.com/wakufactory/status/1720979845088469050",
     "time": "2023-11-05T01:42:23.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Quest3?src=hashtag_click",
-      "https://x.com/hashtag/WebXR?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -13173,10 +12702,7 @@
     ],
     "url": "https://x.com/Chanta_in_inari/status/1719904899373424727",
     "time": "2023-11-02T02:30:56.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E6%BC%AB%E7%94%BB%E3%81%8C%E8%AA%AD%E3%82%81%E3%82%8B%E3%83%8F%E3%83%83%E3%82%B7%E3%83%A5%E3%82%BF%E3%82%B0?src=hashtag_click",
-      "https://x.com/hashtag/PR?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -13214,8 +12740,7 @@
     "time": "2023-11-01T17:46:21.000Z",
     "mediaLinks": [
       "https://x.com/geekdrums",
-      "https://t.co/VDpMvgAU2B",
-      "https://x.com/hashtag/note?src=hashtag_click"
+      "https://t.co/VDpMvgAU2B"
     ],
     "used_in_stream": false
   },
@@ -13229,9 +12754,7 @@
     "url": "https://x.com/happy_modeling/status/1719003295015133562",
     "time": "2023-10-30T14:48:17.000Z",
     "mediaLinks": [
-      "https://t.co/JiTlaQCpPv",
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/blender3d?src=hashtag_click"
+      "https://t.co/JiTlaQCpPv"
     ],
     "used_in_stream": false
   },
@@ -13244,9 +12767,7 @@
     ],
     "url": "https://x.com/hypermocha/status/1718626472246784274",
     "time": "2023-10-29T13:50:56.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/aiart?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -13260,16 +12781,6 @@
     "time": "2023-10-26T04:58:57.000Z",
     "mediaLinks": [
       "https://t.co/R0LceYO0wW",
-      "https://x.com/hashtag/blender?src=hashtag_click",
-      "https://x.com/hashtag/blender3d?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/retopology?src=hashtag_click",
-      "https://x.com/hashtag/3dart?src=hashtag_click",
-      "https://x.com/hashtag/3d?src=hashtag_click",
-      "https://x.com/hashtag/blendercommunity?src=hashtag_click",
-      "https://x.com/hashtag/gamedev?src=hashtag_click",
-      "https://x.com/hashtag/animation?src=hashtag_click",
-      "https://x.com/hashtag/vfx?src=hashtag_click",
       "https://x.com/AFX_LAB"
     ],
     "used_in_stream": false
@@ -13418,9 +12929,7 @@
     "url": "https://x.com/vtuberkaibou/status/1709146282059534783",
     "time": "2023-10-03T10:00:02.000Z",
     "mediaLinks": [
-      "https://t.co/PJq8gDX8cJ",
-      "https://x.com/hashtag/blender3d?src=hashtag_click",
-      "https://x.com/hashtag/Blender%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB?src=hashtag_click"
+      "https://t.co/PJq8gDX8cJ"
     ],
     "used_in_stream": false
   },
@@ -13432,9 +12941,7 @@
     "url": "https://x.com/bk_sakurai/status/1707415995068076032",
     "time": "2023-09-28T15:24:30.000Z",
     "mediaLinks": [
-      "https://t.co/YeJWHPF9G1",
-      "https://x.com/hashtag/comfyui?src=hashtag_click",
-      "https://x.com/hashtag/animatediff?src=hashtag_click"
+      "https://t.co/YeJWHPF9G1"
     ],
     "used_in_stream": false
   },
@@ -13457,9 +12964,7 @@
     "medias": [],
     "url": "https://x.com/mikonsukey/status/1706956341523140654",
     "time": "2023-09-27T08:58:00.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/aftereffects?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -13471,10 +12976,7 @@
     ],
     "url": "https://x.com/Third_Penguin/status/1706871367663321471",
     "time": "2023-09-27T03:20:20.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/VRChat?src=hashtag_click",
-      "https://x.com/hashtag/b3d?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -13556,8 +13058,7 @@
     "url": "https://x.com/prj_beatrice/status/1700696685884969096",
     "time": "2023-09-10T02:24:21.000Z",
     "mediaLinks": [
-      "https://t.co/dtkPZO0hqa",
-      "https://x.com/hashtag/%E3%81%A4%E3%81%8F%E3%82%88%E3%81%BF%E3%81%A1%E3%82%83%E3%82%93?src=hashtag_click"
+      "https://t.co/dtkPZO0hqa"
     ],
     "used_in_stream": false
   },
@@ -13584,12 +13085,7 @@
     "url": "https://x.com/ymt3d/status/1698905772082843744",
     "time": "2023-09-05T03:47:54.000Z",
     "mediaLinks": [
-      "https://t.co/M2AXu0GDas",
-      "https://x.com/hashtag/3dnchu?src=hashtag_click",
-      "https://x.com/hashtag/GaussianSplatting?src=hashtag_click",
-      "https://x.com/hashtag/radiancefield?src=hashtag_click",
-      "https://x.com/hashtag/AI?src=hashtag_click",
-      "https://x.com/hashtag/ML?src=hashtag_click"
+      "https://t.co/M2AXu0GDas"
     ],
     "used_in_stream": false
   },
@@ -13625,8 +13121,7 @@
     "url": "https://x.com/denfaminicogame/status/1691422021778132993",
     "time": "2023-08-15T12:10:09.000Z",
     "mediaLinks": [
-      "https://t.co/auWGCVQcS1",
-      "https://x.com/hashtag/RTAinJapan?src=hashtag_click"
+      "https://t.co/auWGCVQcS1"
     ],
     "used_in_stream": false
   },
@@ -13664,9 +13159,7 @@
     ],
     "url": "https://x.com/KubrickBlogjp/status/1689064400785956864",
     "time": "2023-08-09T00:01:49.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%93%E3%81%AE%E3%82%B7%E3%83%BC%E3%83%B3%E3%81%AA%E3%81%8B%E3%81%A3%E3%81%9F%E3%82%88%E3%81%AD%E6%98%A0%E7%94%BB?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -13721,10 +13214,7 @@
     ],
     "url": "https://x.com/morisuku_kazi/status/1686678227673309185",
     "time": "2023-08-02T10:00:01.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E5%8B%95%E7%94%BB%E7%B7%A8%E9%9B%86?src=hashtag_click",
-      "https://x.com/hashtag/%E5%8B%95%E7%94%BB%E7%B7%A8%E9%9B%86%E8%80%85?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -13736,9 +13226,7 @@
     ],
     "url": "https://x.com/SetohimaVrc/status/1686287510169964544",
     "time": "2023-08-01T08:07:26.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/BreastPhysicsPlus?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -13763,10 +13251,7 @@
     ],
     "url": "https://x.com/commonstyle/status/1685315769306058752",
     "time": "2023-07-29T15:46:05.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/Gen2?src=hashtag_click",
-      "https://x.com/hashtag/imagetovideo?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -13849,7 +13334,7 @@
   },
   {
     "id": "1675724232716845060",
-    "text": "ふとダークモードで Shadow 見かけないなと思って、どういう風に表現しているのか疑問に思って調べてみたら、「ダークモードでは影ではなく表面の色を調整することで高さを表現する」と Material Design のガイドラインに書かれていてこの図が分かりやすかった。面白い。\n\nhttps://m2.material.io/design/color/dark-theme.html#properties…",
+    "text": "ふとダークモードで Shadow 見かけないなと思って、どういう風に表現しているのか疑問に思って調べてみたら、「ダークモードでは影ではなく表面の色を調整することで高さを表現する」と Material Design のガイドラインに書かれていてこの図が分かりやすかった。面白い。\n\n",
     "author": "Tatsuya Ikeda",
     "medias": [
       "https://pbs.twimg.com/ext_tw_video_thumb/1675721448277803010/pu/img/vFcLkywazxyaDeiL.jpg"
@@ -13859,7 +13344,7 @@
     "mediaLinks": [
       "https://t.co/c8LVvhRYv1"
     ],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1675652321592901632",
@@ -14295,13 +13780,7 @@
     "url": "https://x.com/ScreenPocket/status/1657370771839385600",
     "time": "2023-05-13T13:02:39.000Z",
     "mediaLinks": [
-      "https://t.co/tnKqV7qOiw",
-      "https://x.com/hashtag/%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%82%B2%E5%88%B6%E3%83%87%E3%83%BC?src=hashtag_click",
-      "https://x.com/hashtag/unity3d?src=hashtag_click",
-      "https://x.com/hashtag/indiegame?src=hashtag_click",
-      "https://x.com/hashtag/gamedev?src=hashtag_click",
-      "https://x.com/hashtag/IndieGameDev?src=hashtag_click",
-      "https://x.com/hashtag/indiedev?src=hashtag_click"
+      "https://t.co/tnKqV7qOiw"
     ],
     "used_in_stream": false
   },
@@ -14387,7 +13866,6 @@
     "url": "https://x.com/my_syumi_game/status/1657776570952732672",
     "time": "2023-05-14T15:55:09.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0?src=hashtag_click",
       "https://t.co/qrFAjUNHhf"
     ],
     "used_in_stream": false
@@ -14463,8 +13941,6 @@
     "time": "2023-05-11T09:06:09.000Z",
     "mediaLinks": [
       "https://t.co/j5x1oduUK1",
-      "https://x.com/hashtag/deckgl?src=hashtag_click",
-      "https://x.com/hashtag/google?src=hashtag_click",
       "https://t.co/6WWgWTkd2y"
     ],
     "used_in_stream": false
@@ -14539,8 +14015,6 @@
     "url": "https://x.com/nico_nico_news/status/1516604061860040707",
     "time": "2022-04-20T02:26:00.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/%E3%83%9E%E3%82%AF%E3%83%89%E3%83%8A%E3%83%AB%E3%83%89?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%B7%E3%83%B3%E3%83%BB%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%83%9E%E3%83%B3?src=hashtag_click",
       "https://t.co/9HjfQiJ1tJ"
     ],
     "used_in_stream": false
@@ -14554,10 +14028,7 @@
     ],
     "url": "https://x.com/trainchicken/status/1515646456085983238",
     "time": "2022-04-17T11:00:49.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%82%A6%E3%83%9E%E5%A8%98?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%B5%E3%82%AF%E3%83%A9%E3%83%90%E3%82%AF%E3%82%B7%E3%83%B3%E3%82%AA%E3%83%BC?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -14583,10 +14054,7 @@
     ],
     "url": "https://x.com/clockmaker/status/1452990173877243904",
     "time": "2021-10-26T13:27:07.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/AdobeMAX?src=hashtag_click",
-      "https://x.com/hashtag/photoshop?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -14599,7 +14067,6 @@
     "url": "https://x.com/denfaminicogame/status/1309319734739963905",
     "time": "2020-09-25T02:32:05.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/TENET%E3%83%86%E3%83%8D%E3%83%83%E3%83%88?src=hashtag_click",
       "https://t.co/DXlbXrn97O"
     ],
     "used_in_stream": false
@@ -14690,9 +14157,7 @@
     "url": "https://x.com/magiclean_jp/status/1224603694798376965",
     "time": "2020-02-04T08:00:47.000Z",
     "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%B5%E3%82%8D%E6%B0%B4%E3%83%AF%E3%83%B3%E3%83%80%E3%83%BC?src=hashtag_click",
-      "https://x.com/kuro_40",
-      "https://x.com/hashtag/%E3%81%B5%E3%82%8D%E6%B0%B4%E3%83%AF%E3%83%B3%E3%83%80%E3%83%BC?src=hashtag_click"
+      "https://x.com/kuro_40"
     ],
     "used_in_stream": false
   },
@@ -14727,12 +14192,7 @@
     ],
     "url": "https://x.com/htmihtu/status/1224308336843116544",
     "time": "2020-02-03T12:27:08.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/b3d?src=hashtag_click",
-      "https://x.com/hashtag/3dcg?src=hashtag_click",
-      "https://x.com/hashtag/Blender3D?src=hashtag_click",
-      "https://x.com/hashtag/blender?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -14757,13 +14217,7 @@
     ],
     "url": "https://x.com/ExcavatorZ/status/1224017284034777088",
     "time": "2020-02-02T17:10:36.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/WF2020w?src=hashtag_click",
-      "https://x.com/hashtag/WF2020%E5%86%AC?src=hashtag_click",
-      "https://x.com/hashtag/wf2020w?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%AF%E3%83%B3%E3%83%95%E3%82%A7%E3%82%B92020w?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%AF%E3%83%B3%E3%83%95%E3%82%A7%E3%82%B92020%E5%86%AC?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -15042,9 +14496,7 @@
     "url": "https://x.com/webdesignfacts/status/1065484340232998912",
     "time": "2018-11-22T05:57:17.000Z",
     "mediaLinks": [
-      "https://t.co/uq0nGqq3zx",
-      "https://x.com/hashtag/CSS%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3?src=hashtag_click"
+      "https://t.co/uq0nGqq3zx"
     ],
     "used_in_stream": false
   },
@@ -15056,11 +14508,7 @@
     "url": "https://x.com/webdesignfacts/status/1065454166401634304",
     "time": "2018-11-22T03:57:23.000Z",
     "mediaLinks": [
-      "https://t.co/jJilyraJ3e",
-      "https://x.com/hashtag/%E3%83%95%E3%82%A9%E3%83%88%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97?src=hashtag_click",
-      "https://x.com/hashtag/%E7%84%A1%E6%96%99%E7%B4%A0%E6%9D%90?src=hashtag_click",
-      "https://x.com/hashtag/%E7%85%99?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%96%E3%83%A9%E3%82%B7?src=hashtag_click"
+      "https://t.co/jJilyraJ3e"
     ],
     "used_in_stream": false
   },
@@ -15122,10 +14570,7 @@
     ],
     "url": "https://x.com/tabilabo_news/status/1021009612605140992",
     "time": "2018-07-22T12:30:35.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/TABILABO_SUMMARY?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%AA%E3%83%95%E3%83%AD%E3%83%BC%E3%83%89%E3%83%90%E3%82%A4%E3%82%AF?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -15159,9 +14604,7 @@
     ],
     "url": "https://x.com/tesakuro_sub/status/1019747143668547584",
     "time": "2018-07-19T00:53:59.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E4%B8%80%E8%88%AC%E4%BA%BA%E3%81%AE%E6%96%B9%E3%81%8C%E6%99%82%E3%80%85%E8%AA%A4%E8%A7%A3%E3%81%97%E3%81%A6%E3%81%8A%E3%82%89%E3%82%8C%E3%82%8B%E3%81%93%E3%81%A8?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -15209,9 +14652,7 @@
     ],
     "url": "https://x.com/GoodByeDays0730/status/1018116251355250689",
     "time": "2018-07-14T12:53:24.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/PS4share?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -15223,10 +14664,7 @@
     ],
     "url": "https://x.com/kishichimi/status/1018308372594954240",
     "time": "2018-07-15T01:36:49.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%82%B5%E3%83%B3%E3%83%87%E3%83%BC%E3%82%B8%E3%83%A3%E3%83%9D%E3%83%B3?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%AD%E3%82%BA%E3%83%8A%E3%82%A2%E3%82%A4?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -15284,11 +14722,7 @@
     ],
     "url": "https://x.com/tabilabo_news/status/1017748213229654022",
     "time": "2018-07-13T12:30:57.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88?src=hashtag_click",
-      "https://x.com/hashtag/%E3%82%A4%E3%83%B3%E3%83%86%E3%83%AA%E3%82%A2?src=hashtag_click",
-      "https://x.com/hashtag/TABILABO_SUMMARY?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -15339,9 +14773,7 @@
     ],
     "url": "https://x.com/signsshu/status/1013939491843633153",
     "time": "2018-07-03T00:16:27.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E4%BB%8A%E6%97%A5%E3%81%AE%E4%B8%80%E6%96%87%E5%AD%97?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -15397,11 +14829,7 @@
     "medias": [],
     "url": "https://x.com/lox_ran/status/1011211810207223809",
     "time": "2018-06-25T11:37:37.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/NintendoLabo?src=hashtag_click",
-      "https://x.com/hashtag/NintendoSwitch?src=hashtag_click",
-      "https://x.com/hashtag/%E3%83%A9%E3%83%9C%E4%BD%9C%E5%93%81?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -15411,11 +14839,7 @@
     "medias": [],
     "url": "https://x.com/dentsuma/status/1010100079166812160",
     "time": "2018-06-22T10:00:00.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%82%E3%83%BC%E3%82%82%E3%81%86%E5%8F%AF%E6%84%9B%E3%81%84%E3%81%AA%E3%81%81?src=hashtag_click",
-      "https://x.com/hashtag/%E3%81%82%E3%82%82%E3%81%8B%E3%82%8F?src=hashtag_click",
-      "https://x.com/hashtag/%E9%9B%BB%E3%83%84%E3%83%9E?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -15476,9 +14900,7 @@
     ],
     "url": "https://x.com/beeple/status/1008172253350154242",
     "time": "2018-06-17T02:19:30.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/everydaysinmotion?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -15542,10 +14964,7 @@
     ],
     "url": "https://x.com/tabilabo_news/status/1004309591927218177",
     "time": "2018-06-06T10:30:40.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E4%BF%AE%E7%90%86?src=hashtag_click",
-      "https://x.com/hashtag/%E6%96%87%E6%88%BF%E5%85%B7?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
@@ -15560,10 +14979,7 @@
     ],
     "url": "https://x.com/hajime_meka/status/1002966597298937856",
     "time": "2018-06-02T17:34:05.000Z",
-    "mediaLinks": [
-      "https://x.com/hashtag/%E3%81%84%E3%81%A1%E3%81%94%E3%81%AE%E3%81%82%E3%81%A8%E3%82%8A%E3%81%88?src=hashtag_click",
-      "https://x.com/hashtag/%E3%81%AB%E3%81%98%E3%81%95%E3%82%93%E3%81%98CREATORS?src=hashtag_click"
-    ],
+    "mediaLinks": [],
     "used_in_stream": false
   },
   {
