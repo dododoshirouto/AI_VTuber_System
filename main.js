@@ -171,39 +171,39 @@ function 配信の流れ_割り込み生成() {
 
 async function main() {
     // 今日紹介するブックマーク
-    // if (bookmarks.length == 0) bookmarks = get_use_bookmarks(Math.ceil(Math.random() * 3 + 2));
-    // if (配信の流れ.length == 0) 配信の流れ = [
-    //     { topic: "配信開始" },
-    //     ...Array(Math.floor(Math.random() * 2)).fill({ topic: "雑談" }),
-    //     { "gotoNextTopic": true },
-    //     ...bookmarks.map((b) => {
-    //         let topic_prompts = stream_topics_prompts.find(t => t.name === "ツイート読み続き").prompts.sort(() => Math.random() - 0.5);
-    //         return [
-    //             { topic: "ツイート読み始め", bookmark: b },
-    //             ...Array(Math.ceil(Math.random() * 2)).fill(0).map((_, ii) => { return { topic: "ツイート読み続き", bookmark: b, prompt: topic_prompts[ii] } }).flat(),
-    //             ...Array(Math.floor(Math.random() * 3)).fill({ topic: "雑談" }),
-    //             { "gotoNextTopic": true }
-    //         ]
-    //     }).flat(),
-    //     { topic: "配信終了" },
-    // ];
-
-    if (bookmarks.length == 0) bookmarks = get_use_bookmarks(1);
-    if (配信の流れ.length == 0) 配信の流れ = [ // debug
+    if (bookmarks.length == 0) bookmarks = get_use_bookmarks(Math.ceil(Math.random() * 3 + 2));
+    if (配信の流れ.length == 0) 配信の流れ = [
         { topic: "配信開始" },
-        ...Array(Math.floor(0)).fill({ topic: "雑談" }),
+        ...Array(Math.floor(Math.random() * 2)).fill({ topic: "雑談" }),
         { "gotoNextTopic": true },
         ...bookmarks.map((b) => {
             let topic_prompts = stream_topics_prompts.find(t => t.name === "ツイート読み続き").prompts.sort(() => Math.random() - 0.5);
             return [
                 { topic: "ツイート読み始め", bookmark: b },
-                ...Array(Math.ceil(1)).fill(0).map((_, ii) => { return { topic: "ツイート読み続き", bookmark: b, prompt: topic_prompts[ii] } }).flat(),
-                ...Array(Math.floor(0)).fill({ topic: "雑談" }),
+                ...Array(Math.ceil(Math.random() * 2)).fill(0).map((_, ii) => { return { topic: "ツイート読み続き", bookmark: b, prompt: topic_prompts[ii] } }).flat(),
+                ...Array(Math.floor(Math.random() * 3)).fill({ topic: "雑談" }),
                 { "gotoNextTopic": true }
             ]
         }).flat(),
         { topic: "配信終了" },
     ];
+
+    // if (bookmarks.length == 0) bookmarks = get_use_bookmarks(1);
+    // if (配信の流れ.length == 0) 配信の流れ = [ // debug
+    //     { topic: "配信開始" },
+    //     ...Array(Math.floor(0)).fill({ topic: "雑談" }),
+    //     { "gotoNextTopic": true },
+    //     ...bookmarks.map((b) => {
+    //         let topic_prompts = stream_topics_prompts.find(t => t.name === "ツイート読み続き").prompts.sort(() => Math.random() - 0.5);
+    //         return [
+    //             { topic: "ツイート読み始め", bookmark: b },
+    //             ...Array(Math.ceil(1)).fill(0).map((_, ii) => { return { topic: "ツイート読み続き", bookmark: b, prompt: topic_prompts[ii] } }).flat(),
+    //             ...Array(Math.floor(0)).fill({ topic: "雑談" }),
+    //             { "gotoNextTopic": true }
+    //         ]
+    //     }).flat(),
+    //     { topic: "配信終了" },
+    // ];
 
     console.log("配信の流れ", 配信の流れ);
 
