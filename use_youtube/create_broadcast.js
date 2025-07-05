@@ -37,16 +37,16 @@ class CreateYouTubeLiveBroadcast {
     }
 
     async createBroadcast({ title = "AI VTuber System", description = "Auto Created by AI VTuber System", scheduledStartTime = new Date(Date.now() + 5 * 60 * 1000).toISOString(), privacyStatus = YouTubeLiveBroadcastPrivacyStatus.PUBLIC } = {}) {
-        if (!this.streamKeyId) {
-            this.streamKeyId = await this.createStreamKey();
+        if (!this.streamKey) {
+            this.streamKey = await this.createStreamKey();
         }
 
-        if (!this.streamKeyId) {
+        if (!this.streamKey) {
             // console.log("ストリームキー作成失敗");
             return;
         }
-
-        console.log(`ストリームキー: ${this.streamKeyId.cdn.ingestionInfo.streamName}`);
+        if (require.main === module)
+            console.log(`ストリームキー: ${this.streamKey.cdn.ingestionInfo.streamName}`);
 
         try {
             // ライブブロードキャスト（配信枠）を作成
@@ -62,7 +62,7 @@ class CreateYouTubeLiveBroadcast {
                         privacyStatus: privacyStatus
                     },
                     contentDetails: {
-                        boundStreamId: this.streamKeyId.id,
+                        boundStreamId: this.streamKey.id,
                         monitorStream: {
                             enableMonitorStream: false
                         },
@@ -76,14 +76,14 @@ class CreateYouTubeLiveBroadcast {
             this.broadcastId = broadcastResponse.data.id;
 
             // ブロードキャストとストリームをバインド
-            // await this.youtube.liveBroadcasts.bind({
-            //     part: ['id', 'snippet'],
-            //     id: broadcastId,
-            //     streamId: this.streamKeyId
-            // });
+            await this.youtube.liveBroadcasts.bind({
+                part: ['id', 'snippet'],
+                id: this.broadcastId,
+                streamId: this.streamKey.id
+            });
 
             console.log('✅ 配信枠の作成完了！');
-            console.log('配信URL: https://www.youtube.com/watch?v=' + broadcastId);
+            console.log('配信URL: https://www.youtube.com/watch?v=' + this.broadcastId);
         } catch (err) {
             console.error(err);
             console.log("配信枠作成失敗");
@@ -120,9 +120,10 @@ class CreateYouTubeLiveBroadcast {
         console.log("配信開始を待機中…");
         while (true) {
             const status = await this.getBroadcastStatus();
-            if (status === YouTubeLiveBroadcastLifeCycleStatus.live) return;
+            if (status === YouTubeLiveBroadcastLifeCycleStatus.live) break;
             await new Promise(resolve => setTimeout(resolve, 1000));
         }
+        console.log("配信開始");
     }
 
     async createStreamKey() {

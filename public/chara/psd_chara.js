@@ -199,10 +199,6 @@ function get_moras_timmings_aivis() {
     return moras_timmings;
 }
 
-async function load_audio_query_json() {
-    await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => audio_query = json);
-}
-
 
 
 async function loadFaceJson() {

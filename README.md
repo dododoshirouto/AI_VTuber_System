@@ -67,6 +67,7 @@ AI_VTuber_System/
 │   ├── bep-eng.dic.txt       # 英語→カナ変換辞書
 │   ├── models/               # VOICEVOXモデルデータ
 │   └── venv/                 # Python仮想環境
+├── aivis_talker/             # VOICEVOX音声生成のaivis版（AivisSpeechが別途必要）
 ├── public/                   # OBS表示素材（画像・wav・HTMLなど）
 │   ├── index.html            # OBSブラウザソース
 │   └── main.js               # 

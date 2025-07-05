@@ -28,15 +28,10 @@ async function authorize() {
     if (fs.existsSync(TOKEN_PATH)) {
         const token = JSON.parse(fs.readFileSync(TOKEN_PATH));
 
-        if (token.expiry_date < Date.now()) {
-            const { tokens } = await oAuth2Client.refreshToken(token.refresh_token);
-            fs.writeFileSync(TOKEN_PATH, JSON.stringify(tokens));
-            oAuth2Client.setCredentials(tokens);
+        if (token.expiry_date > Date.now()) {
+            oAuth2Client.setCredentials(token);
             return oAuth2Client;
         }
-
-        oAuth2Client.setCredentials(token);
-        return oAuth2Client;
     }
 
     const open = (await import('open')).default;
