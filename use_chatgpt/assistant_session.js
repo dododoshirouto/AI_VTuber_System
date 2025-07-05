@@ -66,6 +66,7 @@ class AssistantSession {
             for (let imageUrl of imageUrls) {
                 imageUrl = imageUrl.replace(/(\?|&)name=[^&]+(&|$)/, "$1name=small$2");
                 let filepath = await downloadImage(imageUrl);
+                if (filepath == null) continue;
                 // console.log(filepath);
                 upload_properties.push({
                     file: fs.createReadStream(filepath),
@@ -223,6 +224,7 @@ class AssistantSession {
 async function downloadImage(url, folder = 'tmp') {
     let urlObj = new URL(url);
     let saveFilename = path.basename(urlObj.pathname); // ex: 'ABC123.jpg'
+    if (!/\.(mp4|webm)$/i.test(saveFilename)) return null;
     if (!/\.(jpg|jpeg|png|gif|webp)$/i.test(saveFilename)) {
         // fallback: 拡張子が無ければ `.jpg` を強制的に足す（最悪対応）
         const ext = urlObj.searchParams.get('format') || 'jpg';
