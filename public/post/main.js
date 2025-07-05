@@ -24,7 +24,7 @@ async function json_update_check() {
         try {
             let json = await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => json);
             if (json.text != last_text) {
-                if (bookmark?.url != json.bookmark?.url) container_elem.classList.remove('display');
+                if (bookmark?.url != json.bookmark?.url || last_text == "") container_elem.classList.remove('display');
                 last_text = json.text;
                 try {
                     await load_audio_query_json();

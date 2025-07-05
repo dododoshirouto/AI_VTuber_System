@@ -15,13 +15,15 @@ audio_elem.onended = async () => {
     await exit_streaming_if_final_wav_ended();
 }
 
-async function exit_streaming_if_final_wav_ended() {
-    if (!audio_is_playing && audio_query.isFinal && window.obsstudio) {
+async function exit_streaming_if_final_wav_ended(force = false) {
+    if (!audio_is_playing && (audio_query.isFinal || force) && window.obsstudio) {
         await new Promise(resolve => setTimeout(resolve, 5000));
         window.obsstudio.stopRecording();
         window.obsstudio.stopStreaming();
     }
 }
+
+var timeout_最後の台詞から数分立ったら配信を終了する = null;
 
 var can_audio_play = false;
 var audio_is_playing = false;
@@ -86,12 +88,29 @@ update();
 
 
 async function play_audio() {
-    audio_elem.src = audio_file + '?' + Date.now();
     audio_elem.currentTime = 0;
     await load_audio_query_json();
+
+    if (audio_query.streamStart) {
+        console.log('streamStart');
+        window.obsstudio?.startStreaming();
+    }
+    if (audio_query.recordStart) {
+        console.log('recordStart');
+        window.obsstudio?.startRecording();
+    }
+    if (audio_query.streamStart || audio_query.recordStart) {
+        return;
+    }
+
+    audio_elem.src = audio_file + '?' + Date.now();
     audio_elem.play();
     audio_is_playing = true;
     document.body.classList.add('audio_playing');
+}
+
+async function load_audio_query_json() {
+    audio_query = await fetch(audio_query_json + '?' + Date.now()).then(res => res.json());
 }
 
 
@@ -101,8 +120,14 @@ async function audio_update_check() {
     while (true) {
         await new Promise(r => setTimeout(r, 500));
         let json = await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => json);
-        if (json.text != last_text && can_audio_play && !audio_is_playing) {
-            last_text = json.text;
+        if ((json.text || json.hash) != last_text && can_audio_play && !audio_is_playing) {
+            last_text = json.text || json.hash;
+
+            if (timeout_最後の台詞から数分立ったら配信を終了する) clearTimeout(timeout_最後の台詞から数分立ったら配信を終了する);
+            timeout_最後の台詞から数分立ったら配信を終了する = setTimeout(async () => {
+                await exit_streaming_if_final_wav_ended(true);
+            }, 10 * 60 * 1000);
+
             try {
                 play_audio();
             } catch (e) {

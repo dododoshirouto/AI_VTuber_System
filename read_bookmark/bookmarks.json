@@ -8000,7 +8000,7 @@
     "mediaLinks": [
       "https://x.com/o_ob"
     ],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1843170658576187706",
@@ -8010,7 +8010,7 @@
     "url": "https://x.com/itmedia_news/status/1843170658576187706",
     "time": "2024-10-07T06:05:04.000Z",
     "mediaLinks": [],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1842853836333232193",
@@ -9246,7 +9246,7 @@
   },
   {
     "id": "1816639306724945939",
-    "text": "国旗を絵で検索できるWebアプリ、左右反転で描いてしまっても認識するようになりました\n知らない国旗を見かけたら使ってください\n\nhttps://mame.github.io/world-flag-search/ja/…",
+    "text": "国旗を絵で検索できるWebアプリ、左右反転で描いてしまっても認識するようになりました\n知らない国旗を見かけたら使ってください\n\n",
     "author": "Yusuke Endoh",
     "medias": [
       "https://pbs.twimg.com/ext_tw_video_thumb/1816638241514336256/pu/img/NwdRpOpRPbVY9PLK.jpg"
@@ -9256,7 +9256,7 @@
     "mediaLinks": [
       "https://t.co/fW4UszyBHu"
     ],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1815971621993340962",
@@ -10721,7 +10721,7 @@
     "url": "https://x.com/MoguLiveJP/status/1794914019075322067",
     "time": "2024-05-27T02:10:24.000Z",
     "mediaLinks": [],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1794293830893940951",
@@ -14520,7 +14520,7 @@
     "url": "https://x.com/WSakebi/status/1026968151257272320",
     "time": "2018-08-07T23:07:42.000Z",
     "mediaLinks": [],
-    "used_in_stream": false
+    "used_in_stream": true
   },
   {
     "id": "1026113016117354497",

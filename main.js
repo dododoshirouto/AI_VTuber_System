@@ -4,7 +4,7 @@ const path = require('path');
 const wav = require('node-wav');
 const { spawn } = require('child_process');
 const { replay, nextTopic, exit: exitChatGPT } = require('./use_chatgpt');
-const { GetYouTubeLiveComments } = require('./use_youtube');
+const { authorize, GetYouTubeLiveComments, CreateYouTubeLiveBroadcast, YouTubePrivacyStatus, YouTubeLiveBroadcastLifeCycleStatus } = require('./use_youtube');
 
 const VV_SERVER_HOST = "http://127.0.0.1:50021/";
 
@@ -33,40 +33,93 @@ var summary_history = [];
 
 let end_flag = false;
 
+// let bookmark = null;
+
+let broadcast_details = {
+    title: 'AI VTuber 四国めたんの Xでブクマしたポスト紹介配信',
+    description: `AIVTuber 四国めたんが、Xでブクマしたポストを紹介する配信です。
+
+Node.js - 配信の流れの管理 / ChatGPTでセリフ生成
+Python - VOICEVOXで音声生成
+HTML/javascript - 配信画面の制御
+
+配信枠作成 - Node.js/youtubeapi
+配信開始/終了 - javascript/obs-browser-api
+セリフ生成 - ChatGPT
+音声生成 - Python/VOICEVOX_core
+コメント取得 - Node.js
+コメントへのリアクション - ChatGPT
+立ち絵の制御 - javascript/CSS
+Xのポストの表示 - javascript/CSS
+
+References:
+- PSDTools
+- psd.js
+- VOICEVOX 四国めたん
+- 坂本アヒル 四国めたん立ち絵素材2.1
+
+BGM:
+しゃろう - https://www.youtube.com/channel/UCfjca6Z_wpyinTqHdIYJ49Q
+ふぁいの音楽置き場 - https://www.youtube.com/@fai_musics
+のすたるじっくBGM庫 - https://www.youtube.com/@nostalgic_BGM`,
+    scheduledStartTime: new Date(Date.now() + 5 * 60 * 1000).toISOString(),
+    privacyStatus: YouTubePrivacyStatus.PUBLIC
+};
+
 if (require.main === module) {
-
     (async _ => {
-        // 生成ループ
+
         await launchPythonServer();
-        get_bookmarks_json();
-        await main();
-    })();
 
-    (async _ => {
-        // 再生ループ
-        while (true) {
-            await new Promise(r => setTimeout(r, 1000 / 10));
-            if (voice_queue_list.length > 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
-                save_wav_and_json();
-            }
-            if (voice_queue_list.length == 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
-                last_wav_duration = 0;
-            }
-            if (end_flag && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
-                // process.exit();
-                console.log("再生終了");
-                break;
-            }
-        }
-    })();
+        // YouTubeLive ライブ配信作成
+        const auth = await authorize();
+        const cylb = new CreateYouTubeLiveBroadcast(auth);
+        await cylb.createBroadcast(broadcast_details);
+        await new Promise(r => setTimeout(r, 1000 * 5));
+        console.log("配信枠作成完了");
 
-    (async () => {
-        // コメント取得ループ
-        const gylc = new GetYouTubeLiveComments();
-        gylc.setCallback(push_comments);
-        await gylc.start();
-    })();
+        // save_wav_and_json({ query_json: { streamStart: true } });
+        send_stream_start();
+        console.log("配信開始命令送信");
 
+        await Promise.all([
+            (async _ => {
+                console.log("生成ループ開始");
+                // 生成ループ
+                get_bookmarks_json();
+                await 配信の流れ_生成();
+            })(),
+
+            (async _ => {
+                console.log("再生ループ開始");
+                await cylb.waitForBroadcastStart();
+                await new Promise(r => setTimeout(r, 1000 * 5));
+                // 再生ループ
+                while (true) {
+                    await new Promise(r => setTimeout(r, 1000 / 10));
+                    if (voice_queue_list.length > 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
+                        save_wav_and_json();
+                    }
+                    if (voice_queue_list.length == 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
+                        last_wav_duration = 0;
+                    }
+                    if (end_flag && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
+                        // process.exit();
+                        console.log("再生終了");
+                        break;
+                    }
+                }
+            })(),
+
+            (async () => {
+                console.log("コメント取得ループ開始");
+                // コメント取得ループ
+                const gylc = new GetYouTubeLiveComments({ auth });
+                gylc.setCallback(push_comments);
+                await gylc.start();
+            })()
+        ]);
+    })();
 }
 
 var comment_list = [];
@@ -176,7 +229,7 @@ function 配信の流れ_割り込み生成() {
     voice_queue_list = voice_queue_list.filter(v => !v.index);
 }
 
-async function main() {
+async function 配信の流れ_生成() {
     // 今日紹介するブックマーク
     if (bookmarks.length == 0) bookmarks = get_use_bookmarks(Math.ceil(Math.random() * 3 + 2));
     if (配信の流れ.length == 0) 配信の流れ = [
@@ -274,8 +327,6 @@ async function gotoNextTopic() {
     save_history_jsons();
 }
 
-let bookmark = null;
-
 async function speak_topic(stream_topic_name, index, { topic_prompt = null, bookmark = null, bookmarks = [] } = {}) {
     console.log(`📣 ${stream_topic_name}`);
     let topic_creating_start_time = Date.now();
@@ -342,7 +393,7 @@ function updateBookmarks(bookmark) {
 
 async function speakBookmark(bookmark, index) {
     let text = `${bookmark.author}さんのツイートを紹介するわ。\n${bookmark.text}`;
-    let audio_queue = await create_voicevox_wav_and_json(text, index, { bookmark });
+    let audio_queue = await create_voicevox_wav_and_json(text, index, { bookmark: bookmark });
 }
 
 var chatGPTQueue = [];
@@ -441,7 +492,7 @@ async function create_voicevox_wav_and_json(text, index, { bookmark = null, isFi
             text,
             query: audioQuery,
             isFinal: isFinal,
-            bookmark
+            bookmark: bookmark
         },
         wav: wavRes.data
     };
@@ -484,6 +535,10 @@ function save_wav_and_json(audio_queue = null) {
         speak_history[si - 1].bookmark = bookmark;
     }
     save_history_jsons();
+}
+
+function send_stream_start() {
+    fs.writeFileSync("public/chara/current.json", JSON.stringify({ streamStart: true, hash: Date.now() }, null, 2));
 }
 
 async function launchPythonServer() {
