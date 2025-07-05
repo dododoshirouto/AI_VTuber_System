@@ -269,6 +269,8 @@ async function 配信の流れ_生成() {
 
     // 配信の流れ
     // TODO: 配信時間から繰り返し回数を計算する
+    // TODO: 配信枠の詳細情報をJSONにする
+    // TODO: 配信の流れ、プロンプトをJSONにする
 
     for (配信の流れ_generat_i = 0; 配信の流れ_generat_i < 配信の流れ.length; 配信の流れ_generat_i++) {
         let topic = 配信の流れ[配信の流れ_generat_i];
