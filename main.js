@@ -4,7 +4,7 @@ const path = require('path');
 const wav = require('node-wav');
 const { spawn } = require('child_process');
 const { replay, nextTopic, exit: exitChatGPT } = require('./use_chatgpt');
-const { GetYouTubeLiveComments } = require('./use_youtube');
+const { authorize, GetYouTubeLiveComments, CreateYouTubeLiveBroadcast, YouTubePrivacyStatus, YouTubeLiveBroadcastLifeCycleStatus } = require('./use_youtube');
 
 const VV_SERVER_HOST = "http://127.0.0.1:50021/";
 
@@ -34,39 +34,77 @@ var summary_history = [];
 let end_flag = false;
 
 if (require.main === module) {
-
     (async _ => {
-        // 生成ループ
+
         await launchPythonServer();
-        get_bookmarks_json();
-        await main();
-    })();
 
-    (async _ => {
-        // 再生ループ
-        while (true) {
-            await new Promise(r => setTimeout(r, 1000 / 10));
-            if (voice_queue_list.length > 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
-                save_wav_and_json();
-            }
-            if (voice_queue_list.length == 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
-                last_wav_duration = 0;
-            }
-            if (end_flag && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
-                // process.exit();
-                console.log("再生終了");
-                break;
-            }
-        }
-    })();
+        // YouTubeLive ライブ配信作成
+        const auth = await authorize();
+        const cylb = new CreateYouTubeLiveBroadcast(auth);
+        await cylb.createBroadcast({
+            title: 'AI VTuber 四国めたんの Xでブクマしたポスト紹介配信',
+            description: `AIVTuber 四国めたんが、Xでブクマしたポストを紹介する配信です。
 
-    (async () => {
-        // コメント取得ループ
-        const gylc = new GetYouTubeLiveComments();
-        gylc.setCallback(push_comments);
-        await gylc.start();
-    })();
+Node.js - 配信の流れの管理 / ChatGPTでセリフ生成
+Python - VOICEVOXで音声生成
+HTML/javascript - 配信画面の制御
 
+配信枠作成 - Node.js/youtubeapi
+配信開始/終了 - javascript/obs-browser-api
+セリフ生成 - ChatGPT
+音声生成 - Python/VOICEVOX_core
+コメント取得 - Node.js
+コメントへのリアクション - ChatGPT
+立ち絵の制御 - javascript/CSS
+Xのポストの表示 - javascript/CSS
+
+References:
+- PSDTools
+- psd.js
+- VOICEVOX 四国めたん
+- 坂本アヒル 四国めたん立ち絵素材2.1
+
+BGM:
+しゃろう - https://www.youtube.com/channel/UCfjca6Z_wpyinTqHdIYJ49Q
+ふぁいの音楽置き場 - https://www.youtube.com/@fai_musics
+のすたるじっくBGM庫 - https://www.youtube.com/@nostalgic_BGM`,
+            scheduledStartTime: new Date(Date.now() + 5 * 60 * 1000).toISOString(),
+            privacyStatus: YouTubePrivacyStatus.UNLISTED
+        });
+
+        await cylb.waitForBroadcastStart();
+
+        (async _ => {
+            // 生成ループ
+            get_bookmarks_json();
+            await main();
+        })();
+
+        (async _ => {
+            // 再生ループ
+            while (true) {
+                await new Promise(r => setTimeout(r, 1000 / 10));
+                if (voice_queue_list.length > 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
+                    save_wav_and_json();
+                }
+                if (voice_queue_list.length == 0 && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
+                    last_wav_duration = 0;
+                }
+                if (end_flag && Date.now() > last_wav_start_time + last_wav_duration + voice_buffer_time_ms) {
+                    // process.exit();
+                    console.log("再生終了");
+                    break;
+                }
+            }
+        })();
+
+        (async () => {
+            // コメント取得ループ
+            const gylc = new GetYouTubeLiveComments({ auth });
+            gylc.setCallback(push_comments);
+            await gylc.start();
+        })();
+    })();
 }
 
 var comment_list = [];

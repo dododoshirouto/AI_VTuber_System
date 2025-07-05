@@ -21,6 +21,7 @@ out.wav
 
 credentials.json
 token.json
+stream_key.json
 
 __pycache__/
 *.aivmx

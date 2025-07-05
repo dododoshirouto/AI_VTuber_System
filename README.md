@@ -59,16 +59,18 @@ AI_VTuber_System/
 │   └── assistant_session.js  # 会話制御＆コスト管理
 ├── use_youtube/              # YouTubeLiveコメント取得
 │   ├── index.js              # 
+│   ├── get_comments.js       # 配信のコメントを取得
+│   └── create_broadcast.js   # 配信枠作成
 ├── voicevox_talker/          # VOICEVOX音声生成（Python）
 │   ├── main.py               # FastAPIサーバ立ち上げ＆合成トリガー
 │   ├── voicevox_yomiage.py   # 音声再生＆辞書処理
 │   ├── bep-eng.dic.txt       # 英語→カナ変換辞書
-│   ├── models/                # VOICEVOXモデルデータ
+│   ├── models/               # VOICEVOXモデルデータ
 │   └── venv/                 # Python仮想環境
 ├── public/                   # OBS表示素材（画像・wav・HTMLなど）
 │   ├── index.html            # OBSブラウザソース
-│   └── main.js
-│   └── psd_chara.js
+│   └── main.js               # 
+│   └── psd_chara.js          # 立ち絵制御（PSD）
 └── _install.bat              # セットアップバッチ（Node+Python）
 ```
 
@@ -82,7 +84,8 @@ AI_VTuber_System/
 - [x] 音声をOBSに反映させる
 - [x] XのポストをOBSに反映させる
 - [x] コメントに反応する
+- [x] 配信枠の作成
 - [ ] OBSブラウザソースのサーバもnode.jsで立ち上げる
 - [ ] OBSブラウザとの連携方法をWebSocketにする
-- [ ] 枠たて、配信開始する
+- [ ] 配信開始する
 - [ ] 配信告知をツイートする
