@@ -273,6 +273,7 @@ async function 配信の流れ_生成() {
     // TODO: 配信の流れ、プロンプトをJSONにする
     // TODO: ChatGPTの生成部分をStreamingにして、生成途中から音声生成するシステムにする
     // TODO: → そしたら生成キューの部分いらないかも
+    // TODO: コメント取得時にその時喋ってるブクマの情報を入れておく
 
     for (配信の流れ_generat_i = 0; 配信の流れ_generat_i < 配信の流れ.length; 配信の流れ_generat_i++) {
         let topic = 配信の流れ[配信の流れ_generat_i];
