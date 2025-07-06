@@ -231,7 +231,7 @@ function 配信の流れ_割り込み生成() {
 
 async function 配信の流れ_生成() {
     // 今日紹介するブックマーク
-    if (bookmarks.length == 0) bookmarks = get_use_bookmarks(Math.ceil(Math.random() * 3 + 2));
+    if (bookmarks.length == 0) bookmarks = get_use_bookmarks(Math.ceil(Math.random() * 3 + 3));
     if (配信の流れ.length == 0) 配信の流れ = [
         { topic: "配信開始" },
         ...Array(Math.floor(Math.random() * 2)).fill({ topic: "雑談" }),
@@ -271,6 +271,8 @@ async function 配信の流れ_生成() {
     // TODO: 配信時間から繰り返し回数を計算する
     // TODO: 配信枠の詳細情報をJSONにする
     // TODO: 配信の流れ、プロンプトをJSONにする
+    // TODO: ChatGPTの生成部分をStreamingにして、生成途中から音声生成するシステムにする
+    // TODO: → そしたら生成キューの部分いらないかも
 
     for (配信の流れ_generat_i = 0; 配信の流れ_generat_i < 配信の流れ.length; 配信の流れ_generat_i++) {
         let topic = 配信の流れ[配信の流れ_generat_i];
@@ -335,7 +337,7 @@ async function speak_topic(stream_topic_name, index, { topic_prompt = null, book
 
     // セリフを生成するためのプロンプトを取得
     topic_prompt = getTopicPrompt(stream_topic_name, topic_prompt);
-    topic_prompt += "\n5文以内で。";
+    // topic_prompt += "\n5文以内で。";
 
     if (stream_topic_name.indexOf("ツイート") == -1) {
         bookmark = null;
