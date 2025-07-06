@@ -36,10 +36,6 @@ const chara_face_json = `${chara_name}.face.json`;
 
 
 
-// TODO: wavを再生する
-// TODO: AudioQueryを使ってクチパクする
-// TODO: 口パクをwavの再生時間と同期する
-// TODO: 口パクに合わせてcss animationする
 
 async function init() {
     faceData = await loadFaceJson()
