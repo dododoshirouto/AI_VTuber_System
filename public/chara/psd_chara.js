@@ -14,19 +14,24 @@ const twincles_data = {
 async function update_twinkle() {
     // まばたき
     twincles_data.intervalTime += deltaTime;
-    const settings = faceData.settings.twinkles;
+    const settings = faceData?.settings?.twinkles;
+    if (!settings) return;
 
     if (twincles_data.intervalTime >= twincles_data.intervalTimeMax) {
         // 閉じと開きの切り替え
         twincles_data.isClose = !twincles_data.isClose;
-        let intervalRange = twincles_data.isClose ? settings.closeIntervalRange : settings.openIntervalRange;
+        let intervalRange = twincles_data.isClose ? (settings.closeIntervalRange || { min: 0.2, max: 0.5 }) : (settings.openIntervalRange || { min: 1, max: 10 });
         twincles_data.intervalTimeMax = intervalRange.min + Math.random() * (intervalRange.max - intervalRange.min);
         twincles_data.intervalTime = 0;
+
+        if (!twincles_data.isClose && !document.body.classList.contains('audio_playing')) {
+            randomEyePos(window.psd);
+        }
     }
 
-    if (twincles_data.intervalTime <= settings.twinclingTime) {
+    if (twincles_data.intervalTime <= settings?.twinclingTime || 0.1) {
         // 切替時のアニメーション
-        let rate = twincles_data.intervalTime / settings.twinclingTime;
+        let rate = twincles_data.intervalTime / settings?.twinclingTime || 0.1;
         if (!twincles_data.isClose) {
             rate = 1 - rate;
         }
@@ -72,6 +77,10 @@ function update_visemes() {
     let mora = get_now_mora(moras_timmings, a_time);
 
     document.body.classList.toggle('audio_playing', mora != null);
+
+    if (mora) {
+        updateEyePos(psd);
+    }
 
     // console.log(mora, a_time);
 
@@ -272,12 +281,41 @@ function updateImage(psd) {
                     child.layer.ctx_image = new Image();
                     child.layer.ctx_image.src = toBase64;
                 }
-                ctx.drawImage(child.layer.ctx_image, child.left, child.top);
+                ctx.drawImage(child.layer.ctx_image, child.layer.left, child.layer.top);
                 drawVisibles(child);
             }
         }
     }
     drawVisibles(psd.tree());
+}
+
+
+
+function updateEyePos(psd, x = 0, y = 0) {
+    if (!faceData?.settings?.eye_move?.layer) return;
+
+    if (!window.eye) {
+        eye = psd.layers.find(v => v.node?.name == faceData.settings.eye_move.layer);
+        eye_pos_def = [eye.left, eye.top];
+    }
+    eye.left = x + eye_pos_def[0];
+    eye.top = y + eye_pos_def[1];
+    updateImage(psd);
+    console.log(`update eye pos: ${x}, ${y}`);
+}
+
+function randomEyePos(psd) {
+    let x_max = faceData.settings?.eye_move?.x_max || 0;
+    let x_min = faceData.settings?.eye_move?.x_min || 0;
+    let y_max = faceData.settings?.eye_move?.y_max || 0;
+    let y_min = faceData.settings?.eye_move?.y_min || 0;
+    let r = Math.random() * Math.PI * 2;
+    let x = Math.cos(r);
+    x *= Math.abs(x > 0 ? x_max : x_min);
+    let y = Math.sin(r);
+    y *= Math.abs(y > 0 ? y_max : y_min);
+    // updateEyePos(psd, Math.random() * x_max - Math.random() * x_min, Math.random() * y_max - Math.random() * y_min);
+    updateEyePos(psd, x, y);
 }
 
 

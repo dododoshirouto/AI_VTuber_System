@@ -144,6 +144,28 @@
                             "type": "number"
                         }
                     }
+                },
+                "eye_move": {
+                    "type": "object",
+                    "description": "目の動き",
+                    "properties": {
+                        "x_max": {
+                            "description": "(px)",
+                            "type": "number"
+                        },
+                        "x_min": {
+                            "description": "(px)",
+                            "type": "number"
+                        },
+                        "y_max": {
+                            "description": "(px)",
+                            "type": "number"
+                        },
+                        "y_min": {
+                            "description": "(px)",
+                            "type": "number"
+                        }
+                    }
                 }
             }
         }

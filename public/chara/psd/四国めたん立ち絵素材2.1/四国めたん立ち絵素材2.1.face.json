@@ -32,10 +32,17 @@
                 "max": 0.5
             },
             "openIntervalRange": {
-                "min": 3,
-                "max": 30
+                "min": 1,
+                "max": 10
             },
             "twinclingTime": 0.1
+        },
+        "eye_move": {
+            "layer": "*カメラ目線",
+            "x_max": 6,
+            "x_min": -20,
+            "y_max": 6,
+            "y_min": -4
         }
     }
 }
