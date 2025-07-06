@@ -60,7 +60,7 @@ if (require.main === module) {
         await cylb.createBroadcast({
             title: '【TEST】 AI VTuber System',
             description: 'Auto Created by AI VTuber System',
-            scheduledStartTime: new Date(Date.now() + 5 * 60 * 1000).toISOString(),
+            scheduledStartTime: 5,
             privacyStatus: YouTubePrivacyStatus.UNLISTED
         });
 

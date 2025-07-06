@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "const": "broadcast_info.schema.json"
+        },
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "scheduledStartTime_add_minute": {
+            "type": "number"
+        },
+        "privacyStatus": {
+            "type": "string",
+            "anyOf": [
+                {
+                    "enum": [
+                        "public",
+                        "private",
+                        "unlisted"
+                    ]
+                }
+            ]
+        }
+    },
+    "required": [
+        "title",
+        "description",
+        "scheduledStartTime_add_minute",
+        "privacyStatus"
+    ],
+    "additionalProperties": false
+}

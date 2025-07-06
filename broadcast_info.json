@@ -1,0 +1,7 @@
+{
+    "$schema": "broadcast_info.schema.json",
+    "title": "AI VTuber 四国めたんの Xでブクマしたポスト紹介配信",
+    "description": "AIVTuber 四国めたんが、Xでブクマしたポストを紹介する配信です。\n\nNode.js - 配信の流れの管理 / ChatGPTでセリフ生成\nPython - VOICEVOXで音声生成\nHTML/javascript - 配信画面の制御\n配信枠作成 - Node.js/youtubeapi\n配信開始/終了 - javascript/obs-browser-api\nセリフ生成 - ChatGPT\n音声生成 - Python/VOICEVOX_core\nコメント取得 - Node.js\nコメントへのリアクション - ChatGPT\n立ち絵の制御 - javascript/CSS\nXのポストの表示 - javascript/CSS\n\nReferences:\n- PSDTools\n- psd.js\n- VOICEVOX 四国めたん\n- 坂本アヒル 四国めたん立ち絵素材2.1\n\nBGM:\nしゃろう - https://www.youtube.com/channel/UCfjca6Z_wpyinTqHdIYJ49Q\nふぁいの音楽置き場 - https://www.youtube.com/@fai_musics\nのすたるじっくBGM庫 - https://www.youtube.com/@nostalgic_BGM",
+    "scheduledStartTime_add_minute": 5,
+    "privacyStatus": "public"
+}

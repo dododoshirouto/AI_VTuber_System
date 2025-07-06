@@ -36,7 +36,7 @@ class CreateYouTubeLiveBroadcast {
         this.broadcastId = null;
     }
 
-    async createBroadcast({ title = "AI VTuber System", description = "Auto Created by AI VTuber System", scheduledStartTime = new Date(Date.now() + 5 * 60 * 1000).toISOString(), privacyStatus = YouTubeLiveBroadcastPrivacyStatus.PUBLIC } = {}) {
+    async createBroadcast({ title = "AI VTuber System", description = "Auto Created by AI VTuber System", scheduledStartTime_add_minute = 5, privacyStatus = YouTubeLiveBroadcastPrivacyStatus.PUBLIC } = {}) {
         if (!this.streamKey) {
             this.streamKey = await this.createStreamKey();
         }
@@ -56,7 +56,7 @@ class CreateYouTubeLiveBroadcast {
                     snippet: {
                         title: title,
                         description: description,
-                        scheduledStartTime: scheduledStartTime
+                        scheduledStartTime: new Date(Date.now() + scheduledStartTime_add_minute * 60 * 1000).toISOString()
                     },
                     status: {
                         privacyStatus: privacyStatus

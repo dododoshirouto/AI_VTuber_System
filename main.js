@@ -35,36 +35,7 @@ let end_flag = false;
 
 // let bookmark = null;
 
-let broadcast_details = {
-    title: 'AI VTuber 四国めたんの Xでブクマしたポスト紹介配信',
-    description: `AIVTuber 四国めたんが、Xでブクマしたポストを紹介する配信です。
-
-Node.js - 配信の流れの管理 / ChatGPTでセリフ生成
-Python - VOICEVOXで音声生成
-HTML/javascript - 配信画面の制御
-
-配信枠作成 - Node.js/youtubeapi
-配信開始/終了 - javascript/obs-browser-api
-セリフ生成 - ChatGPT
-音声生成 - Python/VOICEVOX_core
-コメント取得 - Node.js
-コメントへのリアクション - ChatGPT
-立ち絵の制御 - javascript/CSS
-Xのポストの表示 - javascript/CSS
-
-References:
-- PSDTools
-- psd.js
-- VOICEVOX 四国めたん
-- 坂本アヒル 四国めたん立ち絵素材2.1
-
-BGM:
-しゃろう - https://www.youtube.com/channel/UCfjca6Z_wpyinTqHdIYJ49Q
-ふぁいの音楽置き場 - https://www.youtube.com/@fai_musics
-のすたるじっくBGM庫 - https://www.youtube.com/@nostalgic_BGM`,
-    scheduledStartTime: new Date(Date.now() + 5 * 60 * 1000).toISOString(),
-    privacyStatus: YouTubePrivacyStatus.PUBLIC
-};
+let broadcast_details = JSON.parse(fs.readFileSync("broadcast_info.json", 'utf-8'));
 
 if (require.main === module) {
     (async _ => {
@@ -269,7 +240,6 @@ async function 配信の流れ_生成() {
 
     // 配信の流れ
     // TODO: 配信時間から繰り返し回数を計算する
-    // TODO: 配信枠の詳細情報をJSONにする
     // TODO: 配信の流れ、プロンプトをJSONにする
     // TODO: ChatGPTの生成部分をStreamingにして、生成途中から音声生成するシステムにする
     // TODO: → そしたら生成キューの部分いらないかも
