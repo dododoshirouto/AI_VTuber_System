@@ -35,7 +35,7 @@ echo VOICEVOX_VERSION is %VOICEVOX_VERSION%.
 
 IF EXIST voicevox-download-windows-x64.exe GOTO :SKIP_DL_VOICEVOX_INSTALLER
     echo Downloading download-windows-x64.exe from voicevox_core ...
-    curl -L -o voicevox-download-windows-x64.exe https://github.com/VOICEVOX/voicevox_core/releases/download/%VOICEVOX_VERSION%/download-windows-x64.exe
+    C:\Windows\System32\curl.exe -L -o voicevox-download-windows-x64.exe https://github.com/VOICEVOX/voicevox_core/releases/download/%VOICEVOX_VERSION%/download-windows-x64.exe
 :SKIP_DL_VOICEVOX_INSTALLER
 
 IF EXIST voicevox_core.dll GOTO :SKIP_INSTALL_VOICEVOX_DLL
