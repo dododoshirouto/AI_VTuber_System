@@ -19,7 +19,7 @@ _Launch Cursor.bat
 /model_unuse
 /c_api
 /dict
-/open_jtalk_dic_utf_8*
+# /open_jtalk_dic_utf_8*
 
 # cmudict-0.7b
 cmudict-0.7b
