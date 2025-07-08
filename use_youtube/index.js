@@ -27,10 +27,14 @@ async function authorize() {
     const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]); // redirect_uris に "http://localhost" 入っててもOK
 
     if (fs.existsSync(TOKEN_PATH)) {
-        const token = JSON.parse(fs.readFileSync(TOKEN_PATH));
+        const token_from_json = JSON.parse(fs.readFileSync(TOKEN_PATH));
 
-        if (token.expiry_date > Date.now()) {
-            oAuth2Client.setCredentials(token);
+        if (token_from_json.expiry_date > Date.now()) {
+            let { tokens } = await oAuth2Client.getAccessToken();
+            for (let token_path of TOKEN_PATHES) {
+                fs.writeFileSync(token_path, JSON.stringify(tokens));
+            }
+            oAuth2Client.setCredentials(tokens);
             return oAuth2Client;
         }
     }
