@@ -94,7 +94,7 @@ class GetYouTubeLiveComments {
         this.nextPageToken = nextPageToken;
 
         if (this.enabled && this.nextPageToken) {
-            setTimeout(() => this.run(), delay);
+            setTimeout(() => this.run(), Math.max(delay, 500));
         }
     }
 

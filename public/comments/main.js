@@ -135,7 +135,7 @@ async function init_loop() {
         token_data = await get_auth_token_from_json();
 
         let current = await get_current_json();
-        if (current.liveChatId && current.liveChatId != liveChatId) {
+        if (current.liveChatId != liveChatId) {
             liveChatId = current.liveChatId;
             console.log(`Set liveChatId: ${liveChatId}`);
             COMMENTS_CONTAINER.innerHTML = '';
@@ -187,7 +187,7 @@ async function main_loop() {
             behavior: 'smooth'
         });
 
-        await new Promise(r => setTimeout(r, Math.max(1, messages.pollingIntervalMillis || 0 - 500)));
+        await new Promise(r => setTimeout(r, Math.max(messages.pollingIntervalMillis || 0, 500)));
     }
 }
 main_loop();

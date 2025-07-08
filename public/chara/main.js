@@ -99,6 +99,8 @@ async function play_audio() {
         return;
     }
 
+    if (!audio_query.query) return;
+
     audio_elem.src = audio_file + '?' + Date.now();
     audio_elem.play();
     audio_is_playing = true;
@@ -138,10 +140,10 @@ async function audio_update_check() {
 if (window.obsstudio) {
     can_audio_play = true;
     window.addEventListener('click', () => audio_elem.currentTime = audio_elem.duration);
-    setTimeout(() => audio_elem.currentTime = audio_elem.duration, 5000);
+    if (audio_elem?.currentTime) setTimeout(() => audio_elem.currentTime = audio_elem.duration, 5000);
 } else {
     window.addEventListener('click', () => {
         can_audio_play = true;
-        setTimeout(() => audio_elem.currentTime = audio_elem.duration, 5000);
+        if (audio_elem?.currentTime) setTimeout(() => audio_elem.currentTime = audio_elem.duration, 5000);
     });
 }

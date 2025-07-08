@@ -29,14 +29,15 @@ async function authorize() {
     if (fs.existsSync(TOKEN_PATH)) {
         const token_from_json = JSON.parse(fs.readFileSync(TOKEN_PATH));
 
-        if (token_from_json.expiry_date > Date.now()) {
-            let { tokens } = await oAuth2Client.getAccessToken();
-            for (let token_path of TOKEN_PATHES) {
-                fs.writeFileSync(token_path, JSON.stringify(tokens));
-            }
-            oAuth2Client.setCredentials(tokens);
-            return oAuth2Client;
-        }
+        // 期限切れてたら更新するってしたかったけど、Promiseエラーが細くできなくて無理だった
+        // if (token_from_json.expiry_date > Date.now()) {
+        //     let tokens = await oAuth2Client.getAccessToken();
+        //     for (let token_path of TOKEN_PATHES) {
+        //         fs.writeFileSync(token_path, JSON.stringify(tokens));
+        //     }
+        //     oAuth2Client.setCredentials(tokens);
+        //     return oAuth2Client;
+        // }
     }
 
     const open = (await import('open')).default;

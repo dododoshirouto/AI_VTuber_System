@@ -380,3 +380,19 @@ a;
         transform: translateY(-0.512461%) scaleY(1.000000) scaleX(1.000000) rotateY(18.000000deg);
     }
 }
+
+
+
+body.debug #debug_console {
+    display: block;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100000;
+
+    color: red;
+    font-family: monospace;
+    font-size: 12px;
+    padding: 10px;
+}

@@ -69,6 +69,7 @@ const visemes_alternatives = {
 function update_visemes() {
     if (!faceData) return;
     if (!audio_is_playing) return;
+    if (!audio_query.query) return;
 
     let a_time = audio_elem.currentTime;
 
