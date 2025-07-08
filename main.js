@@ -33,6 +33,8 @@ var summary_history = [];
 
 let end_flag = false;
 
+var currentLiveChatId = null;
+
 // let bookmark = null;
 
 let broadcast_details = JSON.parse(fs.readFileSync("broadcast_info.json", 'utf-8'));
@@ -462,7 +464,8 @@ async function create_voicevox_wav_and_json(text, index, { bookmark = null, isFi
             text,
             query: audioQuery,
             isFinal: isFinal,
-            bookmark: bookmark
+            bookmark: bookmark,
+            liveChatId: currentLiveChatId || null
         },
         wav: wavRes.data
     };
@@ -499,7 +502,7 @@ function save_wav_and_json(audio_queue = null) {
         time: new Date().toLocaleString(),
         text: audio_queue.query_json.text,
         duration: new Date(getWavDuration(audio_queue.wav) - 9 * 60 * 60 * 1000).toLocaleTimeString(),
-        index: audio_queue.index
+        index: audio_queue.index,
     });
     if (bookmark) {
         speak_history[si - 1].bookmark = bookmark;
@@ -508,7 +511,16 @@ function save_wav_and_json(audio_queue = null) {
 }
 
 function send_stream_start({ liveChatId } = {}) {
+    if (!liveChatId) {
+        console.error("liveChatId を指定してください");
+        return;
+    };
+    currentLiveChatId = liveChatId;
     fs.writeFileSync("public/chara/current.json", JSON.stringify({ streamStart: true, liveChatId, hash: Date.now() }, null, 2));
+}
+
+function send_stream_stop() {
+    fs.writeFileSync("public/chara/current.json", JSON.stringify({ isFinal: true, hash: Date.now() }, null, 2));
 }
 
 async function launchPythonServer() {
@@ -580,40 +592,6 @@ function get_use_bookmarks(count = 3, shuffle_count = 10) {
 }
 
 function get_before_time_text(time_iso_txt) {
-    // const before_time_to_text = [
-    //     {
-    //         time: (24 * 60 * 60 * 1000),
-    //         text: "今日"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 2),
-    //         text: "昨日"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 7),
-    //         text: "今週"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 14),
-    //         text: "先週"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 30),
-    //         text: "今月"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 60),
-    //         text: "先月"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 365),
-    //         text: "今年"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 365 * 2),
-    //         text: "去年"
-    //     }
-    // ];
     const MS_DAY = 24 * 60 * 60 * 1000;
 
     let d = new Date();
@@ -643,6 +621,7 @@ function get_before_time_text(time_iso_txt) {
 process.on('SIGINT', async () => {
     console.log('🛑 SIGINT (Ctrl+C) を受信しました');
     await exitChatGPT();
+    send_stream_stop();
     save_history_jsons();
     process.exit(0);
 });
@@ -651,6 +630,7 @@ process.on('SIGINT', async () => {
 process.on('uncaughtException', async (err) => {
     console.error('💥 uncaughtException:', err);
     await exitChatGPT();
+    send_stream_stop();
     save_history_jsons();
     process.exit(1);
 });
