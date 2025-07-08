@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Redirect - VTuber Overlay</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css" />
+    <link rel="stylesheet" href="https://dododoshirouto.github.io/dodo-simple.css/sample/dodo-simple.css" />
+</head>
+
+<body>
+    <label for="確認コード">確認コード</label>
+    <input id="確認コード">
+    <script>
+        var query = {};
+        ((document.location.search + document.location.hash).match(/([^?&=]+(=[^?&=]*|))/g) ?? []).map((v) => {
+            let m = v.match(/([^=]+)/g);
+            m[1] == decodeURIComponent(m[1]);
+            if (typeof m[1] == 'string' && m[1].toUpperCase() == 'TRUE') m[1] = true;
+            if (typeof m[1] == 'string' && m[1].toUpperCase() == 'FALSE') m[1] = false;
+            if (m[1] == m[1] - 0) m[1] = m[1] - 0;
+            query[decodeURIComponent(m[0])] = m[1] ?? true;
+        });
+
+        document.getElementById('確認コード').value = query['code'];
+
+        if (query['code']) {
+            copy(query['code']);
+        }
+
+        document.getElementById('確認コード').addEventListener('click', () => {
+            copy(query['code']);
+        });
+
+        function copy(s) {
+            try {
+                let e = document;
+                let t = e.createElement('textarea');
+                t.value = s;
+                e.body.appendChild(t);
+                t.select();
+                e.execCommand('copy');
+                t.remove();
+                window.alert('copied.');
+            } catch (e) {
+                console.error('copy error.', e);
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

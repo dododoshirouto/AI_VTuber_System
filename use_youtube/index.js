@@ -17,14 +17,16 @@ const TOKEN_PATH = path.join(__dirname, 'token.json');
 const TOKEN_PATHES = [TOKEN_PATH, path.join(__dirname, '../public/comments', 'token.json')];
 const SCOPES = ['https://www.googleapis.com/auth/youtube'];
 
+const REDIRECT_URL = 'http://localhost:8000/redirect.html';
+
 
 
 async function authorize() {
     const content = fs.readFileSync(CREDENTIALS_PATH);
     const credentials = JSON.parse(content);
-    const { client_secret, client_id, redirect_uris } = credentials.installed;
+    const { client_secret, client_id } = credentials.installed;
 
-    const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]); // redirect_uris に "http://localhost" 入っててもOK
+    const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, REDIRECT_URL);
 
     if (fs.existsSync(TOKEN_PATH)) {
         const token_from_json = JSON.parse(fs.readFileSync(TOKEN_PATH));
