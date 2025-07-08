@@ -33,6 +33,8 @@ var summary_history = [];
 
 let end_flag = false;
 
+var currentLiveChatId = null;
+
 // let bookmark = null;
 
 let broadcast_details = JSON.parse(fs.readFileSync("broadcast_info.json", 'utf-8'));
@@ -50,7 +52,7 @@ if (require.main === module) {
         console.log("配信枠作成完了");
 
         // save_wav_and_json({ query_json: { streamStart: true } });
-        send_stream_start();
+        send_stream_start({ liveChatId: cylb.broadcastSnippet.liveChatId });
         console.log("配信開始命令送信");
 
         await Promise.all([
@@ -239,13 +241,6 @@ async function 配信の流れ_生成() {
     console.log("配信の流れ", 配信の流れ);
 
     // 配信の流れ
-    // TODO: 配信時間から繰り返し回数を計算する
-    // TODO: 配信の流れ、プロンプトをJSONにする
-    // TODO: ChatGPTの生成部分をStreamingにして、生成途中から音声生成するシステムにする
-    // TODO: → そしたら生成キューの部分いらないかも
-    // TODO: コメント取得時にその時喋ってるブクマの情報を入れておく
-    // TODO: 配信開始時に、前回の配信の時のサマリーを含めてみる
-    // TODO: 配信開始と終了時に、シーン切り替えをする(シーン名はJSONで設定)
 
     for (配信の流れ_generat_i = 0; 配信の流れ_generat_i < 配信の流れ.length; 配信の流れ_generat_i++) {
         let topic = 配信の流れ[配信の流れ_generat_i];
@@ -469,7 +464,8 @@ async function create_voicevox_wav_and_json(text, index, { bookmark = null, isFi
             text,
             query: audioQuery,
             isFinal: isFinal,
-            bookmark: bookmark
+            bookmark: bookmark,
+            liveChatId: currentLiveChatId || null
         },
         wav: wavRes.data
     };
@@ -506,7 +502,7 @@ function save_wav_and_json(audio_queue = null) {
         time: new Date().toLocaleString(),
         text: audio_queue.query_json.text,
         duration: new Date(getWavDuration(audio_queue.wav) - 9 * 60 * 60 * 1000).toLocaleTimeString(),
-        index: audio_queue.index
+        index: audio_queue.index,
     });
     if (bookmark) {
         speak_history[si - 1].bookmark = bookmark;
@@ -514,8 +510,17 @@ function save_wav_and_json(audio_queue = null) {
     save_history_jsons();
 }
 
-function send_stream_start() {
-    fs.writeFileSync("public/chara/current.json", JSON.stringify({ streamStart: true, hash: Date.now() }, null, 2));
+function send_stream_start({ liveChatId } = {}) {
+    if (!liveChatId) {
+        console.error("liveChatId を指定してください");
+        return;
+    };
+    currentLiveChatId = liveChatId;
+    fs.writeFileSync("public/chara/current.json", JSON.stringify({ streamStart: true, liveChatId, hash: Date.now() }, null, 2));
+}
+
+function send_stream_stop() {
+    fs.writeFileSync("public/chara/current.json", JSON.stringify({ isFinal: true, hash: Date.now() }, null, 2));
 }
 
 async function launchPythonServer() {
@@ -587,40 +592,6 @@ function get_use_bookmarks(count = 3, shuffle_count = 10) {
 }
 
 function get_before_time_text(time_iso_txt) {
-    // const before_time_to_text = [
-    //     {
-    //         time: (24 * 60 * 60 * 1000),
-    //         text: "今日"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 2),
-    //         text: "昨日"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 7),
-    //         text: "今週"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 14),
-    //         text: "先週"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 30),
-    //         text: "今月"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 60),
-    //         text: "先月"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 365),
-    //         text: "今年"
-    //     },
-    //     {
-    //         time: (24 * 60 * 60 * 1000 * 365 * 2),
-    //         text: "去年"
-    //     }
-    // ];
     const MS_DAY = 24 * 60 * 60 * 1000;
 
     let d = new Date();
@@ -650,6 +621,7 @@ function get_before_time_text(time_iso_txt) {
 process.on('SIGINT', async () => {
     console.log('🛑 SIGINT (Ctrl+C) を受信しました');
     await exitChatGPT();
+    send_stream_stop();
     save_history_jsons();
     process.exit(0);
 });
@@ -658,6 +630,7 @@ process.on('SIGINT', async () => {
 process.on('uncaughtException', async (err) => {
     console.error('💥 uncaughtException:', err);
     await exitChatGPT();
+    send_stream_stop();
     save_history_jsons();
     process.exit(1);
 });

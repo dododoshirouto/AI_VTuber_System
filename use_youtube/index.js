@@ -14,6 +14,7 @@ const { CreateYouTubeLiveBroadcast, YouTubePrivacyStatus, YouTubeLiveBroadcastLi
 
 const CREDENTIALS_PATH = path.join(__dirname, 'credentials.json');
 const TOKEN_PATH = path.join(__dirname, 'token.json');
+const TOKEN_PATHES = [TOKEN_PATH, path.join(__dirname, '../public/comments', 'token.json')];
 const SCOPES = ['https://www.googleapis.com/auth/youtube'];
 
 
@@ -26,10 +27,14 @@ async function authorize() {
     const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]); // redirect_uris に "http://localhost" 入っててもOK
 
     if (fs.existsSync(TOKEN_PATH)) {
-        const token = JSON.parse(fs.readFileSync(TOKEN_PATH));
+        const token_from_json = JSON.parse(fs.readFileSync(TOKEN_PATH));
 
-        if (token.expiry_date > Date.now()) {
-            oAuth2Client.setCredentials(token);
+        if (token_from_json.expiry_date > Date.now()) {
+            let { tokens } = await oAuth2Client.getAccessToken();
+            for (let token_path of TOKEN_PATHES) {
+                fs.writeFileSync(token_path, JSON.stringify(tokens));
+            }
+            oAuth2Client.setCredentials(tokens);
             return oAuth2Client;
         }
     }
@@ -44,7 +49,9 @@ async function authorize() {
     readline.close();
 
     const { tokens } = await oAuth2Client.getToken(code);
-    fs.writeFileSync(TOKEN_PATH, JSON.stringify(tokens));
+    for (let token_path of TOKEN_PATHES) {
+        fs.writeFileSync(token_path, JSON.stringify(tokens));
+    }
     oAuth2Client.setCredentials(tokens);
     console.log('トークンを保存しました');
     return oAuth2Client;

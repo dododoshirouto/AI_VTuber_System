@@ -69,9 +69,17 @@ AI_VTuber_System/
 │   └── venv/                 # Python仮想環境
 ├── aivis_talker/             # VOICEVOX音声生成のaivis版（AivisSpeechが別途必要）
 ├── public/                   # OBS表示素材（画像・wav・HTMLなど）
-│   ├── index.html            # OBSブラウザソース
-│   └── main.js               # 
-│   └── psd_chara.js          # 立ち絵制御（PSD）
+│   ├── chara/                # OBS表示素材（画像・wav・HTMLなど）
+│   │   ├── index.html        # OBSブラウザソース
+│   │   ├── main.js           # 
+│   │   ├── psd_chara.js      # 立ち絵制御（PSD）
+│   │   └── psd/              # 立ち絵素材置場
+│   ├── post/                 # 紹介するツイートを表示する
+│   │   ├── index.html        # 
+│   │   └── main.js           # 
+│   └── comments/             # YouTubeコメントを表示する
+│       ├── index.html        # 
+│       └── main.js           # 
 └── _install.bat              # セットアップバッチ（Node+Python）
 ```
 
@@ -91,3 +99,23 @@ AI_VTuber_System/
 - [ ] OBSブラウザソースのサーバもnode.jsで立ち上げる
 - [ ] OBSブラウザとの連携方法をWebSocketにする
 - [ ] 配信告知をツイートする
+
+### 細かいの
+
+- すぐできる
+  - [ ] 配信の流れ、プロンプトをJSONにする
+  - [ ] ChatGPT APIキーと、Google API情報をルートに配置する(インストール時にファイルを作成してコピペしやすいようにする)
+  - [ ] _install.batで、.env.sampleをコピーして.envを作成する
+  - [ ] コメント取得時にその時喋ってるブクマの情報を入れておく
+  - [ ] VOICEVOXの話すスピードを1倍にする(変えれるようにする)
+  - [ ] 配信開始時に、前回の配信の時のサマリーを含めてみる
+  - [ ] public/charaで、エラー時にそれを表示させるデバッグモード
+- ちょっと大変
+  - [ ] 配信開始と終了時に、シーン切り替えをする(シーン名はJSONで設定)
+  - [ ] public/postのツイート埋込を、縦が画面サイズを超えたら上揃えになるようにする
+  - [ ] ブックマーク取得時に、リンクのOGPタグ(image/description)を取得する
+  - [ ] ブックマーク取得時に、すでに取得してるブックマークが情報が違ったら上書きする
+- 長期的に
+  - [ ] ChatGPTの生成部分をStreamingにして、生成途中から音声生成するシステムにする
+    - → そしたら生成キューの部分いらないかも
+  - [ ] 配信時間から繰り返し回数を計算する

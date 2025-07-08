@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>YT Comment Viewer</title>
+    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <yt-live-chat-app>
+        <div id="contents" class="style-scope yt-live-chat-app">
+            <yt-live-chat-renderer class="style-scope yt-live-chat-app">
+                <tp-yt-iron-pages id="content-pages" class="style-scope yt-live-chat-renderer">
+                    <div id="chat-messages" class="style-scope yt-live-chat-renderer iron-selected">
+                        <div id="contents" class="style-scope yt-live-chat-renderer">
+                            <div id="chat" class="style-scope yt-live-chat-renderer">
+                                <div id="item-list" class="style-scope yt-live-chat-renderer">
+                                    <yt-live-chat-item-list-renderer class="style-scope yt-live-chat-renderer"
+                                        id="live-chat-item-list-panel">
+                                        <div id="contents" class="style-scope yt-live-chat-item-list-renderer">
+                                            <div id="item-scroller" class="style-scope yt-live-chat-item-list-renderer">
+                                                <div id="item-offset"
+                                                    class="style-scope yt-live-chat-item-list-renderer">
+                                                    <div id="items" class="style-scope yt-live-chat-item-list-renderer">
+                                                        <!-- コメント -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </yt-live-chat-item-list-renderer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tp-yt-iron-pages>
+            </yt-live-chat-renderer>
+        </div>
+    </yt-live-chat-app>
+    <script src="main.js"></script>
+</body>
+
+</html>
