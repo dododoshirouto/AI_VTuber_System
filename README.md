@@ -69,9 +69,17 @@ AI_VTuber_System/
 │   └── venv/                 # Python仮想環境
 ├── aivis_talker/             # VOICEVOX音声生成のaivis版（AivisSpeechが別途必要）
 ├── public/                   # OBS表示素材（画像・wav・HTMLなど）
-│   ├── index.html            # OBSブラウザソース
-│   └── main.js               # 
-│   └── psd_chara.js          # 立ち絵制御（PSD）
+│   ├── chara/                # OBS表示素材（画像・wav・HTMLなど）
+│   │   ├── index.html        # OBSブラウザソース
+│   │   ├── main.js           # 
+│   │   ├── psd_chara.js      # 立ち絵制御（PSD）
+│   │   └── psd/              # 立ち絵素材置場
+│   ├── post/                 # 紹介するツイートを表示する
+│   │   ├── index.html        # 
+│   │   └── main.js           # 
+│   └── comments/             # YouTubeコメントを表示する
+│       ├── index.html        # 
+│       └── main.js           # 
 └── _install.bat              # セットアップバッチ（Node+Python）
 ```
 
@@ -95,12 +103,13 @@ AI_VTuber_System/
 ### 細かいの
 
 - すぐできる
-  - [ ] public/index.htmlに、YouTube認証のリダイレクトページを作る
   - [ ] 配信の流れ、プロンプトをJSONにする
   - [ ] ChatGPT APIキーと、Google API情報をルートに配置する(インストール時にファイルを作成してコピペしやすいようにする)
+  - [ ] _install.batで、.env.sampleをコピーして.envを作成する
   - [ ] コメント取得時にその時喋ってるブクマの情報を入れておく
   - [ ] VOICEVOXの話すスピードを1倍にする(変えれるようにする)
   - [ ] 配信開始時に、前回の配信の時のサマリーを含めてみる
+  - [ ] public/charaで、エラー時にそれを表示させるデバッグモード
 - ちょっと大変
   - [ ] 配信開始と終了時に、シーン切り替えをする(シーン名はJSONで設定)
   - [ ] public/postのツイート埋込を、縦が画面サイズを超えたら上揃えになるようにする
