@@ -50,7 +50,7 @@ if (require.main === module) {
         console.log("配信枠作成完了");
 
         // save_wav_and_json({ query_json: { streamStart: true } });
-        send_stream_start();
+        send_stream_start({ liveChatId: cylb.broadcastSnippet.liveChatId });
         console.log("配信開始命令送信");
 
         await Promise.all([
@@ -246,6 +246,11 @@ async function 配信の流れ_生成() {
     // TODO: コメント取得時にその時喋ってるブクマの情報を入れておく
     // TODO: 配信開始時に、前回の配信の時のサマリーを含めてみる
     // TODO: 配信開始と終了時に、シーン切り替えをする(シーン名はJSONで設定)
+    // TODO: ブックマーク取得時に、リンクのOGPタグ(image/description)を取得する
+    // TODO: ブックマーク取得時に、すでに取得してるブックマークが情報が違ったら上書きする
+    // TODO: VOICEVOXの話すスピードを1倍にする(変えれるようにする)
+    // TODO: ChatGPT APIキーと、Google API情報をルートに配置する(インストール時にファイルを作成してコピペしやすいようにする)
+    // TODO: public/postのツイート埋込を、縦が画面サイズを超えたら上揃えになるようにする
 
     for (配信の流れ_generat_i = 0; 配信の流れ_generat_i < 配信の流れ.length; 配信の流れ_generat_i++) {
         let topic = 配信の流れ[配信の流れ_generat_i];
@@ -514,8 +519,8 @@ function save_wav_and_json(audio_queue = null) {
     save_history_jsons();
 }
 
-function send_stream_start() {
-    fs.writeFileSync("public/chara/current.json", JSON.stringify({ streamStart: true, hash: Date.now() }, null, 2));
+function send_stream_start({ liveChatId } = {}) {
+    fs.writeFileSync("public/chara/current.json", JSON.stringify({ streamStart: true, liveChatId, hash: Date.now() }, null, 2));
 }
 
 async function launchPythonServer() {

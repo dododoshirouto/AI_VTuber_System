@@ -74,6 +74,7 @@ class CreateYouTubeLiveBroadcast {
             });
 
             this.broadcastId = broadcastResponse.data.id;
+            this.broadcastSnippet = broadcastResponse.data.snippet;
 
             // ブロードキャストとストリームをバインド
             await this.youtube.liveBroadcasts.bind({

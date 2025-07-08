@@ -14,6 +14,7 @@ const { CreateYouTubeLiveBroadcast, YouTubePrivacyStatus, YouTubeLiveBroadcastLi
 
 const CREDENTIALS_PATH = path.join(__dirname, 'credentials.json');
 const TOKEN_PATH = path.join(__dirname, 'token.json');
+const TOKEN_PATHES = [TOKEN_PATH, path.join(__dirname, '../public/comments', 'token.json')];
 const SCOPES = ['https://www.googleapis.com/auth/youtube'];
 
 
@@ -44,7 +45,9 @@ async function authorize() {
     readline.close();
 
     const { tokens } = await oAuth2Client.getToken(code);
-    fs.writeFileSync(TOKEN_PATH, JSON.stringify(tokens));
+    for (let token_path of TOKEN_PATHES) {
+        fs.writeFileSync(token_path, JSON.stringify(tokens));
+    }
     oAuth2Client.setCredentials(tokens);
     console.log('トークンを保存しました');
     return oAuth2Client;
