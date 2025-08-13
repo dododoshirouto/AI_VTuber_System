@@ -1,6 +1,6 @@
 
-:: _install.bat
-::  @echo off
+:: voicevox_talker/_install.bat
+@echo off
 setlocal enabledelayedexpansion
 
 set PYTHON_VERSION=3.12.2

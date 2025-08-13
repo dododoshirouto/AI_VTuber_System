@@ -1,6 +1,6 @@
 ﻿
 :: _install.bat
-::  @echo off
+@echo off
 setlocal enabledelayedexpansion
 
 set PYTHON_VERSION=3.10.11
