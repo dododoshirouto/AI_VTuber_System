@@ -12,12 +12,14 @@ const path = require('path');
 const { GetYouTubeLiveComments } = require('./get_comments');
 const { CreateYouTubeLiveBroadcast, YouTubePrivacyStatus, YouTubeLiveBroadcastLifeCycleStatus } = require('./create_broadcast');
 
+const SETTINGS = require('../settings');
+
 const CREDENTIALS_PATH = path.join(__dirname, 'credentials.json');
 const TOKEN_PATH = path.join(__dirname, 'token.json');
 const TOKEN_PATHES = [TOKEN_PATH, path.join(__dirname, '../public/comments', 'token.json')];
 const SCOPES = ['https://www.googleapis.com/auth/youtube'];
 
-const REDIRECT_URL = 'http://localhost:8000/redirect.html';
+const REDIRECT_URL = `http://localhost:${SETTINGS.public_port}/redirect.html`;
 
 
 

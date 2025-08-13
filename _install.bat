@@ -178,7 +178,7 @@ if not exist package.json (
     call npm init -y > nul
 )
 echo     [*] Installing root dependencies (axios, node-wav)...
-call npm install axios node-wav
+call npm install axios node-wav express
 
 echo.
 echo   --- [Project] Read X Bookmark ---

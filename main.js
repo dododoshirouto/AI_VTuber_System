@@ -6,6 +6,8 @@ const { spawn } = require('child_process');
 const { replay, nextTopic, exit: exitChatGPT } = require('./use_chatgpt');
 const { authorize, GetYouTubeLiveComments, CreateYouTubeLiveBroadcast, YouTubePrivacyStatus, YouTubeLiveBroadcastLifeCycleStatus } = require('./use_youtube');
 
+const SETTINGS = require('./settings');
+
 const VV_SERVER_HOST = "http://127.0.0.1:50021/";
 
 const bookmarks_json_path = path.join(__dirname, 'read_bookmark/bookmarks.json');
@@ -634,5 +636,27 @@ process.on('uncaughtException', async (err) => {
     save_history_jsons();
     process.exit(1);
 });
+
+
+
+//. ===== publicフォルダのサーバ =====
+
+const express = require('express');
+
+const express_app = express();
+const PORT = SETTINGS.public_port; // 我が魔力を解放するポートよ
+
+// 'public'フォルダを静的ファイルの配信元として指定する。これだけ。簡単すぎない？
+express_app.use(express.static(path.join(__dirname, 'public')));
+
+// サーバを非同期で起動するわ
+express_app.listen(PORT, () => {
+    console.log(`サーバが起動しました。ポートは ${PORT} です。`);
+    console.log(`http://localhost:${PORT}`);
+});
+
+// ===== publicフォルダのサーバ ===== ./
+
+
 
 module.exports = { bookmarks_json_path, get_bookmarks_json, get_before_time_text }

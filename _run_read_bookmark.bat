@@ -3,5 +3,10 @@
 @echo off
 setlocal
 
-"%ProgramFiles%\nodejs\node" read_bookmark
+set "node=C:\nvm4w\nodejs"
+if not exist "%node%" (
+    set "node=%ProgramFiles%\nodejs"
+)
+
+call "%node%\node" read_bookmark
 :: cd..

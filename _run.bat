@@ -1,3 +1,7 @@
+set "node=C:\nvm4w\nodejs"
+if not exist "%node%" (
+    set "node=%ProgramFiles%\nodejs"
+)
 pause
-"%ProgramFiles%\nodejs\node" main.js
+call "%node%\node" main.js
 pause
