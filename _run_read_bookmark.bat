@@ -3,10 +3,10 @@
 @echo off
 setlocal
 
-set "node=C:\nvm4w\nodejs\node"
+set "node=C:\nvm4w\nodejs"
 if not exist "%node%" (
-    set "node=%ProgramFiles%\nodejs\node"
+    set "node=%ProgramFiles%\nodejs"
 )
 
-call "%node%" read_bookmark
+call "%node%\node" read_bookmark
 :: cd..
