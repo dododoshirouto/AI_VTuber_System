@@ -640,16 +640,15 @@ process.on('uncaughtException', async (err) => {
 //. ===== publicフォルダのサーバ =====
 
 const express = require('express');
-const path = require('path');
 
-const app = express();
-const PORT = 3000; // 我が魔力を解放するポートよ
+const express_app = express();
+const PORT = 8000; // 我が魔力を解放するポートよ
 
 // 'public'フォルダを静的ファイルの配信元として指定する。これだけ。簡単すぎない？
-app.use(express.static(path.join(__dirname, 'public')));
+express_app.use(express.static(path.join(__dirname, 'public')));
 
 // サーバを非同期で起動するわ
-app.listen(PORT, () => {
+express_app.listen(PORT, () => {
     console.log(`サーバが起動しました。ポートは ${PORT} です。`);
     console.log(`http://localhost:${PORT}`);
 });
