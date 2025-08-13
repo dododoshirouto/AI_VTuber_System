@@ -1,7 +1,7 @@
 ﻿{
     "main":  0,
     "major":  0,
-    "minor":  0,
-    "build":  1,
-    "pre":  true
+    "minor":  1,
+    "build":  0,
+    "pre":  false
 }
