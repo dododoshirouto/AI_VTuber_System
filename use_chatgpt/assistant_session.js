@@ -16,11 +16,49 @@ class AssistantSession {
         this.assistantId = id;
     }
 
+    // https://platform.openai.com/docs/pricing
     static costTable = {
-        "gpt-3.5-turbo": { input: 0.0015 / 1000, output: 0.002 / 1000 },
+        "gpt-5": { input: 1.25 / 1e6, output: 10.00 / 1e6 },
+        "gpt-5-mini": { input: 0.25 / 1e6, output: 2.00 / 1e6 },
+        "gpt-5-nano": { input: 0.05 / 1e6, output: 0.40 / 1e6 },
+        "gpt-5-chat-latest": { input: 1.25 / 1e6, output: 10.00 / 1e6 },
+        "gpt-4.1": { input: 2.00 / 1e6, output: 8.00 / 1e6 },
+        "gpt-4.1-mini": { input: 0.40 / 1e6, output: 1.60 / 1e6 },
+        "gpt-4.1-nano": { input: 0.10 / 1e6, output: 0.40 / 1e6 },
         "gpt-4o": { input: 2.50 / 1e6, output: 10.00 / 1e6 },
+        "gpt-4o-2024-05-13": { input: 5.00 / 1e6, output: 15.00 / 1e6 },
+        "gpt-4o-audio-preview": { input: 2.50 / 1e6, output: 10.00 / 1e6 },
+        "gpt-4o-realtime-preview": { input: 5.00 / 1e6, output: 20.00 / 1e6 },
         "gpt-4o-mini": { input: 0.15 / 1e6, output: 0.60 / 1e6 },
+        "gpt-4o-mini-audio-preview": { input: 0.15 / 1e6, output: 0.60 / 1e6 },
+        "gpt-4o-mini-realtime-preview": { input: 0.60 / 1e6, output: 2.40 / 1e6 },
+        "o1": { input: 15.00 / 1e6, output: 60.00 / 1e6 },
+        "o1-pro": { input: 150.00 / 1e6, output: 600.00 / 1e6 },
+        "o3-pro": { input: 20.00 / 1e6, output: 80.00 / 1e6 },
+        "o3": { input: 2.00 / 1e6, output: 8.00 / 1e6 },
+        "o3-deep-research": { input: 10.00 / 1e6, output: 40.00 / 1e6 },
         "o4-mini": { input: 1.10 / 1e6, output: 4.40 / 1e6 },
+        "o4-mini-deep-research": { input: 2.00 / 1e6, output: 8.00 / 1e6 },
+        "o3-mini": { input: 1.10 / 1e6, output: 4.40 / 1e6 },
+        "o1-mini": { input: 1.10 / 1e6, output: 4.40 / 1e6 },
+        // Legacy models
+        "chatgpt-4o-latest": { input: 5.00 / 1e6, output: 15.00 / 1e6 },
+        "gpt-4-turbo-2024-04-09": { input: 10.00 / 1e6, output: 30.00 / 1e6 },
+        "gpt-4-0125-preview": { input: 10.00 / 1e6, output: 30.00 / 1e6 },
+        "gpt-4-1106-preview": { input: 10.00 / 1e6, output: 30.00 / 1e6 },
+        "gpt-4-1106-vision-preview": { input: 10.00 / 1e6, output: 30.00 / 1e6 },
+        "gpt-4-0613": { input: 30.00 / 1e6, output: 60.00 / 1e6 },
+        "gpt-4-0314": { input: 30.00 / 1e6, output: 60.00 / 1e6 },
+        "gpt-4-32k": { input: 60.00 / 1e6, output: 120.00 / 1e6 },
+        "gpt-3.5-turbo": { input: 0.50 / 1e6, output: 1.50 / 1e6 },
+        "gpt-3.5-turbo-0125": { input: 0.50 / 1e6, output: 1.50 / 1e6 },
+        "gpt-3.5-turbo-1106": { input: 1.00 / 1e6, output: 2.00 / 1e6 },
+        "gpt-3.5-turbo-0613": { input: 1.50 / 1e6, output: 2.00 / 1e6 },
+        "gpt-3.5-0301": { input: 1.50 / 1e6, output: 2.00 / 1e6 },
+        "gpt-3.5-turbo-instruct": { input: 1.50 / 1e6, output: 2.00 / 1e6 },
+        "gpt-3.5-turbo-16k-0613": { input: 3.00 / 1e6, output: 4.00 / 1e6 },
+        "davinci-002": { input: 2.00 / 1e6, output: 2.00 / 1e6 },
+        "babbage-002": { input: 0.40 / 1e6, output: 0.40 / 1e6 },
     };
     static yenRate = 145;
     static model = "gpt-4o-mini";
