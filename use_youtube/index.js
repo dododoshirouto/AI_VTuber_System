@@ -14,7 +14,7 @@ const { CreateYouTubeLiveBroadcast, YouTubePrivacyStatus, YouTubeLiveBroadcastLi
 
 const SETTINGS = require('../settings');
 
-const CREDENTIALS_PATH = path.join(__dirname, 'credentials.json');
+const CREDENTIALS_PATH = path.join(__dirname, '../credentials.json');
 const TOKEN_PATH = path.join(__dirname, 'token.json');
 const TOKEN_PATHES = [TOKEN_PATH, path.join(__dirname, '../public/comments', 'token.json')];
 const SCOPES = ['https://www.googleapis.com/auth/youtube'];
