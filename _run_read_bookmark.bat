@@ -3,5 +3,5 @@
 @echo off
 setlocal
 
-node read_bookmark
-cd..
+"%ProgramFiles%\nodejs\node" read_bookmark
+:: cd..

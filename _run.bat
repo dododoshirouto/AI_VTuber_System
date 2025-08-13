@@ -1,3 +1,3 @@
 pause
-node main.js
+"%ProgramFiles%\nodejs\node" main.js
 pause
