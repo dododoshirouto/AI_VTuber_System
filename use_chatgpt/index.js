@@ -4,6 +4,8 @@ const { AssistantSession, getTotalYen } = require("./assistant_session");
 const dotenv = require('dotenv');
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
+const SETTINGS = require('../settings');
+
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
@@ -13,7 +15,7 @@ const openai = new OpenAI({
 
 
 const session = new AssistantSession(openai);
-AssistantSession.setAssistantId("asst_x3KTapnMhzn0sHsxaZ0H671T");
+AssistantSession.setAssistantId(SETTINGS.chatgpt_assistant_id);
 
 async function init() {
     await session.init();
