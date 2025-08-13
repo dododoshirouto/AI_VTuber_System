@@ -2,10 +2,10 @@ const { OpenAI } = require("openai");
 const path = require('path');
 const { AssistantSession, getTotalYen } = require("./assistant_session");
 const dotenv = require('dotenv');
-dotenv.config({ path: path.join(__dirname, '.env') });
+dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY, // ← セキュリティのため.env推奨
+    apiKey: process.env.OPENAI_API_KEY,
 });
 
 // let totalYen = 0;

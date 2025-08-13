@@ -1,10 +1,10 @@
 const { OpenAI } = require("openai");
 const path = require('path');
 const dotenv = require('dotenv');
-dotenv.config({ path: path.join(__dirname, '.env') });
+dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY, // ← セキュリティのため.env推奨
+    apiKey: process.env.OPENAI_API_KEY,
 });
 
 async function delete_file(id) {
