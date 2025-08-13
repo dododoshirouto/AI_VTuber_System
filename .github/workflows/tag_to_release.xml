@@ -1,0 +1,36 @@
+# ワークフローの名前。GitHubのActionsタブに表示されるわ
+name: Create Release from Tag
+
+# このワークフローが動くきっかけ（トリガー）
+on:
+  push:
+    tags:
+      - 'v*' # vから始まるタグ（例: v1.0, v1.2.3, v2.0-pre）が作られた時だけ動くわ
+
+# 実行する一連の処理（ジョブ）
+jobs:
+  create-release:
+    # 実行環境。最新のUbuntuを使うわ
+    runs-on: ubuntu-latest
+    
+    # このジョブが必要とする権限。リリースを作成するために'contents'への書き込み権限が必要よ
+    permissions:
+      contents: write
+
+    # 実際の処理手順（ステップ）
+    steps:
+      # ステップ1：リポジトリのコードをチェックアウトする。おまじないみたいなものね
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ステップ2：このワークフローの心臓部。GitHubリリースを作成する
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          # ここがキモよ。
+          # 'github.ref_name'（作られたタグの名前）が'-pre'で終わっているかどうかを判定する。
+          # trueならプレリリース、falseなら正式リリースになるってワケ。美しいでしょう？
+          prerelease: ${{ endsWith(github.ref_name, '-pre') }}
+          
+          # 実行に必要なトークン。GitHubが自動で用意してくれるわ
+          token: ${{ secrets.GITHUB_TOKEN }}
