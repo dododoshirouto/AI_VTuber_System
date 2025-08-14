@@ -68,8 +68,8 @@ AI_VTuber_System/
 │   ├── models/               # VOICEVOXモデルデータ
 │   └── venv/                 # Python仮想環境
 ├── aivis_talker/             # VOICEVOX音声生成のaivis版（AivisSpeechが別途必要）
-├── public/                   # OBS表示素材（画像・wav・HTMLなど）
-│   ├── chara/                # OBS表示素材（画像・wav・HTMLなど）
+├── public/                   # OBS表示などのサーバルート
+│   ├── chara/                # 立ち絵を口パク＆アニメーション＆音声再生
 │   │   ├── index.html        # OBSブラウザソース
 │   │   ├── main.js           # 
 │   │   ├── psd_chara.js      # 立ち絵制御（PSD）
@@ -80,6 +80,7 @@ AI_VTuber_System/
 │   └── comments/             # YouTubeコメントを表示する
 │       ├── index.html        # 
 │       └── main.js           # 
+├── settings.json             # 各種設定
 └── _install.bat              # セットアップバッチ（Node+Python）
 ```
 
@@ -96,8 +97,10 @@ AI_VTuber_System/
 - [x] 配信枠の作成
   - [ ] サムネを設定する
 - [x] 配信開始する
-- [ ] OBSブラウザソースのサーバもnode.jsで立ち上げる
+- [x] OBSブラウザソースのサーバもnode.jsで立ち上げる
 - [ ] OBSブラウザとの連携方法をWebSocketにする
+- [ ] OBSのシーンプロファイルを生成する
+  - [ ] プロファイルも生成できるとよき（ストリームキー）
 - [ ] 配信告知をツイートする
 - [ ] 他の人が簡単にインストールできるようにする
 
