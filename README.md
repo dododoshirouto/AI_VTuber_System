@@ -4,6 +4,20 @@
 
 Xでブクマしたポストにコメントしていく配信をするVTuberを作る試み
 
+## インストール方法
+
+1. リリースページから`Source Code(zip)`をダウンロード
+2. ダウンロードしたzipを解凍
+3. `_install.bat`を右クリック →　「管理者として実行」を押す
+4. .env.sampleをコピーして`.env`を作成 → `.env`にChatGPTのAPIキーを入れる
+5. Google OAuth同意画面のキー(JSON)をダウンロードし、`confidential.json`にリネームする
+6. `_run_read_bookmark.bat`を実行する
+
+## 実行方法
+
+1. OBSを立ち上げる
+2. `_run.bat`を実行する
+
 ## 使用技術と構成
 
 1. Puppeteer：X（Twitter）のブクマ取得

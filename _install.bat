@@ -175,9 +175,9 @@ echo.
 echo   --- [Project] Root dependencies ---
 if not exist package.json (
     echo     [*] Initializing Node.js project...
-    call npm init -y > nul
 )
 echo     [*] Installing root dependencies (axios, node-wav)...
+    call npm init -y > nul
 call npm install axios node-wav express
 
 echo.
@@ -185,9 +185,9 @@ echo   --- [Project] Read X Bookmark ---
 if not exist read_bookmark mkdir read_bookmark
 cd read_bookmark
 if not exist package.json (
-    call npm init -y > nul
 )
 echo     [*] Installing dependencies for Read X Bookmark...
+    call npm init -y > nul
 call npm install puppeteer child_process
 cd ..
 
@@ -196,9 +196,9 @@ echo   --- [Project] Use ChatGPT ---
 if not exist use_chatgpt mkdir use_chatgpt
 cd use_chatgpt
 if not exist package.json (
-    call npm init -y > nul
 )
 echo     [*] Installing dependencies for Use ChatGPT...
+    call npm init -y > nul
 call npm install openai dotenv
 cd ..
 
@@ -207,9 +207,9 @@ echo   --- [Project] Use YouTube API ---
 if not exist use_youtube mkdir use_youtube
 cd use_youtube
 if not exist package.json (
-    call npm init -y > nul
 )
 echo     [*] Installing dependencies for Use YouTube API...
+    call npm init -y > nul
 call npm install googleapis open
 cd ..
 
