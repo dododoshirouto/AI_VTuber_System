@@ -366,7 +366,7 @@
                         "private_settings": {}
                     },
                     {
-                        "name": "metan chara",
+                        "name": "🌐metan chara",
                         "source_uuid": "31fa4b64-cdd5-4854-a60f-aca002aa52ac",
                         "visible": true,
                         "locked": true,
@@ -812,7 +812,7 @@
         },
         {
             "prev_ver": 520159234,
-            "name": "chat yt popup",
+            "name": "🌐chat yt popup",
             "uuid": "a71c76a6-7c33-476b-b90a-28c5e8c33383",
             "id": "browser_source",
             "versioned_id": "browser_source",
@@ -1107,7 +1107,7 @@
                         "private_settings": {}
                     },
                     {
-                        "name": "chat yt popup",
+                        "name": "🌐chat yt popup",
                         "source_uuid": "a71c76a6-7c33-476b-b90a-28c5e8c33383",
                         "visible": true,
                         "locked": true,
@@ -1217,7 +1217,7 @@
                         "private_settings": {}
                     },
                     {
-                        "name": "metan post",
+                        "name": "🌐metan post",
                         "source_uuid": "e966e2f2-fd1f-4ba1-b4eb-c7519c53c2de",
                         "visible": true,
                         "locked": true,
@@ -1327,7 +1327,7 @@
                         "private_settings": {}
                     },
                     {
-                        "name": "metan chara",
+                        "name": "🌐metan chara",
                         "source_uuid": "31fa4b64-cdd5-4854-a60f-aca002aa52ac",
                         "visible": true,
                         "locked": true,
@@ -1426,7 +1426,7 @@
         },
         {
             "prev_ver": 520159234,
-            "name": "metan chara",
+            "name": "🌐metan chara",
             "uuid": "31fa4b64-cdd5-4854-a60f-aca002aa52ac",
             "id": "browser_source",
             "versioned_id": "browser_source",
@@ -1464,7 +1464,7 @@
         },
         {
             "prev_ver": 520159234,
-            "name": "metan post",
+            "name": "🌐metan post",
             "uuid": "e966e2f2-fd1f-4ba1-b4eb-c7519c53c2de",
             "id": "browser_source",
             "versioned_id": "browser_source",
