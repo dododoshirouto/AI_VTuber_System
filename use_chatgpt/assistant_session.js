@@ -163,9 +163,14 @@ class AssistantSession {
         AssistantSession.model = this.run.model;
         console.log(`Use Model: ${this.run.model}`);
 
-        const [reply, replayed_run] = await this._waitForRun(this.run.id);
-        this.run = null;
-        this._logUsage(replayed_run);
+        var [reply, replayed_run] = [null, null];
+        try {
+            [reply, replayed_run] = await this._waitForRun(this.run.id);
+            this.run = null;
+            this._logUsage(replayed_run);
+        } catch (e) {
+            console.warn(`⚠️⚠️⚠️[AssistantSession._waitForRun]`, `Error:`, e.stack, e.message);
+        }
 
         return reply;
     }
@@ -203,14 +208,14 @@ class AssistantSession {
             status = run.status;
             if (status === "failed" || status === "cancelled") {
                 for (let i = 0; i < 10; i++) {
-                    console.log(`retray run chatgpt ${run}`);
+                    console.warn(`[_waitForRun] retray run chatgpt, status:${run.status}, ${run.last_error?.message || ""}`);
                     await new Promise(r => setTimeout(r, 500));
                     run = await this.openai.beta.threads.runs.retrieve(runId, { thread_id: this.threadId });
                     if (run.status !== "failed" && run.status !== "cancelled") break;
                 }
                 if (status === "failed" || status === "cancelled") throw new Error(`Run failed: ${status}`);
             }
-            if (status !== "completed") await new Promise(r => setTimeout(r, 500));
+            if (status !== "completed") await new Promise(r => setTimeout(r, 1000));
         }
 
         const messages = await this.openai.beta.threads.messages.list(this.threadId);
