@@ -3,6 +3,9 @@
 @echo off
 setlocal enabledelayedexpansion
 
+:: Change directory to the location of this script. When run as administrator.
+cd /D "%~dp0"
+
 set PYTHON_VERSION=3.10.11
 
 :: =================================================================
@@ -173,44 +176,55 @@ echo [Phase 7/7] Setting up project-specific dependencies...
 echo.
 
 echo   --- [Project] Root dependencies ---
-if not exist package.json (
-    echo     [*] Initializing Node.js project...
-    call npm init -y > nul
-)
-echo     [*] Installing root dependencies (axios, node-wav)...
-call npm install axios node-wav express
+if exist package.json goto :install_root_npminstall
+    call npm init -y
+    echo     [*] Installing root dependencies (axios, node-wav)...
+    call npm install axios node-wav express
+    goto :end_of_root_npminstall
+:install_root_npminstall
+    call npm install
+:end_of_root_npminstall
 
 echo.
 echo   --- [Project] Read X Bookmark ---
 if not exist read_bookmark mkdir read_bookmark
 cd read_bookmark
-if not exist package.json (
-    call npm init -y > nul
-)
-echo     [*] Installing dependencies for Read X Bookmark...
-call npm install puppeteer child_process
+if exist package.json goto :install_read_bookmark_npminstall
+    call npm init -y
+    echo     [*] Installing dependencies for Read X Bookmark...
+    call npm install puppeteer child_process
+    goto :end_of_read_bookmark_npminstall
+:install_read_bookmark_npminstall
+    call npm install
+:end_of_read_bookmark_npminstall
 cd ..
 
 echo.
 echo   --- [Project] Use ChatGPT ---
 if not exist use_chatgpt mkdir use_chatgpt
 cd use_chatgpt
-if not exist package.json (
-    call npm init -y > nul
-)
-echo     [*] Installing dependencies for Use ChatGPT...
-call npm install openai dotenv
+if exist package.json goto :install_use_chatgpt_npminstall
+    call npm init -y
+    echo     [*] Installing dependencies for Use ChatGPT...
+    call npm install openai dotenv
+    goto :end_of_use_chatgpt_npminstall
+:install_use_chatgpt_npminstall
+    call npm install
+:end_of_use_chatgpt_npminstall
 cd ..
 
 echo.
 echo   --- [Project] Use YouTube API ---
 if not exist use_youtube mkdir use_youtube
 cd use_youtube
-if not exist package.json (
-    call npm init -y > nul
-)
-echo     [*] Installing dependencies for Use YouTube API...
-call npm install googleapis open
+if exist package.json goto :install_use_youtube_npminstall
+    call npm init -y
+    echo     [*] Installing dependencies for Use YouTube API...
+    call npm install googleapis open
+    goto :end_of_use_youtube_npminstall
+:install_use_youtube_npminstall
+    call npm install
+:end_of_use_youtube_npminstall
 cd ..
 
 echo.
