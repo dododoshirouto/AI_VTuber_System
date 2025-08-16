@@ -117,7 +117,14 @@ var last_text = "";
 async function audio_update_check() {
     while (true) {
         await new Promise(r => setTimeout(r, 500));
-        let json = await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => json);
+        let json = null;
+        try {
+            json = await fetch(audio_query_json + '?' + Date.now()).then(res => res.json()).then(json => json).catch(e => console.error(e));
+            json.text
+        } catch (e) {
+            await new Promise(r => setTimeout(r, 1000));
+            continue;
+        }
         if ((json.text || json.hash) != last_text && can_audio_play && !audio_is_playing) {
             last_text = json.text || json.hash;
 
