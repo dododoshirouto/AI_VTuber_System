@@ -1,0 +1,1824 @@
+{
+    "current_scene": "サムネ",
+    "current_program_scene": "サムネ",
+    "scene_order": [
+        {
+            "name": "サムネ"
+        },
+        {
+            "name": "main"
+        },
+        {
+            "name": "___frame"
+        }
+    ],
+    "name": "AI VTuber 四国めたん Sample",
+    "groups": [],
+    "quick_transitions": [
+        {
+            "name": "フェード",
+            "duration": 550,
+            "hotkeys": [],
+            "id": 4,
+            "fade_to_black": false
+        }
+    ],
+    "transitions": [
+        {
+            "name": "スライド up",
+            "id": "slide_transition",
+            "settings": {
+                "direction": "up"
+            }
+        },
+        {
+            "name": "スライド down",
+            "id": "slide_transition",
+            "settings": {
+                "direction": "down"
+            }
+        },
+        {
+            "name": "スライド left",
+            "id": "slide_transition",
+            "settings": {
+                "direction": "left"
+            }
+        },
+        {
+            "name": "スライド right",
+            "id": "slide_transition",
+            "settings": {
+                "direction": "right"
+            }
+        }
+    ],
+    "saved_projectors": [],
+    "canvases": [],
+    "current_transition": "フェード",
+    "transition_duration": 550,
+    "preview_locked": false,
+    "scaling_enabled": false,
+    "scaling_level": -19,
+    "scaling_off_x": 0.0,
+    "scaling_off_y": 0.0,
+    "virtual-camera": {
+        "type2": 1,
+        "scene": "WebCam"
+    },
+    "modules": {
+        "scripts-tool": [],
+        "output-timer": {
+            "streamTimerHours": 0,
+            "streamTimerMinutes": 0,
+            "streamTimerSeconds": 30,
+            "recordTimerHours": 0,
+            "recordTimerMinutes": 0,
+            "recordTimerSeconds": 30,
+            "autoStartStreamTimer": false,
+            "autoStartRecordTimer": false,
+            "pauseRecordTimer": true
+        },
+        "auto-scene-switcher": {
+            "interval": 300,
+            "non_matching_scene": "",
+            "switch_if_not_matching": false,
+            "active": false,
+            "switches": []
+        },
+        "captions": {
+            "source": "",
+            "enabled": false,
+            "lang_id": 1041,
+            "provider": "mssapi"
+        }
+    },
+    "resolution": {
+        "x": 1920,
+        "y": 1080
+    },
+    "version": 2,
+    "sources": [
+        {
+            "prev_ver": 520159234,
+            "name": "「コメントにも反応するわよ」",
+            "uuid": "455912e5-9c11-4a0b-b51b-35e07b26ee4a",
+            "id": "text_gdiplus",
+            "versioned_id": "text_gdiplus_v3",
+            "settings": {
+                "text": "＼コメントにも反応するわよ／",
+                "outline": false,
+                "font": {
+                    "face": "LINE Seed JP_OTF Bold",
+                    "style": "Bold",
+                    "size": 128,
+                    "flags": 1
+                },
+                "color": 4294945535,
+                "outline_size": 2
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {},
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {},
+            "filters": []
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "サムネ",
+            "uuid": "d8f45625-3f07-4270-99f3-4555eb7d3c80",
+            "id": "scene",
+            "versioned_id": "scene",
+            "settings": {
+                "id_counter": 14,
+                "custom_size": false,
+                "items": [
+                    {
+                        "name": "desktop-wallpaper.jpg",
+                        "source_uuid": "f472a10c-ef75-472d-8bf5-2ce68a17c7ff",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 3,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 2277,
+                        "crop_bottom": 0,
+                        "id": 2,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pos_rel": {
+                            "x": -1.7777777910232544,
+                            "y": -1.0
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "bounds_rel": {
+                            "x": 3.555555582046509,
+                            "y": 2.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "___frame",
+                        "source_uuid": "e0988e89-2aa2-43b0-a34e-8687b5ed0b66",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 7,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pos_rel": {
+                            "x": -1.7777777910232544,
+                            "y": -1.0
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "メタン サムネ テキスト 1",
+                        "source_uuid": "867522ef-6152-4947-a0e5-5799f11c90ae",
+                        "visible": true,
+                        "locked": false,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 9,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 93.0,
+                            "y": 75.0
+                        },
+                        "pos_rel": {
+                            "x": -1.605555534362793,
+                            "y": -0.8611111044883728
+                        },
+                        "scale": {
+                            "x": 1.25600004196167,
+                            "y": 1.2567567825317383
+                        },
+                        "scale_rel": {
+                            "x": 1.25600004196167,
+                            "y": 1.2567567825317383
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "メタン サムネ テキスト 2",
+                        "source_uuid": "97c0f641-f0cc-417c-bf1b-c31f0d478d7f",
+                        "visible": true,
+                        "locked": false,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 10,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 84.0,
+                            "y": 190.0
+                        },
+                        "pos_rel": {
+                            "x": -1.6222221851348877,
+                            "y": -0.6481481790542603
+                        },
+                        "scale": {
+                            "x": 2.2431817054748535,
+                            "y": 2.2432432174682617
+                        },
+                        "scale_rel": {
+                            "x": 2.2431817054748535,
+                            "y": 2.2432432174682617
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "metan chara",
+                        "source_uuid": "31fa4b64-cdd5-4854-a60f-aca002aa52ac",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 47,
+                        "crop_top": 148,
+                        "crop_right": 55,
+                        "crop_bottom": 490,
+                        "id": 8,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 865.0,
+                            "y": 47.0
+                        },
+                        "pos_rel": {
+                            "x": -0.17592592537403107,
+                            "y": -0.9129629731178284
+                        },
+                        "scale": {
+                            "x": 2.170682668685913,
+                            "y": 2.170818567276001
+                        },
+                        "scale_rel": {
+                            "x": 2.170682668685913,
+                            "y": 2.170818567276001
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "メタン サムネ テキスト 3",
+                        "source_uuid": "6b19f399-0e89-4669-a75d-8c39ba2bb744",
+                        "visible": true,
+                        "locked": false,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 11,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 986.0,
+                            "y": 289.0
+                        },
+                        "pos_rel": {
+                            "x": 0.04814814776182175,
+                            "y": -0.46481484174728394
+                        },
+                        "scale": {
+                            "x": 1.484375,
+                            "y": 1.4864864349365234
+                        },
+                        "scale_rel": {
+                            "x": 1.484375,
+                            "y": 1.4864864349365234
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "メタン サムネ テキスト 4",
+                        "source_uuid": "957a717c-37a6-4be0-9d11-8b460bf69807",
+                        "visible": true,
+                        "locked": false,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 12,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 99.0,
+                            "y": 491.0
+                        },
+                        "pos_rel": {
+                            "x": -1.5944443941116333,
+                            "y": -0.09074074029922485
+                        },
+                        "scale": {
+                            "x": 1.3518072366714478,
+                            "y": 1.3513513803482056
+                        },
+                        "scale_rel": {
+                            "x": 1.3518072366714478,
+                            "y": 1.3513513803482056
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "メタン サムネ テキスト 5",
+                        "source_uuid": "88e5196b-0d46-424e-a5fd-3c394c5e4af6",
+                        "visible": true,
+                        "locked": false,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 13,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 104.0,
+                            "y": 627.0
+                        },
+                        "pos_rel": {
+                            "x": -1.585185170173645,
+                            "y": 0.16111111640930176
+                        },
+                        "scale": {
+                            "x": 1.884615421295166,
+                            "y": 1.8851351737976074
+                        },
+                        "scale_rel": {
+                            "x": 1.884615421295166,
+                            "y": 1.8851351737976074
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    }
+                ]
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {
+                "OBSBasic.SelectScene": [],
+                "libobs.show_scene_item.14": [],
+                "libobs.hide_scene_item.14": [],
+                "libobs.show_scene_item.2": [],
+                "libobs.hide_scene_item.2": [],
+                "libobs.show_scene_item.7": [],
+                "libobs.hide_scene_item.7": [],
+                "libobs.show_scene_item.9": [],
+                "libobs.hide_scene_item.9": [],
+                "libobs.show_scene_item.10": [],
+                "libobs.hide_scene_item.10": [],
+                "libobs.show_scene_item.8": [],
+                "libobs.hide_scene_item.8": [],
+                "libobs.show_scene_item.11": [],
+                "libobs.hide_scene_item.11": [],
+                "libobs.show_scene_item.12": [],
+                "libobs.hide_scene_item.12": [],
+                "libobs.show_scene_item.13": [],
+                "libobs.hide_scene_item.13": []
+            },
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "canvas_uuid": "6c69626f-6273-4c00-9d88-c5136d61696e",
+            "private_settings": {
+                "transition": "",
+                "transition_duration": 0
+            }
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "メタン サムネ テキスト 1",
+            "uuid": "867522ef-6152-4947-a0e5-5799f11c90ae",
+            "id": "text_gdiplus",
+            "versioned_id": "text_gdiplus_v3",
+            "settings": {
+                "outline": true,
+                "text": "AI VTuber",
+                "font": {
+                    "face": "LINE Seed JP OTF ExtraBold",
+                    "style": "ExtraBold",
+                    "size": 128,
+                    "flags": 1
+                },
+                "outline_size": 20,
+                "outline_color": 4294945365
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {},
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {},
+            "filters": []
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "メタン サムネ テキスト 2",
+            "uuid": "97c0f641-f0cc-417c-bf1b-c31f0d478d7f",
+            "id": "text_gdiplus",
+            "versioned_id": "text_gdiplus_v3",
+            "settings": {
+                "outline": true,
+                "text": "四国めたん",
+                "font": {
+                    "face": "LINE Seed JP OTF ExtraBold",
+                    "style": "ExtraBold",
+                    "size": 128,
+                    "flags": 1
+                },
+                "outline_size": 20,
+                "outline_color": 4294923775
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {},
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {},
+            "filters": []
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "メタン サムネ テキスト 3",
+            "uuid": "6b19f399-0e89-4669-a75d-8c39ba2bb744",
+            "id": "text_gdiplus",
+            "versioned_id": "text_gdiplus_v3",
+            "settings": {
+                "outline": true,
+                "text": "の",
+                "font": {
+                    "face": "LINE Seed JP OTF ExtraBold",
+                    "style": "ExtraBold",
+                    "size": 128,
+                    "flags": 1
+                },
+                "outline_size": 20,
+                "outline_color": 4294945365
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {},
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {},
+            "filters": []
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "メタン サムネ テキスト 4",
+            "uuid": "957a717c-37a6-4be0-9d11-8b460bf69807",
+            "id": "text_gdiplus",
+            "versioned_id": "text_gdiplus_v3",
+            "settings": {
+                "outline": true,
+                "undo_suuid": "c3739803-8e47-413e-bd07-05b68abda44a",
+                "text": "Ｘでブクマしたポスト",
+                "font": {
+                    "face": "LINE Seed JP OTF ExtraBold",
+                    "style": "ExtraBold",
+                    "size": 128,
+                    "flags": 1
+                },
+                "outline_size": 20,
+                "outline_color": 4294945365
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {},
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {},
+            "filters": []
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "メタン サムネ テキスト 5",
+            "uuid": "88e5196b-0d46-424e-a5fd-3c394c5e4af6",
+            "id": "text_gdiplus",
+            "versioned_id": "text_gdiplus_v3",
+            "settings": {
+                "outline": true,
+                "undo_suuid": "c3739803-8e47-413e-bd07-05b68abda44a",
+                "text": "紹介配信",
+                "font": {
+                    "face": "LINE Seed JP OTF ExtraBold",
+                    "style": "ExtraBold",
+                    "size": 128,
+                    "flags": 1
+                },
+                "outline_size": 20,
+                "outline_color": 4294945365
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {},
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {},
+            "filters": []
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "chat yt popup",
+            "uuid": "a71c76a6-7c33-476b-b90a-28c5e8c33383",
+            "id": "browser_source",
+            "versioned_id": "browser_source",
+            "settings": {
+                "url": "http://localhost:8000/comments/",
+                "width": 450,
+                "height": 1080,
+                "css": "\n    /* ---------------------------------------------------- \n      ©︎通行止め.ᐟ.ᐟ\n    ---------------------------------------------------- */\n    @import url(\"https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans:wght@400;500;700&display=swap\");\n    \n    :root {\n      --listener-name: #ffffff;\n      --listener-name-bg: #8ccce3;\n      --member-name: #ffffff;\n      --member-name-bg: #8ccce3;\n      --listener-comment: #333333;\n      --listener-comment-bg: #ffffff;\n      --listener-comment-border: #8ccce3;\n      --member-comment: #333333;\n      --member-comment-bg: #ffffff;\n      --member-comment-border: #8ccce3;\n      --superchat-name: #ffffff;\n      --superchat-name-bg: #9ed9ef;\n      --superchat-comment: #ffffff;\n      --superchat-comment-bg: #8ccce3;\n      --membership-name: #ffffff;\n      --membership-name-bg: #9ed9ef;\n      --membership-comment: #ffffff;\n      --membership-comment-bg: #8ccce3;\n    }\n\n    ytd-sponsorships-live-chat-header-renderer *,\n    yt-live-chat-paid-sticker-renderer *,\n    yt-live-chat-membership-item-renderer *,\n    yt-live-chat-paid-message-renderer *,\n    yt-live-chat-text-message-renderer * {\n      font-family: \"Noto Sans JP\";\n      font-size: 16px !important;\n      font-style: normal !important;\n      font-weight: 700 !important;\n      line-height: 1.5 !important;\n      letter-spacing: 0.5px !important;\n    }\n\n    ytd-sponsorships-live-chat-header-renderer #message,\n    yt-live-chat-paid-sticker-renderer #message,\n    yt-live-chat-membership-item-renderer #message,\n    yt-live-chat-membership-item-renderer #header-subtext,\n    ytd-sponsorships-live-chat-header-renderer #primary-text,\n    yt-live-chat-paid-message-renderer #message,\n    yt-live-chat-text-message-renderer #message {\n      font-weight: 500 !important;\n    } \n\n    ytd-sponsorships-live-chat-header-renderer,\n    yt-live-chat-paid-sticker-renderer,\n    yt-live-chat-membership-item-renderer,\n    yt-live-chat-paid-message-renderer,\n    yt-live-chat-text-message-renderer {\n      animation: popInLeft 0.3s ease-out forwards;\n    }\n\n    @keyframes popInLeft {\n      0% {\n        opacity: 0;\n        transform: translate(-50%, -50%) scale(0);\n      }\n      100% {\n        opacity: 1;\n        transform: translate(0, 0) scale(1);\n      }\n    }\n\n    @keyframes popInRight {\n      0% {\n        opacity: 0;\n        transform: translate(50%, -50%) scale(0);\n      }\n      100% {\n        opacity: 1;\n        transform: translate(0, 0) scale(1);\n      }\n    }\n\n    ytd-sponsorships-live-chat-gift-purchase-announcement-renderer,\n    yt-live-chat-membership-item-renderer,\n    yt-live-chat-paid-sticker-renderer,\n    yt-live-chat-paid-message-renderer,\n    yt-live-chat-text-message-renderer {\n      padding-left: 16px !important;\n      padding-right: 16px !important;\n    }\n\n    /* ---------------------------------------------------- \n      content\n    ----------------------------------------------------*/\n    yt-live-chat-text-message-renderer {\n      flex-direction: row !important;\n      grid-gap: 8px;\n    }\n\n    #content.yt-live-chat-text-message-renderer {\n      position: relative;\n      overflow: visible !important;\n      display: block;\n    }\n\n    /* ---------------------------------------------------- \n      channel\n    ----------------------------------------------------*/\n    yt-live-chat-author-chip.yt-live-chat-text-message-renderer {\n      justify-content: start !important;\n      width: 100%;\n      margin: auto;\n    }\n\n    /* listener */\n    yt-live-chat-text-message-renderer[author-type=\"owner\"] #author-name,\n    yt-live-chat-text-message-renderer[author-type=\"moderator\"] #author-name,\n    yt-live-chat-text-message-renderer[author-type=\"member\"] #author-name,\n    yt-live-chat-text-message-renderer #author-name {\n      display: block;\n      width: fit-content;\n      padding: 4px 12px !important;\n      border-radius: 18px !important;\n      background-color: var(--listener-name-bg) !important;\n      color: var(--listener-name) !important;\n      font-size: 12px !important;\n      margin-bottom: 8px;\n    }\n\n    /* member */\n    yt-live-chat-text-message-renderer[author-type=\"member\"] #author-name {\n      display: block;\n      background-color: var(--member-name-bg) !important;\n      color: var(--member-name) !important;\n      font-size: 12px !important;\n    }\n\n    /* icon */\n    yt-img-shadow#author-photo.yt-live-chat-text-message-renderer {\n      margin-right: 0px;\n      display: none;\n    }\n\n    #chat-badges.yt-live-chat-author-chip {\n      display: block;\n    }\n\n    /* ---------------------------------------------------- \n      message \n    ----------------------------------------------------*/\n    /* message */\n    #message.yt-live-chat-text-message-renderer {\n      background-color: var(--listener-comment-bg) !important;\n      color: var(--listener-comment) !important;\n      border-radius: 30px;\n      border: 3px solid var(--listener-comment-border);\n      display: block !important;\n      padding: 12px 20px;\n      width: fit-content !important;\n      position: relative;\n      overflow: visible;\n      margin-right : auto;\n    }\n\n    #message.yt-live-chat-text-message-renderer::before {\n      content: \"\";\n      position: absolute;\n      top: 4px;\n      left: -3px; right: auto;\n      width: 21px;\n      height: 21px;\n      transform: rotate(-20deg) skew(20deg, 20deg);\n      background-color: var(--listener-comment-border);\n      border-top-left-radius: 7px;\n      border-bottom-right-radius: 6px;\n      z-index: -1;\n    }\n\n    #message.yt-live-chat-text-message-renderer::after {\n      content: \"\";\n      position: absolute;\n      top: 7px;\n      left: 1px; right: auto;\n      width: 18px;\n      height: 18px;\n      transform: rotate(-20deg) skew(20deg, 20deg);\n      background-color: var(--listener-comment-bg);\n      border-top-left-radius: 4px;\n      border-bottom-right-radius: 20px;\n      z-index: 0;\n    }\n\n    yt-live-chat-text-message-renderer[author-type=\"member\"] #message.yt-live-chat-text-message-renderer {\n      background-color: var(--member-comment-bg) !important;\n      color: var(--member-comment) !important;\n      border: 3px solid var(--member-comment-border);\n      margin-right : auto;\n    }\n\n    yt-live-chat-text-message-renderer[author-type=\"member\"] #message.yt-live-chat-text-message-renderer::before {\n      content: \"\";\n      position: absolute;\n      top: 4px;\n      left: -3px; right: auto;\n      width: 21px;\n      height: 21px;\n      transform: rotate(-20deg) skew(20deg, 20deg);\n      background-color: var(--member-comment-border);\n      border-top-left-radius: 7px;\n      border-bottom-right-radius: 6px;\n      z-index: -1;\n    }\n\n    yt-live-chat-text-message-renderer[author-type=\"member\"] #message.yt-live-chat-text-message-renderer::after {\n      content: \"\";\n      position: absolute;\n      top: 7px;\n      left: 1px; right: auto;\n      width: 18px;\n      height: 18px;\n      transform: rotate(-20deg) skew(20deg, 20deg);\n      background-color: var(--listener-comment-bg);\n      border-top-left-radius: 4px;\n      border-bottom-right-radius: 20px;\n      z-index: 0;\n    }\n\n    /* ---------------------------------------------------- \n      superchat \n    ----------------------------------------------------*/\n    /* card header */\n    yt-live-chat-paid-message-renderer #card.yt-live-chat-paid-message-renderer {\n      background-color: var(--superchat-comment-bg);\n      border-radius: 13px;\n\n      position: relative;\n      width: 100%;\n    }\n\n    /* sp header */\n    yt-live-chat-paid-message-renderer #header.yt-live-chat-paid-message-renderer {\n      background-color: var(--superchat-name-bg);\n      color: var(--superchat-name);\n      padding: 12px 20px;\n      border-radius: 10px 10px 0px 0px;\n      position: relative;\n    }\n\n    yt-live-chat-author-chip[disable-highlighting] #author-name.yt-live-chat-author-chip {\n      color: var(--superchat-name);\n    }\n\n    /* sp header only */\n    yt-live-chat-paid-message-renderer[show-only-header] #header.yt-live-chat-paid-message-renderer {\n      border-radius: 10px;\n    }\n\n    yt-live-chat-paid-message-renderer[show-only-header] #content.yt-live-chat-paid-message-renderer {\n      padding: 0;\n    }\n\n    /* user */\n    yt-live-chat-paid-message-renderer #single-line.yt-live-chat-paid-message-renderer span#chat-badges {\n      display: flex;\n      align-items: center;\n    }\n\n    yt-live-chat-paid-message-renderer #single-line.yt-live-chat-paid-message-renderer {\n      display: flex;\n      justify-content: space-between;\n    }\n\n    /* price */\n    yt-live-chat-paid-message-renderer #header-content-primary-column.yt-live-chat-paid-message-renderer {\n      padding-right: 0px !important;\n    }\n\n    #purchase-amount-column.yt-live-chat-paid-message-renderer {\n      text-wrap: nowrap;\n    }\n\n    /* message */\n    yt-live-chat-paid-message-renderer #content.yt-live-chat-paid-message-renderer {\n      background-color: var(--superchat-comment-bg);\n      color: var(--superchat-comment);\n      border-radius: 0px 0px 10px 10px;\n      padding: 12px 20px;\n    }\n\n    /* like */\n    #creator-heart-button.yt-live-chat-paid-message-renderer {\n      display: none !important;\n    }\n    \n    #gradient-container.yt-live-chat-paid-message-renderer {\n      display: none !important;\n    }\n\n    yt-live-chat-paid-message-renderer[has-heart-button] #menu.yt-live-chat-paid-message-renderer {\n      display: none !important;\n    }\n\n    #action-buttons.yt-live-chat-paid-message-renderer {\n      display: none !important;\n    }\n\n    /* super sticker */\n    #before-content-buttons.yt-live-chat-text-message-renderer {\n      display: none !important;\n    }\n    \n\n    /* ---------------------------------------------------- \n      sticker \n    ----------------------------------------------------*/\n\n    /* image */\n    #sticker img {\n      width: 56px !important;\n      height: 56px !important;\n    }\n\n    /* sticker */\n    yt-live-chat-paid-sticker-renderer:not([dashboard-money-feed]) #card.yt-live-chat-paid-sticker-renderer {\n      display: block;\n      padding: 0px;\n      border-radius: 10px;\n      box-shadow: none;\n      overflow: visible;\n      position: relative;\n    }\n\n    /* header */\n    yt-live-chat-paid-sticker-renderer:not([dashboard-money-feed]) #author-info.yt-live-chat-paid-sticker-renderer {\n      background-color: var(--superchat-name-bg);\n      color: var(--superchat-name);\n      border-radius: 10px 10px 0px 0px;\n      display: block;\n      padding: 12px 20px !important;\n    }\n\n    #author-photo.yt-live-chat-paid-sticker-renderer {\n      display: none !important;\n    }\n\n    /* channel price*/\n    #content-primary-column.yt-live-chat-paid-sticker-renderer {\n      display: flex;\n      justify-content: space-between;\n    }\n\n    yt-live-chat-paid-sticker-renderer:not([dashboard-money-feed]) #purchase-amount-chip.yt-live-chat-paid-sticker-renderer {\n      padding: 0;\n      color: var(--superchat-name);\n    }\n\n    /* comment */\n    yt-live-chat-paid-sticker-renderer:not([dashboard-money-feed]) #sticker-container {\n      background-color: var(--superchat-comment-bg) !important;\n      display: block;\n      padding: 12px 20px;\n      border-radius: 0px 0px 10px 10px;\n    }\n\n    /* ----------------------------------------------------\n      membership\n    ---------------------------------------------------- */\n\n    /* welcome channel */\n    yt-live-chat-membership-item-renderer[show-only-header] #header.yt-live-chat-membership-item-renderer {\n      background-color: var(--membership-name-bg) !important;\n      color: var(--membership-name);\n      padding: 0px;\n      border-radius: 10px;\n    }\n\n    yt-live-chat-membership-item-renderer[show-only-header] div#header-content-inner-column {\n      padding: 12px 20px;\n    }\n\n    /* welcome */\n    yt-live-chat-membership-item-renderer[show-only-header] #header-subtext.yt-live-chat-membership-item-renderer {\n      background-color: var(--membership-name-bg);\n      color: var(--membership-name);\n      padding: 0px 20px 12px;\n      border-radius: 0px 0px 10px 10px;\n      margin: 0;\n    }\n\n    /* comment */\n    #header.yt-live-chat-membership-item-renderer {\n      background-color: var(--membership-comment-bg);\n      color: var(--membership-comment);\n      padding: 0px;\n      border-radius: 10px 10px 0px 0px;\n    }\n\n    #content.yt-live-chat-membership-item-renderer {\n      background-color: var(--membership-comment-bg);\n      color: var(--membership-comment);\n      padding: 12px 20px;\n      border-radius: 0px 0px 10px 10px;\n    }\n\n    yt-live-chat-membership-item-renderer[has-primary-header-text] div#header-content-primary-column {\n      width: 100%;\n    }\n\n    /* channel member-history */\n    yt-live-chat-membership-item-renderer[has-primary-header-text] div#header-content-inner-column {\n      background-color: var(--membership-name-bg);\n      color: var(--membership-name);\n      padding: 12px 20px 0px;\n      border-radius: 10px 10px 0px 0px;\n    }\n\n    /* membership-name */\n    yt-live-chat-membership-item-renderer[has-primary-header-text]:not([dashboard-money-feed]) #header-subtext.yt-live-chat-membership-item-renderer {\n      background-color: var(--membership-name-bg);\n      color: var(--membership-name);\n      padding: 6px 20px 12px;\n      margin: 0;\n    }\n\n    /* channel */\n    #content.ytd-sponsorships-live-chat-header-renderer #author-name.member.yt-live-chat-author-chip {\n      display: block;\n      background-color: var(--membership-name-bg);\n      color: var(--membership-name) !important;\n      border-radius: 10px 10px 0px 0px;\n      padding: 12px 20px;\n      width: 100%;\n    }\n\n    /* gift message */\n    #content.ytd-sponsorships-live-chat-header-renderer {\n      padding: 0px;\n    }\n\n    #primary-text.ytd-sponsorships-live-chat-header-renderer {  \n      background-color: var(--membership-name-bg);\n      color: var(--membership-name);\n      border-radius: 0px 0px 10px 10px;\n      padding: 0px 20px 12px;\n    }\n\n    /* gift */\n    #header.ytd-sponsorships-live-chat-header-renderer {\n      background-color: var(--membership-name-bg);\n      color: var(--membership-name);\n      border-radius: 10px;\n    }\n\n    .rhs-image.ytd-sponsorships-live-chat-header-renderer {\n      position: absolute;\n      bottom: 50%;\n      transform: translateY(50%);\n      right: 20px;\n    }\n\n    /* gift image */\n    ytd-sponsorships-live-chat-header-renderer img.yt-img-shadow {\n      width: 80px;\n      height: 80px;\n    }\n\n    #author-photo.ytd-sponsorships-live-chat-header-renderer {\n      display: none;\n    }\n\n    /* ballon */\n    #overlay-image.yt-live-chat-paid-message-renderer {\n      top: 50%;\n      transform: translateY(-50%);\n      right: 100px;\n      z-index: 2;\n      width: 100px;\n    }\n\n    /* emoji */\n    #content.yt-live-chat-paid-message-renderer img.yt-live-chat-paid-message-renderer {\n      width: 18px !important;\n      height: 18px !important;\n    }\n\n    /* badge */\n    .yt-live-chat-author-badge-renderer {\n      width: 16px !important;\n      height: 16px !important;\n    }\n\n    /* icon */\n    #author-photo.yt-live-chat-paid-message-renderer,\n    #author-photo.yt-live-chat-membership-item-renderer {\n      display: none !important;\n    }\n\n    /* badge  */\n    yt-live-chat-author-badge-renderer[type=moderator],\n    yt-live-chat-author-badge-renderer[type=verified] {\n      display: none !important;\n    }\n\n    /* time */\n    yt-live-chat-text-message-renderer #timestamp {\n      display: none !important;\n    }\n\n    yt-live-chat-ticker-renderer {\n      background-color: transparent !important;\n      box-shadow: none !important;\n    }\n\n    yt-live-chat-renderer {\n      visibility: hidden !important;\n    }\n\n    yt-live-chat-renderer * {\n      visibility: initial !important;\n    }\n\n    yt-live-chat-item-list-renderer #items {\n      overflow: hidden !important;\n    }\n    \n    yt-live-chat-item-list-renderer #item-scroller {\n      overflow: hidden !important;\n    }\n\n    yt-live-chat-text-message-renderer,\n    yt-live-chat-text-message-renderer[is-highlighted],\n    yt-live-chat-text-message-renderer[author-type=\"owner\"],\n    yt-live-chat-text-message-renderer[author-type=\"owner\"][is-highlighted],\n    yt-live-chat-text-message-renderer[author-type=\"moderator\"],\n    yt-live-chat-text-message-renderer[author-type=\"moderator\"][is-highlighted],\n    yt-live-chat-text-message-renderer[author-type=\"member\"],\n    yt-live-chat-text-message-renderer[author-type=\"member\"][is-highlighted] {\n      background-color: transparent !important;\n    }\n\n    div#action-panel.style-scope.yt-live-chat-renderer {\n      display: none;\n    }\n\n    .mention.style-scope {\n      background-color: unset;\n    }\n\n    yt-live-chat-upsell-dialog-renderer {\n      display: none;\n    }\n\n    div#reaction-control-panel-overlay.yt-live-chat-renderer {\n      display: none;\n    }\n\n    div#separator.yt-live-chat-renderer {\n      display: none;\n    }\n\n    div#lower-bumper.yt-live-chat-paid-message-renderer {\n      display: none;\n    }\n\n    ytd-sponsorships-live-chat-gift-redemption-announcement-renderer {\n      display: none;\n    }\n\n    yt-live-chat-text-message-renderer a,\n    yt-live-chat-membership-item-renderer a {\n      text-decoration: none !important;\n    }\n\n    yt-live-chat-text-message-renderer[is-deleted],\n    yt-live-chat-membership-item-renderer[is-deleted],\n    yt-live-chat-moderation-message-renderer,\n    yt-live-chat-auto-mod-message-renderer {\n      display: none !important;\n    }\n\n    yt-live-chat-ticker-renderer {\n      background-color: transparent !important;\n      box-shadow: none !important;\n    }\n\n    yt-live-chat-ticker-renderer {\n      display: none !important;\n    }\n\n    yt-live-chat-mode-change-message-renderer,\n    yt-live-chat-viewer-engagement-message-renderer,\n    yt-live-chat-server-error-message,\n    yt-live-chat-banner-manager,\n    yt-live-chat-restricted-participation-renderer {\n      display: none !important;\n    }\n\n    #panel-pages,\n    yt-live-chat-message-input-renderer {\n      display: none !important;\n    }\n\n    yt-live-chat-header-renderer {\n      display: none !important;\n    }\n\n    body {\n      overflow: hidden;\n      background-color: rgba(0, 0, 0, 0);\n    }\n\n  "
+            },
+            "mixers": 255,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.unmute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "ObsBrowser.Refresh": []
+            },
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {},
+            "filters": []
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "clock",
+            "uuid": "de5f7d23-9afd-4c82-b506-70caae41ea49",
+            "id": "browser_source",
+            "versioned_id": "browser_source",
+            "settings": {
+                "url": "https://dododoshirouto.github.io/Clock-for-OBS/?align-top&title=ブクマ消化"
+            },
+            "mixers": 255,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.unmute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "ObsBrowser.Refresh": []
+            },
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {},
+            "filters": []
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "desktop-wallpaper.jpg",
+            "uuid": "f472a10c-ef75-472d-8bf5-2ce68a17c7ff",
+            "id": "image_source",
+            "versioned_id": "image_source",
+            "settings": {
+                "file": "E:/Documents/_素材/どどど素人VRC/配信/desktop-wallpaper.jpg"
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {},
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {}
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "frame_color",
+            "uuid": "d1c0338c-ac53-4fe4-81ab-d23e99efae98",
+            "id": "color_source",
+            "versioned_id": "color_source_v3",
+            "settings": {
+                "color": 4294945365
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {},
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {}
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "main",
+            "uuid": "3a2763dd-a06e-4eab-9c5e-6ba8cf79130d",
+            "id": "scene",
+            "versioned_id": "scene",
+            "settings": {
+                "id_counter": 11,
+                "custom_size": false,
+                "items": [
+                    {
+                        "name": "desktop-wallpaper.jpg",
+                        "source_uuid": "f472a10c-ef75-472d-8bf5-2ce68a17c7ff",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 3,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 2277,
+                        "crop_bottom": 0,
+                        "id": 5,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pos_rel": {
+                            "x": -1.7777777910232544,
+                            "y": -1.0
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "bounds_rel": {
+                            "x": 3.555555582046509,
+                            "y": 2.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "VSCode",
+                        "source_uuid": "0ccd8d4b-0edb-40b6-8077-2b4777a53864",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 2,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 2,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 197.0,
+                            "y": 37.0
+                        },
+                        "pos_rel": {
+                            "x": -1.4129629135131836,
+                            "y": -0.9314814805984497
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 1149.0,
+                            "y": 1006.0
+                        },
+                        "bounds_rel": {
+                            "x": 2.1277778148651123,
+                            "y": 1.8629629611968994
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "「コメントにも反応するわよ」",
+                        "source_uuid": "455912e5-9c11-4a0b-b51b-35e07b26ee4a",
+                        "visible": true,
+                        "locked": false,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 11,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 1213.0,
+                            "y": 210.0
+                        },
+                        "pos_rel": {
+                            "x": 0.46851852536201477,
+                            "y": -0.6111111044883728
+                        },
+                        "scale": {
+                            "x": 0.5159857869148254,
+                            "y": 0.515625
+                        },
+                        "scale_rel": {
+                            "x": 0.5159857869148254,
+                            "y": 0.515625
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "chat yt popup",
+                        "source_uuid": "a71c76a6-7c33-476b-b90a-28c5e8c33383",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 9,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 41.0,
+                            "y": -36.0
+                        },
+                        "pos_rel": {
+                            "x": -1.7018518447875977,
+                            "y": -1.0666667222976685
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "clock",
+                        "source_uuid": "de5f7d23-9afd-4c82-b506-70caae41ea49",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 289,
+                        "crop_top": 0,
+                        "crop_right": 288,
+                        "crop_bottom": 444,
+                        "id": 10,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 75.0,
+                            "y": 38.0
+                        },
+                        "pos_rel": {
+                            "x": -1.6388888359069824,
+                            "y": -0.9296296238899231
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "metan post",
+                        "source_uuid": "e966e2f2-fd1f-4ba1-b4eb-c7519c53c2de",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 6,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 246.0,
+                            "y": 0.0
+                        },
+                        "pos_rel": {
+                            "x": -1.3222222328186035,
+                            "y": -1.0
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "___frame",
+                        "source_uuid": "e0988e89-2aa2-43b0-a34e-8687b5ed0b66",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 7,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pos_rel": {
+                            "x": -1.7777777910232544,
+                            "y": -1.0
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "metan chara",
+                        "source_uuid": "31fa4b64-cdd5-4854-a60f-aca002aa52ac",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 1,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 1134.0,
+                            "y": 73.0
+                        },
+                        "pos_rel": {
+                            "x": 0.3222222328186035,
+                            "y": -0.864814817905426
+                        },
+                        "scale": {
+                            "x": 1.3600000143051147,
+                            "y": 1.3600000143051147
+                        },
+                        "scale_rel": {
+                            "x": 1.3600000143051147,
+                            "y": 1.3600000143051147
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    }
+                ]
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {
+                "OBSBasic.SelectScene": [],
+                "libobs.show_scene_item.4": [],
+                "libobs.hide_scene_item.4": [],
+                "libobs.show_scene_item.5": [],
+                "libobs.hide_scene_item.5": [],
+                "libobs.show_scene_item.2": [],
+                "libobs.hide_scene_item.2": [],
+                "libobs.show_scene_item.11": [],
+                "libobs.hide_scene_item.11": [],
+                "libobs.show_scene_item.9": [],
+                "libobs.hide_scene_item.9": [],
+                "libobs.show_scene_item.10": [],
+                "libobs.hide_scene_item.10": [],
+                "libobs.show_scene_item.6": [],
+                "libobs.hide_scene_item.6": [],
+                "libobs.show_scene_item.7": [],
+                "libobs.hide_scene_item.7": [],
+                "libobs.show_scene_item.1": [],
+                "libobs.hide_scene_item.1": []
+            },
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "canvas_uuid": "6c69626f-6273-4c00-9d88-c5136d61696e",
+            "private_settings": {
+                "transition": "",
+                "transition_duration": 0
+            }
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "metan chara",
+            "uuid": "31fa4b64-cdd5-4854-a60f-aca002aa52ac",
+            "id": "browser_source",
+            "versioned_id": "browser_source",
+            "settings": {
+                "url": "http://localhost:8000/chara/?debug",
+                "width": 600,
+                "height": 1200,
+                "fps_custom": false,
+                "webpage_control_level": 5,
+                "reroute_audio": true
+            },
+            "mixers": 195,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.unmute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "ObsBrowser.Refresh": []
+            },
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 2,
+            "private_settings": {},
+            "filters": []
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "metan post",
+            "uuid": "e966e2f2-fd1f-4ba1-b4eb-c7519c53c2de",
+            "id": "browser_source",
+            "versioned_id": "browser_source",
+            "settings": {
+                "url": "http://localhost:8000/post/",
+                "width": 1080,
+                "height": 1080,
+                "reroute_audio": false
+            },
+            "mixers": 255,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.unmute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "ObsBrowser.Refresh": []
+            },
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {}
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "VSCode",
+            "uuid": "0ccd8d4b-0edb-40b6-8077-2b4777a53864",
+            "id": "window_capture",
+            "versioned_id": "window_capture",
+            "settings": {
+                "priority": 1,
+                "window": "C#3A\\WINDOWS\\system32\\cmd.exe:CASCADIA_HOSTING_WINDOW_CLASS:WindowsTerminal.exe",
+                "method": 2,
+                "cursor": false
+            },
+            "mixers": 255,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.unmute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": []
+            },
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {},
+            "filters": [
+                {
+                    "prev_ver": 520159234,
+                    "name": "ルミナンスキー",
+                    "uuid": "17459792-7acd-4e73-a16d-4e3ddf0b0a16",
+                    "id": "luma_key_filter",
+                    "versioned_id": "luma_key_filter_v2",
+                    "settings": {
+                        "luma_max_smooth": 1.0,
+                        "luma_min_smooth": 0.0057
+                    },
+                    "mixers": 0,
+                    "sync": 0,
+                    "flags": 0,
+                    "volume": 1.0,
+                    "balance": 0.5,
+                    "enabled": true,
+                    "muted": false,
+                    "push-to-mute": false,
+                    "push-to-mute-delay": 0,
+                    "push-to-talk": false,
+                    "push-to-talk-delay": 0,
+                    "hotkeys": {},
+                    "deinterlace_mode": 0,
+                    "deinterlace_field_order": 0,
+                    "monitoring_type": 0,
+                    "private_settings": {}
+                }
+            ]
+        },
+        {
+            "prev_ver": 520159234,
+            "name": "___frame",
+            "uuid": "e0988e89-2aa2-43b0-a34e-8687b5ed0b66",
+            "id": "scene",
+            "versioned_id": "scene",
+            "settings": {
+                "id_counter": 4,
+                "custom_size": false,
+                "items": [
+                    {
+                        "name": "frame_color",
+                        "source_uuid": "d1c0338c-ac53-4fe4-81ab-d23e99efae98",
+                        "visible": true,
+                        "locked": false,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 2,
+                        "bounds_align": 6,
+                        "bounds_crop": false,
+                        "crop_left": 1880,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 1,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pos_rel": {
+                            "x": -1.7777777910232544,
+                            "y": -1.0
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "bounds_rel": {
+                            "x": 3.555555582046509,
+                            "y": 2.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "frame_color",
+                        "source_uuid": "d1c0338c-ac53-4fe4-81ab-d23e99efae98",
+                        "visible": true,
+                        "locked": false,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 2,
+                        "bounds_align": 5,
+                        "bounds_crop": false,
+                        "crop_left": 1880,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 2,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pos_rel": {
+                            "x": -1.7777777910232544,
+                            "y": -1.0
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "bounds_rel": {
+                            "x": 3.555555582046509,
+                            "y": 2.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "frame_color",
+                        "source_uuid": "d1c0338c-ac53-4fe4-81ab-d23e99efae98",
+                        "visible": true,
+                        "locked": false,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 2,
+                        "bounds_align": 9,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 1040,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 3,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pos_rel": {
+                            "x": -1.7777777910232544,
+                            "y": -1.0
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "bounds_rel": {
+                            "x": 3.555555582046509,
+                            "y": 2.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "frame_color",
+                        "source_uuid": "d1c0338c-ac53-4fe4-81ab-d23e99efae98",
+                        "visible": true,
+                        "locked": false,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "align": 5,
+                        "bounds_type": 2,
+                        "bounds_align": 5,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 1040,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 4,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "pos_rel": {
+                            "x": -1.7777777910232544,
+                            "y": -1.0
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 1920.0,
+                            "y": 1080.0
+                        },
+                        "bounds_rel": {
+                            "x": 3.555555582046509,
+                            "y": 2.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 0
+                        },
+                        "hide_transition": {
+                            "duration": 0
+                        },
+                        "private_settings": {}
+                    }
+                ]
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {
+                "OBSBasic.SelectScene": [],
+                "libobs.show_scene_item.1": [],
+                "libobs.hide_scene_item.1": [],
+                "libobs.show_scene_item.2": [],
+                "libobs.hide_scene_item.2": [],
+                "libobs.show_scene_item.3": [],
+                "libobs.hide_scene_item.3": [],
+                "libobs.show_scene_item.4": [],
+                "libobs.hide_scene_item.4": []
+            },
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "canvas_uuid": "6c69626f-6273-4c00-9d88-c5136d61696e",
+            "private_settings": {}
+        }
+    ]
+}
