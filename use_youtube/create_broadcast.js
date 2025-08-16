@@ -85,6 +85,7 @@ class CreateYouTubeLiveBroadcast {
 
             console.log('✅ 配信枠の作成完了！');
             console.log('配信URL: https://www.youtube.com/watch?v=' + this.broadcastId);
+            console.log('ストリームキー: ' + this.streamKey.id);
         } catch (err) {
             console.error(err);
             console.log("配信枠作成失敗");
