@@ -55,6 +55,15 @@ if %errorLevel% == 0 (
 
 
 
+echo.
+echo Checking for Google Chrome...
+if exist "C:\Program Files\Google\Chrome\Application\chrome.exe" goto :endof_chrome_install
+    echo   [*] Installing Google Chrome via winget...
+    winget install --id Google.Chrome --silent --accept-source-agreements --accept-package-agreements
+:endof_chrome_install
+
+
+
 :: --- Phase 2: Microsoft Visual C++ Redistributable Check ---
 echo.
 echo [2/8] Checking for Microsoft Visual C++ Redistributable...
