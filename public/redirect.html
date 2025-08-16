@@ -24,10 +24,6 @@
 
         document.getElementById('確認コード').value = query['code'];
 
-        if (query['code']) {
-            copy(query['code']);
-        }
-
         document.getElementById('確認コード').addEventListener('click', () => {
             copy(query['code']);
         });
